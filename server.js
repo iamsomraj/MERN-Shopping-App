@@ -11,8 +11,10 @@ const productsRoute = require("./api/routes/products");
 
 const app = express();
 
+// connect to database
 connectDB();
 
+// api routes
 app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/orders", ordersRoute);
