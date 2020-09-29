@@ -1,15 +1,21 @@
 require("dotenv").config();
 
 const express = require("express");
-const connectDB = require('./db');
+const connectDB = require("./db");
+
+const usersRoute = require("./api/routes/users");
+const ordersRoute = require("./api/routes/orders");
+const authRoute = require("./api/routes/auth");
+const profileRoute = require("./api/routes/profile");
 
 const app = express();
 
 connectDB();
 
-app.get("/", (req, res) => {
-	res.status(200).json({ message: "Express Server API" });
-});
+app.use("/api/users", usersRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/orders", ordersRoute);
+app.use("/api/profile", profileRoute);
 
 const PORT = process.env.PORT || 4500;
 
