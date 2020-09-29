@@ -7,6 +7,7 @@ const usersRoute = require("./api/routes/users");
 const ordersRoute = require("./api/routes/orders");
 const authRoute = require("./api/routes/auth");
 const profileRoute = require("./api/routes/profile");
+const productsRoute = require("./api/routes/products");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/orders", ordersRoute);
 app.use("/api/profile", profileRoute);
+app.use("/api/products", productsRoute);
 
 const PORT = process.env.PORT || 4500;
 
