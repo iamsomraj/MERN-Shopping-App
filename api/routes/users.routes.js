@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-// @desc    testing route
+// @desc    registering a new user
 // @access  public
 // @route   api/users/
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
 	res.status(200).json({ message: "Testing the users route" });
 });
 

@@ -3,16 +3,19 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db");
 
-const usersRoute = require("./api/routes/users");
-const ordersRoute = require("./api/routes/orders");
-const authRoute = require("./api/routes/auth");
-const profileRoute = require("./api/routes/profile");
-const productsRoute = require("./api/routes/products");
+const usersRoute = require("./api/routes/users.routes");
+const ordersRoute = require("./api/routes/orders.routes");
+const authRoute = require("./api/routes/auth.routes");
+const profileRoute = require("./api/routes/profile.routes");
+const productsRoute = require("./api/routes/products.routes");
 
 const app = express();
 
 // connect to database
 connectDB();
+
+// middlewares
+app.use(express.json());
 
 // api routes
 app.use("/api/users", usersRoute);
