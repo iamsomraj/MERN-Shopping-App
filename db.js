@@ -8,6 +8,7 @@ const connectDB = async () => {
 			useCreateIndex: true,
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
+			useFindAndModify: true,
 		});
 		console.log(`Database connection is succesfully established`);
 	} catch (error) {

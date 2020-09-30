@@ -87,13 +87,13 @@ router.post(
 // @access   Private
 router.delete("/delete", auth, async (req, res) => {
 	try {
-		// @TODO: remove orders
-		// @TODO: remove products
+		// @TODO	remove orders
+		// @TODO	remove products
 
 		await Profile.findOneAndRemove({ user: req.user.id });
 		await User.findOneAndRemove({ _id: req.user.id });
 
-		res.json({ msg: "Account deleted" });
+		res.json({ msg: `Account deleted with id : ${req.user.id}` });
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send("Server Error");
