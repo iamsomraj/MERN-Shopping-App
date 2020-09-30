@@ -3,19 +3,19 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const { check, validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
 const User = require("../../models/User");
 
-// @desc     Register user
+// @desc     Register user and get token
 // @access   Public
 // @route    api/users/register
 router.post(
 	"/register",
 	[
-		check("name", "Name is required").not().isEmpty(),
-		check("email", "Please include a valid email").isEmail(),
-		check(
+		body("name", "Name is required").not().isEmpty(),
+		body("email", "Please include a valid email").isEmail(),
+		body(
 			"password",
 			"Please enter a password with 6 or more characters"
 		).isLength({ min: 6 }),
