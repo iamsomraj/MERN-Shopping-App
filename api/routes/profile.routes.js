@@ -1,10 +1,39 @@
 const express = require("express");
+const path = require("path");
 const router = express.Router();
 const auth = require("../middleware/auth");
 const { body, validationResult } = require("express-validator");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, "./uploads/");
+	},
+	filename: function (req, file, cb) {
+		cb(null, req.user.id + path.extname(file.originalname));
+	},
+});
+
+const fileFilter = (req, file, cb) => {
+	// reject a file
+	if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+		cb(null, true);
+	} else {
+		cb(null, false);
+	}
+};
+
+const upload = multer({
+	storage: storage,
+	limits: {
+		fileSize: 1024 * 1024 * 5,
+	},
+	fileFilter: fileFilter,
+});
 
 // @desc     Get current logged in user's profile
 // @access   Private
@@ -33,6 +62,7 @@ router.post(
 	"/",
 	[
 		auth,
+		upload.single("image"),
 		[
 			body("contact", "Contact is not valid").isLength({ min: 10 }).isNumeric(),
 			body("address", "Address is not valid")
@@ -50,7 +80,7 @@ router.post(
 
 		const profileFields = {
 			user: req.user.id,
-			image: "image.jpg",
+			image: req.file.path,
 			contact,
 			address,
 		};

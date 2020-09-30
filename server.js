@@ -17,6 +17,7 @@ connectDB();
 
 // middlewares
 app.use(morgan("dev"));
+app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 
 // api routes
