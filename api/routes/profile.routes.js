@@ -81,7 +81,6 @@ router.post(
 		}
 		const { contact, address } = req.body;
 
-
 		const profileFields = {
 			user: req.user.id,
 			image: req.file.path,
@@ -90,7 +89,7 @@ router.post(
 		};
 
 		try {
-			let user = await User.findOne({ id: req.user.id });
+			let user = await User.findById(req.user.id);
 
 			if (!user) {
 				return res.status(400).json({ errors: [{ msg: "User not found" }] });
@@ -144,7 +143,7 @@ router.delete("/delete", auth, async (req, res) => {
 			}
 		});
 
-		res.json({ msg: `Account deleted with id : ${req.user.id}` });
+		res.json({ msg: "Profile deleted" });
 	} catch (err) {
 		console.error(err.message);
 		return res
