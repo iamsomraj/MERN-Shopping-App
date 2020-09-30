@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 		cb(null, "./uploads/");
 	},
 	filename: function (req, file, cb) {
-		cb(null, req.user.id + path.extname(file.originalname));
+		cb(null, req.user.id + ".png");
 	},
 });
 
@@ -81,8 +81,6 @@ router.post(
 		}
 		const { contact, address } = req.body;
 
-		if (!req.file.path) {
-		}
 
 		const profileFields = {
 			user: req.user.id,
@@ -92,6 +90,12 @@ router.post(
 		};
 
 		try {
+			let user = await User.findOne({ id: req.user.id });
+
+			if (!user) {
+				return res.status(400).json({ errors: [{ msg: "User not found" }] });
+			}
+
 			let profile = await Profile.findOne({ user: req.user.id });
 
 			if (profile) {
@@ -129,6 +133,16 @@ router.delete("/delete", auth, async (req, res) => {
 
 		await Profile.findOneAndRemove({ user: req.user.id });
 		await User.findOneAndRemove({ _id: req.user.id });
+
+		const fs = require("fs");
+
+		const path = "./uploads/" + req.user.id + ".png";
+
+		fs.unlink(path, (err) => {
+			if (err) {
+				return;
+			}
+		});
 
 		res.json({ msg: `Account deleted with id : ${req.user.id}` });
 	} catch (err) {
