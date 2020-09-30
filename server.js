@@ -8,6 +8,7 @@ const ordersRoute = require("./api/routes/orders.routes");
 const authRoute = require("./api/routes/auth.routes");
 const profileRoute = require("./api/routes/profile.routes");
 const productsRoute = require("./api/routes/products.routes");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -15,6 +16,7 @@ const app = express();
 connectDB();
 
 // middlewares
+app.use(morgan("dev"));
 app.use(express.json());
 
 // api routes

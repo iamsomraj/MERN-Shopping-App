@@ -1,22 +1,24 @@
-require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const { check, validationResult } = require("express-validator");
+
 const User = require("../../models/User");
 
-// @desc    registering a new user
-// @access  public
-// @route   api/users/register/
+// @desc     Register user
+// @access   Public
+// @route    api/users/register
 router.post(
 	"/register",
 	[
 		check("name", "Name is required").not().isEmpty(),
-		check("email", "Email is not valid").isEmail(),
-		check("password", "Password is less than 6 characters").isLength({
-			min: 6,
-		}),
+		check("email", "Please include a valid email").isEmail(),
+		check(
+			"password",
+			"Please enter a password with 6 or more characters"
+		).isLength({ min: 6 }),
 	],
 	async (req, res) => {
 		const errors = validationResult(req);
@@ -49,43 +51,24 @@ router.post(
 
 			const payload = {
 				user: {
-					id: user._id,
+					id: user.id,
 				},
 			};
 
 			jwt.sign(
 				payload,
-				process.env.SECRET_KEY,
-				{
-					expiresIn: 36000,
-				},
+				process.env.SECRET,
+				{ expiresIn: "5 days" },
 				(err, token) => {
-					if (err) {
-						throw err;
-					}
-					res.status(200).json({ msg: "User is registered", token });
+					if (err) throw err;
+					res.json({ msg: "User is registered", token });
 				}
 			);
-		} catch (error) {
-			console.log(error);
-			return res
-				.status(500)
-				.json({ errors: [{ msg: "Internal server error" }] });
+		} catch (err) {
+			console.error(err.message);
+			res.status(500).json({ errors: [{ msg: "Internal Server Error" }] });
 		}
 	}
 );
-
-// @desc    getting all the users
-// @access  public
-// @route   api/users/
-router.get("/", async (req, res) => {
-	try {
-		const users = await User.find();
-		console.log(users);
-		res.status(200).json({ msg: "Users are fetched", users: users });
-	} catch (error) {
-		res.status(500).json({ errors: [{ msg: "Internal server error" }] });
-	}
-});
 
 module.exports = router;
