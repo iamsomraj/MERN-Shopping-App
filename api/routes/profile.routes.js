@@ -85,14 +85,12 @@ router.post(
 // @route    DELETE api/profile
 // @desc     Delete profile, user & orders, products
 // @access   Private
-router.delete("/", auth, async (req, res) => {
+router.delete("/delete", auth, async (req, res) => {
 	try {
 		// @TODO: remove orders
 		// @TODO: remove products
 
-		// Remove profile
 		await Profile.findOneAndRemove({ user: req.user.id });
-		// Remove user
 		await User.findOneAndRemove({ _id: req.user.id });
 
 		res.json({ msg: "Account deleted" });
