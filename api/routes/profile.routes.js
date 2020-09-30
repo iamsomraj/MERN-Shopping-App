@@ -45,13 +45,16 @@ router.get("/", auth, async (req, res) => {
 		}).populate("user", ["name", "email"]);
 
 		if (!profile) {
-			return res.status(400).json({ msg: "There is no profile for this user" });
+			return res
+				.status(400)
+				.json({ errors: [{ msg: "There is no profile for this user" }] });
 		}
 
 		res.status(200).json({ msg: "Profile fetched successfully", profile });
 	} catch (err) {
-		console.error(err.message);
-		res.status(500).send("Server Error");
+		return res
+			.status(500)
+			.json({ errors: [{ msg: "Internal Server Error : Get profile" }] });
 	}
 });
 
@@ -77,6 +80,9 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 		const { contact, address } = req.body;
+
+		if (!req.file.path) {
+		}
 
 		const profileFields = {
 			user: req.user.id,
@@ -106,8 +112,9 @@ router.post(
 
 			res.status(200).json({ msg: "Profile created successfully", profile });
 		} catch (err) {
-			console.error(err.message);
-			res.status(500).send("Server Error");
+			return res
+				.status(400)
+				.json({ errors: [{ msg: "Internal server error : C/U profile" }] });
 		}
 	}
 );
@@ -126,7 +133,9 @@ router.delete("/delete", auth, async (req, res) => {
 		res.json({ msg: `Account deleted with id : ${req.user.id}` });
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).send("Server Error");
+		return res
+			.status(500)
+			.json({ errors: [{ msg: "Internal Server Error : Delete account" }] });
 	}
 });
 

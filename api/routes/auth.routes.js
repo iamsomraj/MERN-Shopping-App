@@ -23,7 +23,9 @@ router.get("/", auth, async (req, res) => {
 
 		res.status(200).json({ user, msg: "User is verified" });
 	} catch (error) {
-		res.status(500).json({ errors: [{ msg: "Auth error" }] });
+		res
+			.status(500)
+			.json({ errors: [{ msg: "Internal Server Error : Get auth" }] });
 	}
 });
 
@@ -78,7 +80,9 @@ router.post(
 			);
 		} catch (err) {
 			console.error(err.message);
-			res.status(500).json({ errors: [{ msg: "Internal Server Error" }] });
+			res
+				.status(500)
+				.json({ errors: [{ msg: "Internal Server Error : Login User" }] });
 		}
 	}
 );
