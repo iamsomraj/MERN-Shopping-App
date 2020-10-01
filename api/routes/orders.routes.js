@@ -36,8 +36,8 @@ router.post(
 	[
 		auth,
 		[
-			body("product").not().isEmpty(),
-			body("quantity").not().isEmpty().isNumeric(),
+			body("product", "Product is invalid").not().isEmpty(),
+			body("quantity", "Quantity is invalid").not().isEmpty().isNumeric(),
 		],
 	],
 	async (req, res) => {
