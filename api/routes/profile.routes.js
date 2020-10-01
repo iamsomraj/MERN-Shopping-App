@@ -8,6 +8,8 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
 const multer = require("multer");
+const Order = require("../../models/Order");
+const Product = require("../../models/Product");
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
@@ -127,9 +129,8 @@ router.post(
 // @access   Private
 router.delete("/delete", auth, async (req, res) => {
 	try {
-		// @TODO	remove orders
-		// @TODO	remove products
-
+		
+		await Order.deleteMany({ user: req.user.id });
 		await Profile.findOneAndRemove({ user: req.user.id });
 		await User.findOneAndRemove({ _id: req.user.id });
 

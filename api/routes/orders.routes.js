@@ -12,11 +12,11 @@ const Product = require("../../models/Product");
 // @route   api/orders/
 router.get("/", auth, async (req, res) => {
 	try {
-		const orders = await Order.findOne({ user: req.user.id })
+		const orders = await Order.find({ user: req.user.id })
 			.populate("user", ["name", "email"])
 			.populate("product", ["name", "price", "category"]);
 
-		if (!orders) {
+		if (orders.length === 0) {
 			return res
 				.status(400)
 				.json({ errors: [{ msg: "There are no orders for this user" }] });
