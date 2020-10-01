@@ -12,16 +12,18 @@ const Product = require("../../models/Product");
 // @route   api/orders/
 router.get("/", auth, async (req, res) => {
 	try {
-		const orders = await Order.findOne({ user: req.user.id });
+		const orders = await Order.findOne({ user: req.user.id })
+			.populate("user", ["name", "email"])
+			.populate("product", ["name", "price", "category"]);
+
 		if (!orders) {
 			return res
 				.status(400)
 				.json({ errors: [{ msg: "There are no orders for this user" }] });
 		}
-		res
-			.status(200)
-			.json({ user, msg: "Orders are fetched successfully", orders });
+		res.status(200).json({ msg: "Orders are fetched successfully", orders });
 	} catch (error) {
+		console.log(error.message);
 		res
 			.status(500)
 			.json({ errors: [{ msg: "Internal Server Error : Get Orders" }] });
@@ -81,7 +83,7 @@ router.post(
 
 			await newOrder.save();
 
-			res.status(200).json({ user, msg: "Order has been placed", orders });
+			res.status(200).json({ msg: "Order has been placed" });
 		} catch (error) {
 			console.log(error.message);
 			res

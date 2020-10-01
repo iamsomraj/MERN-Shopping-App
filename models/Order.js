@@ -5,12 +5,10 @@ const orderSchema = new Schema({
 	user: {
 		type: Schema.Types.ObjectId,
 		ref: "user",
-		required: true,
 	},
 	product: {
 		type: Schema.Types.ObjectId,
 		ref: "product",
-		required: true,
 	},
 	quantity: {
 		type: Number,

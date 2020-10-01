@@ -3,6 +3,7 @@ const Product = require("../../models/Product");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
+const User = require("../../models/User");
 
 // @desc    get products
 // @access  public
@@ -11,7 +12,7 @@ router.get("/", async (req, res) => {
 	try {
 		const products = await Product.find().select("-user");
 
-		if (!products) {
+		if (products.length === 0) {
 			return res.status(401).json({
 				errors: [{ msg: "There are no products currently available" }],
 			});
@@ -52,7 +53,7 @@ router.post(
 			user: req.user.id,
 			name,
 			category,
-			price: price <= 99 ? 100 : quantity,
+			price: price <= 99 ? 100 : price,
 		};
 
 		try {
@@ -63,13 +64,14 @@ router.post(
 					.status(400)
 					.json({ errors: [{ msg: "User does not exist" }] });
 			}
-			
-			const newProduct = new Order(productFields);
+
+			const newProduct = new Product(productFields);
 
 			await newProduct.save();
 
 			res.status(200).json({ message: "Product is created succesfully" });
 		} catch (error) {
+			console.log(error.message);
 			res.status(500).json({
 				errors: [{ msg: "Internal Server Error : Create Products" }],
 			});
