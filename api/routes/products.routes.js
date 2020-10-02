@@ -28,6 +28,35 @@ router.get("/", async (req, res) => {
 	}
 });
 
+// @desc    get products by categories
+// @access  public
+// @route   api/products/:category
+router.get("/:category", async (req, res) => {
+	try {
+		const category = req.params.category;
+
+		const products = await Product.find({ category: category }).select("-user");
+
+		if (products.length === 0) {
+			return res.status(401).json({
+				errors: [
+					{ msg: "There are no products under this category : " + category },
+				],
+			});
+		}
+
+		res.status(200).json({
+			message:
+				"Products with category : " + category + " are fetched succesfully",
+			products,
+		});
+	} catch (error) {
+		res.status(500).json({
+			errors: [{ msg: "Internal Server Error : Get Products By Category" }],
+		});
+	}
+});
+
 // @desc    create product
 // @access  private
 // @route   api/products/create
