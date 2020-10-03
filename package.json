@@ -1,0 +1,36 @@
+{
+  "name": "coding-pillow-mart",
+  "version": "1.0.0",
+  "description": "A full stack ecommerce application by coding pillow",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server",
+    "server": "nodemon backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsomraj/coding-pillow-mart.git"
+  },
+  "author": "Somraj Mukherjee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamsomraj/coding-pillow-mart/issues"
+  },
+  "homepage": "https://github.com/iamsomraj/coding-pillow-mart#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.7",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
+}
