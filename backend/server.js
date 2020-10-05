@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
 
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT || 4500;
