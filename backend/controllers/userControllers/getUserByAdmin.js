@@ -1,14 +1,13 @@
 import User from "../../models/User.js";
 import asyncHandler from "express-async-handler";
 
-// @desc    delete user by id
+// @desc    get user by id
 // @access  private
 // @route   /api/users/:id
-const deleteUser = asyncHandler(async (req, res) => {
+const getUserByAdminByAdmin = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id);
 	if (user) {
-		await user.remove();
-		res.status(200).json({ message: "User removed" });
+		res.status(200).json(user);
 	} else {
 		const message = "User unavailable";
 		res.status(404).json({ message });
@@ -16,4 +15,4 @@ const deleteUser = asyncHandler(async (req, res) => {
 	}
 });
 
-export default deleteUser;
+export default getUserByAdminByAdmin;
