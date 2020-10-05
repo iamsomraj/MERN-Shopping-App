@@ -6,6 +6,8 @@ import morgan from "morgan";
 import connectToDatabase from "./config/database.js";
 import { errorHandler, pageNotFound } from "./middlewares/errorMiddleware.js";
 
+import userRoutes from "./routes/user.routes.js";
+
 dotenv.config();
 
 connectToDatabase();
@@ -17,6 +19,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(express.json());
+
+app.use("/api/user", userRoutes);
 
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT || 4500;
