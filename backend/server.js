@@ -4,10 +4,7 @@ import dotenv from "dotenv";
 import colors from "colors";
 import morgan from "morgan";
 import connectToDatabase from "./config/database.js";
-import {
-	errorHandler,
-	notFoundHandler,
-} from "../middlewares/errorMiddleware.js";
+import { errorHandler, pageNotFound } from "./middlewares/errorMiddleware.js";
 
 dotenv.config();
 
@@ -35,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-app.use(notFoundHandler);
+app.use(pageNotFound);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
