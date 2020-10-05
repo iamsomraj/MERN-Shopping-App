@@ -13,5 +13,8 @@ Router.route("/login").get(userLogin);
 Router.route("/profile")
 	.get(userAuth, getUserProfile)
 	.put(userAuth, updateUserProfile);
+Router.route("/:id").delete(userAuth, adminAuth, deleteUser);
+// 	.get(protect, admin, getUserById)
+// 	.put(protect, admin, updateUser);
 
 export default Router;
