@@ -5,6 +5,7 @@ import getToken from "../../util/getToken.js";
 // @desc:   create or register new user
 // @access: public
 // @route:  api/user
+
 const userRegister = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 	const userExists = await User.findOne({ email });

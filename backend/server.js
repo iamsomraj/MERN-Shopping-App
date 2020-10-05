@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import colors from "colors";
 import morgan from "morgan";
 import connectToDatabase from "./config/database.js";
-import { errorHandler, pageNotFound } from "./middlewares/errorMiddleware.js";
+import { errorHandler, pageNotFound } from "./middlewares/error.js";
 
 import userRoutes from "./routes/user.routes.js";
 
