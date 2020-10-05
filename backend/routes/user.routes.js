@@ -4,10 +4,12 @@ import userLogin from "../controllers/userControllers/userLogin.js";
 import getUserProfile from "../controllers/userControllers/getUserProfile.js";
 import { adminAuth, userAuth } from "../middlewares/auth.js";
 import updateUserProfile from "../controllers/userControllers/updateUserProfile.js";
-import getAllUsers from "../controllers/userControllers/getAllUsersByAdmin.js";
-import getUserByAdminByAdmin from "../controllers/userControllers/getUserByAdmin.js";
-import deleteUserByAdmin from "../controllers/userControllers/deleteUserByAdmin.js";
-import updateUserByAdmin from "../controllers/userControllers/updateUserByAdmin.js";
+import getAllUsers from "../controllers/adminControllers/getAllUsersByAdmin.js";
+import getUserByAdminByAdmin from "../controllers/adminControllers/getUserByAdmin.js";
+import deleteUserByAdmin from "../controllers/adminControllers/deleteUserByAdmin.js";
+import updateUserByAdmin from "../controllers/adminControllers/updateUserByAdmin.js";
+
+
 
 const Router = express.Router();
 
@@ -19,6 +21,6 @@ Router.route("/profile")
 Router.route("/:id")
 	.delete(userAuth, adminAuth, deleteUserByAdmin)
 	.get(userAuth, adminAuth, getUserByAdminByAdmin)
-	.get(userAuth, adminAuth, updateUserByAdmin);
+	.put(userAuth, adminAuth, updateUserByAdmin);
 
 export default Router;

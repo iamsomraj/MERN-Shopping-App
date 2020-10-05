@@ -12,6 +12,12 @@ const updateUserByAdmin = asyncHandler(async (req, res) => {
 		user.name = name || user.name;
 		user.email = email || user.email;
 		user.password = password || user.password;
+
+		const emailExists = await User.findOne({ email: user.email });
+		if (emailExists) {
+			return res.status(400).json({ message: "Email already registered" });
+		}
+
 		await user.save();
 		res.json({
 			_id: user._id,
