@@ -27,8 +27,9 @@ const userRegister = asyncHandler(async (req, res) => {
 			token: getToken(user._id),
 		});
 	} else {
-		res.status(400).json({ message: "User data is invalid" });
-		throw new Error("User data is invalid");
+		const message = "User data is invalid";
+		res.status(400).json({ message });
+		throw new Error(message);
 	}
 });
 
