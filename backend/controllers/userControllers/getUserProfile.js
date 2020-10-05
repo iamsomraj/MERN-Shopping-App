@@ -1,9 +1,9 @@
 import User from "../../models/User.js";
 import asyncHandler from "express-async-handler";
 
-// @desc: getting user profile
+// @desc:   getting user profile
 // @access: private
-// @route: api/users/profile
+// @route:  api/users/profile
 
 const getUserProfile = asyncHandler(async (req, res) => {
 	if (req.user) {
@@ -15,7 +15,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 		});
 	} else {
 		const message = "User is unavailable";
-		res.status(400).json({ message });
+		res.status(404).json({ message });
 		throw new Error(message);
 	}
 });

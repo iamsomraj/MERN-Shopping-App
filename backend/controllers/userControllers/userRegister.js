@@ -7,7 +7,7 @@ import getToken from "../../util/getToken.js";
 // @route:  api/user
 
 const userRegister = asyncHandler(async (req, res) => {
-	const { name, email, password } = req.body;
+	const { name, email, password, isAdmin } = req.body;
 	const userExists = await User.findOne({ email });
 	if (userExists) {
 		return res.status(400).json({ message: "User exists" });
@@ -17,6 +17,7 @@ const userRegister = asyncHandler(async (req, res) => {
 		name,
 		email,
 		password,
+		isAdmin: isAdmin || false,
 	});
 
 	if (user) {
