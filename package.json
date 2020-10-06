@@ -9,7 +9,7 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "db-init": "node backend/seeder",
-    "db-delete": "node backend/seeder -d"
+    "db-del": "node backend/seeder -d"
   },
   "repository": {
     "type": "git",
