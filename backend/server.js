@@ -7,6 +7,7 @@ import connectToDatabase from "./config/database.js";
 import { errorHandler, pageNotFound } from "./middlewares/error.js";
 
 import userRoutes from "./routes/user.routes.js";
+import productRoutes from "./routes/product.routes.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT || 4500;
