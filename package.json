@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server",
     "server": "nodemon backend/server",
-    "initialize": "node backend/seeder",
-    "destroy": "node backend/seeder -d"
+    "db-init": "node backend/seeder",
+    "db-delete": "node backend/seeder -d"
   },
   "repository": {
     "type": "git",
