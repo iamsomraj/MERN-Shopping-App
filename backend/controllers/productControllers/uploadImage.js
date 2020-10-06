@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
 		cb(null, "./uploads/");
 	},
 	filename: function (req, file, cb) {
-		cb(null, req.user.id + ".png");
+		cb(null, req.user.id + "-" + Date.now() + ".jpg");
 	},
 });
 
@@ -26,9 +26,4 @@ const upload = multer({
 	fileFilter: fileFilter,
 });
 
-const uploadImage = asyncHandler(async (req, res, next) => {
-	upload("image");
-	next();
-});
-
-export default uploadImage;
+export default upload;
