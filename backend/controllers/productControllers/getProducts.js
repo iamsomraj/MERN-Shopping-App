@@ -11,7 +11,11 @@ const getProducts = asyncHandler(async (req, res) => {
 	const products = await Product.find()
 		.limit(noOfProductsPerPage)
 		.skip(noOfProductsPerPage * (page - 1));
-	res.status(200).json({ ...products, page });
+	if (products.length !== 0) {
+		res.status(200).json({ ...products, page });
+	} else {
+		res.status(200).json(products);
+	}
 });
 
 export default getProducts;
