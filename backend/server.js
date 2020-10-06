@@ -8,6 +8,7 @@ import { errorHandler, pageNotFound } from "./middlewares/error.js";
 
 import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
+import orderRoutes from "./routes/order.routes.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT || 4500;
