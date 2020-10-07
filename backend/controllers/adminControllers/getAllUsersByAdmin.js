@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 // @access  private
 // @route   /api/users
 const getAllUsers = asyncHandler(async (req, res) => {
-	const users = await User.find();
+	const users = await User.find().select('-password');
 	res.status(200).json(users);
 });
 
