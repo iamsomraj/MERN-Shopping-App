@@ -6,12 +6,16 @@ import asyncHandler from "express-async-handler";
 // @route:  /api/orders
 const placeOrder = asyncHandler(async (req, res) => {
 	const user = req.user._id;
-	const { products, totalPrice } = req.body;
+	const { products } = req.body;
 	if (products && products.length === 0) {
 		const message = "Ordered products unavailable";
 		res.status(404).json(message);
 		throw new Error(message);
 	} else {
+		let totalPrice = 0.0;
+		products.forEach((element) => {
+			totalPrice += parseFloat(element.price);
+		});
 		const order = new Order({
 			user,
 			products,
