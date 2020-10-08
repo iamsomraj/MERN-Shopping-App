@@ -22,11 +22,6 @@ const productSchema = Schema(
 			required: true,
 			default: 0,
 		},
-		qtyInStock: {
-			type: Number,
-			required: true,
-			default: 0,
-		},
 		isAvailable: {
 			type: Boolean,
 			required: true,
