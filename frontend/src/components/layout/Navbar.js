@@ -1,5 +1,4 @@
-import Title from "antd/lib/skeleton/Title";
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 export const Navbar = () => {
