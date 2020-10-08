@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from "react";
 import { Button, Form, FormGroup, FormText, Input, Label } from "reactstrap";
-
+import myAxios from "../Utils/myAxios";
 const Register = (props) => {
-	const [registerForm, setRegisterForm] = useState({
+	const initialState = {
 		name: "",
 		email: "",
 		password: "",
 		confirmPassword: "",
-	});
+	};
+
+	const [registerForm, setRegisterForm] = useState(initialState);
 
 	const { name, email, password, confirmPassword } = registerForm;
 
@@ -18,9 +20,18 @@ const Register = (props) => {
 		});
 	};
 
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
-		console.log(registerForm);
+		if (password === confirmPassword) {
+			// console.log(registerForm);
+			const newUser = { name, email, password, isAdmin: false };
+			const response = await myAxios.post("/users", newUser);
+			console.log(response.data);
+		} else {
+			console.log(
+				"Password and Confirm Password should match with one another"
+			);
+		}
 	};
 
 	return (
@@ -31,6 +42,7 @@ const Register = (props) => {
 				<FormGroup>
 					<Label for="name">Name</Label>
 					<Input
+						autoComplete="off"
 						type="text"
 						name="name"
 						id="name"
@@ -42,6 +54,7 @@ const Register = (props) => {
 				<FormGroup>
 					<Label for="email">Email</Label>
 					<Input
+						autoComplete="off"
 						type="email"
 						name="email"
 						id="email"
@@ -54,6 +67,7 @@ const Register = (props) => {
 				<FormGroup>
 					<Label for="password">Password</Label>
 					<Input
+						autoComplete="off"
 						type="password"
 						name="password"
 						id="password"
@@ -66,6 +80,7 @@ const Register = (props) => {
 					<Label for="confirmPassword">Confirm Password</Label>
 					<Input
 						name="confirmPassword"
+						autoComplete="off"
 						type="password"
 						id="confirmPassword"
 						value={confirmPassword}
