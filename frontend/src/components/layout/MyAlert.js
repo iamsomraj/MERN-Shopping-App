@@ -1,20 +1,29 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
+import { delAlert } from "../../redux/alert/alertActions";
 
 const MyAlert = () => {
-  const header = useSelector((state) => state.alert.header);
   const message = useSelector((state) => state.alert.message);
+  const header = useSelector((state) => state.alert.header);
   const color = useSelector((state) => state.alert.color);
 
-  if (header === "" || message === "" || color === "") {
+  const dispatch = useDispatch();
+
+  if (message === "" && header === "" && color === "") {
     return null;
   }
 
+  const toggle = () => {
+    dispatch(delAlert());
+  };
+
   return (
-    <div className={`p-3 bg-${color} my-2 rounded`}>
-      <Toast>
-        <ToastHeader>{header}</ToastHeader>
+    <div className={`bg-${color} mt-4 mb-4 p-4 rounded`}>
+      <Toast isOpen={!!(message && header && color)}>
+        <ToastHeader toggle={toggle} icon={color}>
+          {header}
+        </ToastHeader>
         <ToastBody>{message}</ToastBody>
       </Toast>
     </div>

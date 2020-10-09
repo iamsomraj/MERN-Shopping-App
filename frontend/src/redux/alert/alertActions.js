@@ -3,9 +3,19 @@ import { DEL_ALERT, SET_ALERT } from "./alertTypes";
 export const setAlert = (header, message, color) => (dispatch) => {
   dispatch({
     type: SET_ALERT,
-    header,
-    message,
-    color,
+    payload: {
+      header,
+      message,
+      color,
+    },
   });
-  setTimeout(dispatch({ type: DEL_ALERT }), 5000);
+  setTimeout(() => {
+    dispatch(delAlert());
+  }, 3000);
+};
+
+export const delAlert = () => {
+  return {
+    type: DEL_ALERT,
+  };
 };
