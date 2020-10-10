@@ -2,10 +2,10 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "reactstrap";
-import Login from "./layout/Login";
-import Register from "./layout/Register";
-import Landing from "./layout/Landing";
-import Navbar from "./layout/Navbar";
+import Login from "./Layout/Login";
+import Register from "./Layout/Register";
+import Landing from "./Layout/Landing";
+import Navbar from "./Layout/NavbarLayout";
 import store from "./redux/store";
 
 const App = () => {

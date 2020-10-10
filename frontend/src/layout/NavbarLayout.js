@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navbar, NavbarToggler, Collapse, NavItem, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBarLayout = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleHandler = () => {
@@ -13,7 +13,7 @@ const NavBar = () => {
 		<div>
 			<Navbar light expand="md">
 				<Link className="navbar-brand" to="/">
-					coding pillow shop
+					Coding Pillow Shop
 				</Link>
 				<NavbarToggler onClick={toggleHandler}></NavbarToggler>
 				<Collapse isOpen={isOpen} navbar>
@@ -40,4 +40,4 @@ const NavBar = () => {
 	);
 };
 
-export default NavBar;
+export default NavBarLayout;
