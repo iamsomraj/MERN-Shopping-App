@@ -22,11 +22,11 @@ const ProductPageContainer = (props) => {
         Return to Home
       </Link>
       <Row>
-        <Col md={6}>
+        <Col md={4}>
           <Image src={"../" + product.image} alt={product.name} fluid />
         </Col>
-        <Col md={3}>
-          <ListGroup variant="flush">
+        <Col md={4}>
+          <ListGroup>
             <ListGroup.Item>
               <h2>{product.name}</h2>
             </ListGroup.Item>
@@ -35,9 +35,9 @@ const ProductPageContainer = (props) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           <Card>
-            <ListGroup variant="flush">
+            <ListGroup>
               <ListGroup.Item>
                 <Row>
                   <Col>Price:</Col>

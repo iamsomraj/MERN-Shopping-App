@@ -8,16 +8,18 @@ import ProductPageContainer from "./containers/ProductPageContainer";
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <main className="py-4">
-        <Container>
-          <Route path="/" component={HomeContainer} exact />
-          <Route path="/product/:id" component={ProductPageContainer} />
-        </Container>
-      </main>
-      <Footer />
-    </Router>
+    
+      <Router>
+        <Header />
+        <main className="py-4">
+          <Container>
+            <Route path="/" component={HomeContainer} exact />
+            <Route path="/product/:id" component={ProductPageContainer} />
+          </Container>
+        </main>
+        <Footer />
+      </Router>
+    
   );
 };
 
