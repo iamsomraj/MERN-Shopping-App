@@ -13,8 +13,14 @@ const Header = () => {
             <Button variant="secondary">Search</Button>
           </Form>
           <Nav className="ml-auto">
-            <Nav.Link href="/cart">Cart</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/cart">
+              <i className="fas fa-shopping-cart" />
+              Cart
+            </Nav.Link>
+            <Nav.Link href="/login">
+              <i className="fas fa-user" />
+              Login
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
