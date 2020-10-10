@@ -1,15 +1,11 @@
 import React, { Fragment, useState } from "react";
 import { Button, Form, FormGroup, FormText, Input, Label } from "reactstrap";
-import { useDispatch } from "react-redux";
-import { setAlert } from "../../redux/alert/alertActions";
 
 const Login = (props) => {
   const initialState = {
     email: "",
     password: "",
   };
-
-  const dispatch = useDispatch();
 
   const [loginForm, setLoginForm] = useState(initialState);
 
@@ -24,11 +20,7 @@ const Login = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (email && password) {
-      console.log(loginForm);
-    } else {
-      dispatch(setAlert("Form Error", "Some form fields are blank", "danger"));
-    }
+    console.log(loginForm);
   };
 
   return (

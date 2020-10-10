@@ -1,7 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button, Form, FormGroup, FormText, Input, Label } from "reactstrap";
-import { setAlert } from "../../redux/alert/alertActions";
 const Register = (props) => {
   const initialState = {
     name: "",
@@ -9,7 +7,6 @@ const Register = (props) => {
     password: "",
     confirmPassword: "",
   };
-  const dispatch = useDispatch();
 
   const [registerForm, setRegisterForm] = useState(initialState);
 
@@ -24,18 +21,8 @@ const Register = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (
-      name &&
-      email &&
-      password &&
-      confirmPassword &&
-      password === confirmPassword
-    ) {
+    if (password === confirmPassword) {
       console.log(registerForm);
-    } else {
-      dispatch(
-        setAlert("Form Error", "Some form fields are invalid", "danger")
-      );
     }
   };
 
