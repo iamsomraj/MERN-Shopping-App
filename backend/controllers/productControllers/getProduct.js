@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   get one product by id
 // @access: public
-// @route:  api/products/:id
+// @route:  GET api/products/:id
 
 const getProduct = asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id);

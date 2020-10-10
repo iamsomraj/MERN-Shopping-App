@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   getting products in terms of page number
 // @access: public
-// @route:  api/products/
+// @route:  GET api/products/
 
 const getProducts = asyncHandler(async (req, res) => {
 	const noOfProductsPerPage = 10;

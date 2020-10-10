@@ -4,7 +4,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   create a new product
 // @access: private
-// @route:  api/products/
+// @route:  POST api/products/
 
 const createProduct = asyncHandler( async (req, res) => {
 	const user = req.user._id;

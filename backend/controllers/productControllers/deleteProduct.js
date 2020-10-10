@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   delete product by id
 // @access: private
-// @route:  api/products/:id
+// @route:  DELETE api/products/:id
 
 const deleteProduct = asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id);

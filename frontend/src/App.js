@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import HomeContainer from "./containers/HomeContainer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ProductContainer from "./containers/ProductContainer";
+import ProductPageContainer from "./containers/ProductPageContainer";
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
       <main className="py-4">
         <Container>
           <Route path="/" component={HomeContainer} exact />
-          <Route path="/product/:id" component={ProductContainer} />
+          <Route path="/product/:id" component={ProductPageContainer} />
         </Container>
       </main>
       <Footer />
