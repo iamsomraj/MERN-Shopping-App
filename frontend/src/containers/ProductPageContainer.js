@@ -16,7 +16,7 @@ const ProductPageContainer = (props) => {
 
   useEffect(() => {
     dispatch(detailProduct(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   return (
     <>
