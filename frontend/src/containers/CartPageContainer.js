@@ -23,6 +23,9 @@ const CartPageContainer = ({ match, location, history }) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { user } = userLogin;
+
   useEffect(() => {
     if (productId) {
       dispatch(addItemToCart(productId, quantity));
@@ -34,7 +37,11 @@ const CartPageContainer = ({ match, location, history }) => {
   };
 
   const paymentHandler = () => {
-    console.log("Clicked Payment Handler");
+    if (user) {
+      console.log("Clicked Payment Handler");
+    } else {
+      history.push("/login");
+    }
   };
 
   return (
