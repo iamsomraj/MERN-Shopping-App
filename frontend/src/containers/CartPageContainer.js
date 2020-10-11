@@ -93,9 +93,8 @@ const CartPageContainer = ({ match, location, history }) => {
                     <Col>
                       <Button
                         type="button"
-                        variant="light"
                         onClick={() => deleteHandler(item._id)}>
-                        <i className="fas fa-trash"></i>
+                          Remove
                       </Button>
                     </Col>
                   </Row>
