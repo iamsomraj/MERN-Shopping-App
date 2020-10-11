@@ -4,6 +4,20 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_TO_CART:
+      const exists = state.cartItems.find((item) => item._id === payload._id);
+      if (exists) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item) =>
+            item._id === payload._id ? payload : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: state.cartItems.concat(payload),
+        };
+      }
     case DELETE_FROM_CART:
       return {
         ...state,

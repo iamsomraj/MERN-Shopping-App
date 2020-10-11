@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Image,
+  ListGroup,
+  Row,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -15,6 +23,10 @@ const ProductPageContainer = (props) => {
   const id = props.match.params.id;
 
   const { product, loading, error } = productDetail;
+
+  const addToCartHandler = () => {
+    props.history.push(`/cart/${id}?quantity=${quantity}`);
+  };
 
   useEffect(() => {
     dispatch(detailProduct(id));
@@ -99,6 +111,7 @@ const ProductPageContainer = (props) => {
                   <Row>
                     <Col>
                       <Button
+                        onClick={addToCartHandler}
                         className="btn-block"
                         disabled={product.isAvailable === false}>
                         Add to cart
