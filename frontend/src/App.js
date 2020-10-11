@@ -8,6 +8,7 @@ import ProductPageContainer from "./containers/ProductPageContainer";
 import CartPageContainer from "./containers/CartPageContainer";
 import UserLoginPageContainer from "./containers/UserLoginPageContainer";
 import UserRegisterPageContainer from "./containers/UserRegisterPageContainer";
+import UserProfilePageContainer from "./containers/UserProfilePageContainer";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/cart/:id?" component={CartPageContainer} />
           <Route path="/login" component={UserLoginPageContainer} />
           <Route path="/register" component={UserRegisterPageContainer} />
+          <Route path="/profile" component={UserProfilePageContainer} />
         </Container>
       </main>
       <Footer />

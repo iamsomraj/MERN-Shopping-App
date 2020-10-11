@@ -1,4 +1,7 @@
 import {
+  GET_USER_PROFILE_FAILURE,
+  GET_USER_PROFILE_REQUEST,
+  GET_USER_PROFILE_SUCCESS,
   LOGIN_USER_FAILURE,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -61,3 +64,29 @@ export const userRegisterReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const userProfileReducer = (state = { userInfo: {} }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_USER_PROFILE_REQUEST:
+      return {
+        loading: true,
+      };
+    case GET_USER_PROFILE_SUCCESS: {
+      return {
+        loading: false,
+        userInfo: payload,
+      };
+    }
+    case GET_USER_PROFILE_FAILURE: {
+      return {
+        loading: false,
+        error: payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+

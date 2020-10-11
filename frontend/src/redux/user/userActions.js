@@ -1,5 +1,8 @@
 import Axios from "axios";
 import {
+  GET_USER_PROFILE_FAILURE,
+  GET_USER_PROFILE_REQUEST,
+  GET_USER_PROFILE_SUCCESS,
   LOGIN_USER_FAILURE,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -8,7 +11,7 @@ import {
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
 } from "./userTypes";
-export const loginUser = (email, password) => async (dispatch, getState) => {
+export const loginUser = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_USER_REQUEST });
     const { data } = await Axios.post("api/users/login", { email, password });
@@ -30,10 +33,7 @@ export const logoutUser = () => (dispatch) => {
   dispatch({ type: LOGOUT_USER });
 };
 
-export const registerUser = (name, email, password) => async (
-  dispatch,
-  getState
-) => {
+export const registerUser = (name, email, password) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
     const { data } = await Axios.post("api/users/", { name, email, password });
@@ -43,6 +43,27 @@ export const registerUser = (name, email, password) => async (
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getUserProfile = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: GET_USER_PROFILE_REQUEST });
+    const config = {
+      headers: {
+        authorization: `Bearer ${getState().userLogin.user.token}`,
+      },
+    };
+    const { data } = await Axios.get("api/users/profile", config);
+    dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_USER_PROFILE_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
