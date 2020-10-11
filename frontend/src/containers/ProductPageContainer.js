@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -7,6 +7,8 @@ import Message from "../components/Message";
 import { detailProduct } from "../redux/product/productActions";
 
 const ProductPageContainer = (props) => {
+  const [quantity, setQuantity] = useState(1);
+
   const dispatch = useDispatch();
   const productDetail = useSelector((state) => state.productDetail);
 
@@ -55,7 +57,7 @@ const ProductPageContainer = (props) => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Quantity:</Col>
+                    <Col>In Stock:</Col>
                     <Col>
                       <strong>{product.qtyInStock}</strong>
                     </Col>
@@ -74,6 +76,25 @@ const ProductPageContainer = (props) => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+                {product.isAvailable && (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Quantity</Col>
+                      <Col>
+                        <Form.Control
+                          as="select"
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}>
+                          {[...Array(product.qtyInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
                 <ListGroup.Item>
                   <Row>
                     <Col>
