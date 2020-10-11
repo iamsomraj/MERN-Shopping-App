@@ -11,17 +11,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     const { name, email, password } = req.body;
     user.name = name || user.name;
-    user.email = email || user.email;
-    user.password = password || user.password;
+    user.email = email || user.password;
+    if (password) user.password = password;
 
-    const emailExists = await User.findOne({ email: user.email });
-    if (emailExists) {
-      return res.status(400).json({ message: "Email already registered" });
-    }
 
     await user.save();
 
-    res.json({
+    res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,

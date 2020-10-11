@@ -3,7 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { getUserProfile } from "../redux/user/userActions";
+import { getUserProfile, updateUserProfile } from "../redux/user/userActions";
 
 const UserProfilePageContainer = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -11,6 +11,10 @@ const UserProfilePageContainer = ({ history }) => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+
+  const userProfileUpdate = useSelector((state) => state.userProfileUpdate);
+  const { success, fail } = userProfileUpdate;
+
   const userProfile = useSelector((state) => state.userProfile);
   const { loading, userInfo, error } = userProfile;
 
@@ -19,9 +23,7 @@ const UserProfilePageContainer = ({ history }) => {
 
   const profileUpdateFormHandler = (e) => {
     e.preventDefault();
-    if (name && email && password) {
-      console.log("clicked");
-    }
+    dispatch(updateUserProfile(name, email, password));
   };
 
   useEffect(() => {
@@ -43,7 +45,13 @@ const UserProfilePageContainer = ({ history }) => {
         <Col lg={6}>
           {loading && <Loader />}
           {error && <Message>{error}</Message>}
-      <h1>User Profile</h1>
+          {success && (
+            <Message variant="success">Profile updated successfully</Message>
+          )}
+          {fail && (
+            <Message variant="danger">Profile updation failed</Message>
+          )}
+          <h1>User Profile</h1>
           <Form>
             <Form.Group>
               <Form.Label>Full Name</Form.Label>

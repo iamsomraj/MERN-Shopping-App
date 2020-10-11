@@ -9,6 +9,9 @@ import {
   REGISTER_USER_FAILURE,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
+  UPDATE_USER_PROFILE_FAILURE,
+  UPDATE_USER_PROFILE_REQUEST,
+  UPDATE_USER_PROFILE_SUCCESS,
 } from "./userTypes";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -84,9 +87,44 @@ export const userProfileReducer = (state = { userInfo: {} }, action) => {
         error: payload,
       };
     }
+    case LOGOUT_USER: {
+      return {
+        userInfo: {},
+      };
+    }
     default:
       return state;
   }
 };
 
-
+export const userProfileUpdateReducer = (
+  state = { updatedUser: {} },
+  action
+) => {
+  const { type, payload } = action;
+  switch (type) {
+    case UPDATE_USER_PROFILE_REQUEST:
+      return {
+        loading: true,
+      };
+    case UPDATE_USER_PROFILE_SUCCESS: {
+      return {
+        loading: false,
+        success: true,
+        updatedUser: payload,
+      };
+    }
+    case UPDATE_USER_PROFILE_FAILURE: {
+      return {
+        loading: false,
+        fail: true,
+        error: payload,
+      };
+    }
+    case LOGOUT_USER: {
+      return { updatedUser: {} };
+    }
+    default:
+      return state;
+  }
+};
