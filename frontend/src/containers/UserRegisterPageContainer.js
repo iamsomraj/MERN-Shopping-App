@@ -41,6 +41,7 @@ const UserRegisterPageContainer = ({ history }) => {
         <Col lg={6}>
           {loading && <Loader />}
           {error && <Message>{error}</Message>}
+          <h1>Register</h1>
           <Form>
             <Form.Group>
               <Form.Label>Full Name</Form.Label>

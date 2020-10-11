@@ -37,7 +37,8 @@ const UserLoginPageContainer = ({ history }) => {
         <Col lg={6}>
           {loading && <Loader />}
           {error && <Message>{error}</Message>}
-          <Form autoComplete="off">
+          <h1>Login</h1>
+          <Form>
             <Form.Group>
               <Form.Label>Email address</Form.Label>
               <Form.Control
