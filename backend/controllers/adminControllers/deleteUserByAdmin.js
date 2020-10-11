@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc    delete user by id
 // @access  private
-// @route   /api/users/:id
+// @route   DELETE /api/users/:id
 const deleteUserByAdmin = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id);
 	if (user) {

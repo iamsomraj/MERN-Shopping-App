@@ -4,7 +4,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   login user and return a new token
 // @access: public
-// @route:  /api/users/login
+// @route:  POST /api/users/login
 
 const userLogin = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;

@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc: 	update user profile
 // @access: private
-// @route: 	api/users/:id
+// @route: 	PUT api/users/:id
 
 const updateUserByAdmin = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id);

@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   getting user profile
 // @access: private
-// @route:  api/users/profile
+// @route:  GET api/users/profile
 
 const getUserProfile = asyncHandler(async (req, res) => {
 	if (req.user) {
