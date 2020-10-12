@@ -38,7 +38,7 @@ const CartPageContainer = ({ match, location, history }) => {
 
   const paymentHandler = () => {
     if (user) {
-      console.log("Clicked Payment Handler");
+      history.push("/payment");
     } else {
       history.push("/login");
     }
@@ -55,7 +55,7 @@ const CartPageContainer = ({ match, location, history }) => {
         <Col md={8}>
           {cartItems.length === 0 ? (
             <Message variant="primary">
-              You have no items in the cart
+              You have no items in the cart <Link to="/">Return To Home</Link>
             </Message>
           ) : (
             <ListGroup fluid="true">
@@ -94,7 +94,7 @@ const CartPageContainer = ({ match, location, history }) => {
                       <Button
                         type="button"
                         onClick={() => deleteHandler(item._id)}>
-                          Remove
+                        Remove
                       </Button>
                     </Col>
                   </Row>
