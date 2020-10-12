@@ -14,12 +14,8 @@ const UserOrderPageContainer = ({ history }) => {
   const userOrders = useSelector((state) => state.userOrders);
   const { loading, error, orders } = userOrders;
 
-  const orderPay = useSelector((state) => state.orderPay);
-  const { order } = orderPay;
-
   const payForOrder = (id) => {
     dispatch(payMyOrder(id));
-    console.log(order);
   };
 
   useEffect(() => {

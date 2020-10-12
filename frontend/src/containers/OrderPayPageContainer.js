@@ -26,7 +26,6 @@ const OrderPayPageContainer = ({ match, history }) => {
   }, [dispatch, history, user, id]);
 
   const payForOrder = (id) => {
-    console.log("clicked in user orders");
     dispatch(payMyOrder(id));
   };
 
