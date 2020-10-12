@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
-import HomeContainer from "./containers/HomeContainer";
+import HomePageContainer from "./containers/HomePageContainer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProductPageContainer from "./containers/ProductPageContainer";
 import CartPageContainer from "./containers/CartPageContainer";
@@ -16,7 +16,7 @@ const App = () => {
       <Header />
       <main className="py-4">
         <Container>
-          <Route path="/" component={HomeContainer} exact />
+          <Route path="/" component={HomePageContainer} exact />
           <Route path="/product/:id" component={ProductPageContainer} />
           <Route path="/cart/:id?" component={CartPageContainer} />
           <Route path="/login" component={UserLoginPageContainer} />

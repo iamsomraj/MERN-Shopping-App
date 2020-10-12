@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { LinkContainer } from "react-router-bootstrap";
 
-const HomeScreen = ({ location }) => {
+const HomePageContainer = ({ location }) => {
   const dispatch = useDispatch();
   const pageNumber = location.search.split("=")[1] || 1;
   useEffect(() => {
@@ -33,10 +33,10 @@ const HomeScreen = ({ location }) => {
               </Col>
             ))}
           </Row>
-          <Row>
+          <Row className="my-4">
             <Col sm={12} md={6} lg={4} xl={3}>
               {pages > 1 && (
-                <Pagination>
+                <Pagination size="sm">
                   {[...Array(pages).keys()].map((pg) => (
                     <LinkContainer key={pg + 1} to={`/?page=${pg + 1}`}>
                       <Pagination.Item active={pg + 1 === page}>
@@ -54,4 +54,4 @@ const HomeScreen = ({ location }) => {
   );
 };
 
-export default HomeScreen;
+export default HomePageContainer;

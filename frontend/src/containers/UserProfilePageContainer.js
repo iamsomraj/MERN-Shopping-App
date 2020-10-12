@@ -53,7 +53,7 @@ const UserProfilePageContainer = ({ history }) => {
             <>
               <Message variant="success">Profile updated successfully</Message>
               <div variant="primary" className="my-3">
-                <Button onClick={() => dispatch(logoutUser())}>Logout</Button>
+                <Button onClick={() => dispatch(logoutUser())}>Logout from this session</Button>
               </div>
             </>
           )}
