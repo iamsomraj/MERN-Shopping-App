@@ -1,10 +1,10 @@
 import Order from "../../models/Order.js";
 import asyncHandler from "express-async-handler";
 
-// @desc:   Get all orders
+// @desc:   Get all orders by admin
 // @access: private
-// @route:  /api/orders
-const getOrders = asyncHandler(async (req, res) => {
+// @route:  GET /api/orders/admin/all
+const getAllOrdersByAdmin = asyncHandler(async (req, res) => {
   const orders = await Order.find().populate("user", "id name email");
   if (orders.length > 0) {
     res.json(orders);
@@ -15,4 +15,4 @@ const getOrders = asyncHandler(async (req, res) => {
   }
 });
 
-export default getOrders;
+export default getAllOrdersByAdmin;
