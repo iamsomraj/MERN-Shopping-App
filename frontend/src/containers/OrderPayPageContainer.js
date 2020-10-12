@@ -30,9 +30,9 @@ const OrderPayPageContainer = ({ match, history }) => {
         <Loader />
       ) : error ? (
         <Message>{error}</Message>
-      ) : (
+      ) : fetchedOrder ? (
         <Row className="justify-content-center">
-          <Col md={6}>
+          <Col>
             <Card>
               <Card.Header>Order #{fetchedOrder._id}</Card.Header>
               <Card.Body>
@@ -42,11 +42,13 @@ const OrderPayPageContainer = ({ match, history }) => {
                 <ListGroup>
                   <ListGroup.Item>
                     <Row>
+                      <Col>Name</Col>
                       <Col>{fetchedOrder.user.name}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
+                      <Col>Contact</Col>
                       <Col>{fetchedOrder.user.email}</Col>
                     </Row>
                   </ListGroup.Item>
@@ -81,9 +83,9 @@ const OrderPayPageContainer = ({ match, history }) => {
                       <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
                         <td>{item.name}</td>
-                        <td>{item.quantity}</td>
+                        <td>{item.qty}</td>
                         <td>{item.price.toFixed(2)}</td>
-                        <td>{(item.quantity * item.price).toFixed(2)}</td>
+                        <td>{(item.qty * item.price).toFixed(2)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -98,6 +100,8 @@ const OrderPayPageContainer = ({ match, history }) => {
             </Card>
           </Col>
         </Row>
+      ) : (
+        <div>order could not be fetched</div>
       )}
     </>
   );

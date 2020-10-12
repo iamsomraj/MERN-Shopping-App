@@ -24,11 +24,11 @@ const OrderPageContainer = ({ history }) => {
   const { user } = userLogin;
 
   const orderPlace = useSelector((state) => state.orderPlace);
-  const { loading, error, success, fail, fetchedOrder } = orderPlace;
+  const { loading, error, success, fail, placedOrder } = orderPlace;
 
   const payOrderHandler = () => {
-    if (fetchedOrder) {
-      history.push("/orders/" + fetchedOrder._id);
+    if (placedOrder) {
+      history.push("/orders/" + placedOrder._id);
     }
   };
 
