@@ -11,6 +11,7 @@ import UserRegisterPageContainer from "./containers/UserRegisterPageContainer";
 import UserProfilePageContainer from "./containers/UserProfilePageContainer";
 import UserOrderPageContainer from "./containers/UserOrderPageContainer";
 import OrderPageContainer from "./containers/OrderPageContainer";
+import OrderPayPageContainer from "./containers/OrderPayPageContainer";
 
 const App = () => {
   return (
@@ -22,13 +23,11 @@ const App = () => {
           <Route path="/product/:id" component={ProductPageContainer} />
           <Route path="/cart/:id?" component={CartPageContainer} />
           <Route path="/neworder" component={OrderPageContainer} />
+          <Route path="/orders/:id" component={OrderPayPageContainer} exact />
           <Route path="/login" component={UserLoginPageContainer} />
           <Route path="/register" component={UserRegisterPageContainer} />
-          <Route path="/profile" component={UserProfilePageContainer}/>
-          <Route
-            path="/orders"
-            component={UserOrderPageContainer}
-          />
+          <Route path="/profile" component={UserProfilePageContainer} />
+          <Route path="/orders" component={UserOrderPageContainer} exact />
         </Container>
       </main>
       <Footer />
