@@ -7,11 +7,13 @@ import asyncHandler from "express-async-handler";
 
 const getProducts = asyncHandler(async (req, res) => {
   const noOfProductsPerPage = 10;
-  const page = req.query.page || 1;
+  const page = Number(req.query.page) || 1;
   const products = await Product.find()
     .limit(noOfProductsPerPage)
     .skip(noOfProductsPerPage * (page - 1));
-  res.status(200).json(products);
+  const totalProducts = await Product.countDocuments({});
+  const pages = Math.ceil(totalProducts / noOfProductsPerPage);
+  res.status(200).json({ products, page, pages });
 });
 
 export default getProducts;

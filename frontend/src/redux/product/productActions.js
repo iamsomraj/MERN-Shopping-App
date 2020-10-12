@@ -8,10 +8,10 @@ import {
   PRODUCT_DETAIL_SUCCESS,
 } from "./productTypes";
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (page = 1) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await Axios.get("/api/products/");
+    const { data } = await Axios.get("/api/products/?page=" + page);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
