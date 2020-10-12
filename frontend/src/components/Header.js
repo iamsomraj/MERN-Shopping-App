@@ -1,11 +1,8 @@
 import React from "react";
 import {
-  Button,
-  Form,
-  FormControl,
   Nav,
   Navbar,
-  NavDropdown,
+  NavDropdown
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
@@ -59,10 +56,6 @@ const Header = () => {
               </NavDropdown>
             )}
           </Nav>
-          <Form className="ml-auto" inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="secondary">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Navbar>
     </header>

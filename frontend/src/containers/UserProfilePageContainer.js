@@ -3,7 +3,11 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { getUserProfile, updateUserProfile } from "../redux/user/userActions";
+import {
+  getUserProfile,
+  logoutUser,
+  updateUserProfile,
+} from "../redux/user/userActions";
 
 const UserProfilePageContainer = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -46,11 +50,14 @@ const UserProfilePageContainer = ({ history }) => {
           {loading && <Loader />}
           {error && <Message>{error}</Message>}
           {success && (
-            <Message variant="success">Profile updated successfully</Message>
+            <>
+              <Message variant="success">Profile updated successfully</Message>
+              <div variant="primary" className="my-3">
+                <Button onClick={() => dispatch(logoutUser())}>Logout</Button>
+              </div>
+            </>
           )}
-          {fail && (
-            <Message variant="danger">Profile updation failed</Message>
-          )}
+          {fail && <Message variant="danger">Profile updation failed</Message>}
           <h1>User Profile</h1>
           <Form>
             <Form.Group>
