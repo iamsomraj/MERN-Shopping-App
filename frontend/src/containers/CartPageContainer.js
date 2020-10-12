@@ -38,7 +38,7 @@ const CartPageContainer = ({ match, location, history }) => {
 
   const paymentHandler = () => {
     if (user) {
-      history.push("/payment");
+      history.push("/neworder");
     } else {
       history.push("/login");
     }

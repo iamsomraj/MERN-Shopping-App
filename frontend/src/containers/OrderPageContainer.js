@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { Button, Card, Col, ListGroup, Row, Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { placeMyOrder } from "../redux/order/orderActions";
+import { Redirect } from "react-router-dom";
 
-const PaymentPageContainer = ({ history }) => {
+const OrderPageContainer = ({ history }) => {
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -10,13 +14,13 @@ const PaymentPageContainer = ({ history }) => {
   const { user } = userLogin;
 
   useEffect(() => {
-    if (!user) {
+    if (!user ) {
       history.push("/login");
     } else {
     }
   }, [user, cartItems, history]);
 
-  return (
+  return user && user.name ? (
     <Row>
       <Col md={8}>
         <Card>
@@ -51,7 +55,11 @@ const PaymentPageContainer = ({ history }) => {
                 ))}
               </tbody>
             </Table>
-            <Button variant="primary">Place Order</Button>
+            <Button
+              variant="primary"
+              onClick={() => dispatch(placeMyOrder(cartItems))}>
+              Place Order
+            </Button>
           </Card.Body>
           <Card.Footer className="text-muted">
             Signed in as : {user.name}
@@ -92,7 +100,9 @@ const PaymentPageContainer = ({ history }) => {
         </Card>
       </Col>
     </Row>
+  ) : (
+    <Redirect to="/login" />
   );
 };
 
-export default PaymentPageContainer;
+export default OrderPageContainer;

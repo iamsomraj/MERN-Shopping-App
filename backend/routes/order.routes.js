@@ -7,8 +7,8 @@ import { adminAuth, userAuth } from "../middlewares/auth.js";
 const Router = express.Router();
 
 Router.route("/")
-	.post(userAuth, placeOrder)
-	.get(userAuth, adminAuth, getOrders);
+  .post(userAuth, placeOrder)
+  .get(userAuth, adminAuth, getOrders);
 Router.route("/:id").put(userAuth, payOrder);
 
 export default Router;

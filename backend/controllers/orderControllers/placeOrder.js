@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 
 // @desc:   Create new order
 // @access: Private
-// @route:  /api/orders
+// @route:  POST /api/orders
 const placeOrder = asyncHandler(async (req, res) => {
 	const user = req.user._id;
 	const { products } = req.body;
