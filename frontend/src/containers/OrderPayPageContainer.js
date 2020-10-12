@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Order from "../components/Order";
-import { getMyOrder } from "../redux/order/orderActions";
+import { getMyOrder, payMyOrder } from "../redux/order/orderActions";
 
 const OrderPayPageContainer = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -25,6 +25,11 @@ const OrderPayPageContainer = ({ match, history }) => {
     }
   }, [dispatch, history, user, id]);
 
+  const payForOrder = (id) => {
+    console.log("clicked in user orders");
+    dispatch(payMyOrder(id));
+  };
+
   return (
     <>
       {loading ? (
@@ -34,7 +39,10 @@ const OrderPayPageContainer = ({ match, history }) => {
       ) : fetchedOrder ? (
         <Row className="justify-content-center">
           <Col>
-            <Order order={fetchedOrder} />
+            <Order
+              order={fetchedOrder}
+              onPay={() => payForOrder(fetchedOrder._id)}
+            />
           </Col>
         </Row>
       ) : (

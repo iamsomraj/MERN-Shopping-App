@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Order from "../components/Order";
-import { getAllOrder } from "../redux/order/orderActions";
+import { getAllOrder, payMyOrder } from "../redux/order/orderActions";
 
 const UserOrderPageContainer = ({ history }) => {
   const dispatch = useDispatch();
@@ -13,6 +13,14 @@ const UserOrderPageContainer = ({ history }) => {
 
   const userOrders = useSelector((state) => state.userOrders);
   const { loading, error, orders } = userOrders;
+
+  const orderPay = useSelector((state) => state.orderPay);
+  const { order } = orderPay;
+
+  const payForOrder = (id) => {
+    dispatch(payMyOrder(id));
+    console.log(order);
+  };
 
   useEffect(() => {
     if (!user) {
@@ -34,7 +42,7 @@ const UserOrderPageContainer = ({ history }) => {
           {orders.map((order) => (
             <Row className="my-4" key={order._id}>
               <Col>
-                <Order order={order} />
+                <Order order={order} onPay={() => payForOrder(order._id)} />
               </Col>
             </Row>
           ))}

@@ -8,6 +8,9 @@ import {
   GET_ALL_ORDERS_REQUEST,
   GET_ALL_ORDERS_FAILURE,
   GET_ALL_ORDERS_SUCCESS,
+  PAY_ORDER_REQUEST,
+  PAY_ORDER_SUCCESS,
+  PAY_ORDER_FAILURE,
 } from "./orderTypes";
 import Axios from "axios";
 
@@ -73,6 +76,27 @@ export const getAllOrder = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_ORDERS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const payMyOrder = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: PAY_ORDER_REQUEST });
+    const config = {
+      headers: {
+        authorization: `Bearer ${getState().userLogin.user.token}`,
+      },
+    };
+    const { data } = await Axios.put(`/api/orders/${id}`, config);
+    dispatch({ type: PAY_ORDER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: PAY_ORDER_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

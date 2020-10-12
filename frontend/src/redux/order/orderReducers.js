@@ -8,6 +8,9 @@ import {
   GET_ALL_ORDERS_SUCCESS,
   GET_ALL_ORDERS_FAILURE,
   GET_ALL_ORDERS_REQUEST,
+  PAY_ORDER_REQUEST,
+  PAY_ORDER_SUCCESS,
+  PAY_ORDER_FAILURE,
 } from "./orderTypes";
 
 export const placeOrderReducer = (state = {}, action) => {
@@ -80,6 +83,33 @@ export const getAllOrdersReducer = (state = {}, action) => {
       };
     }
     case GET_ALL_ORDERS_FAILURE: {
+      return {
+        loading: false,
+        fail: true,
+        error: payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const payOrderReducer = (state = {}, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case PAY_ORDER_REQUEST: {
+      return {
+        loading: true,
+      };
+    }
+    case PAY_ORDER_SUCCESS: {
+      return {
+        loading: false,
+        success: true,
+        order: payload,
+      };
+    }
+    case PAY_ORDER_FAILURE: {
       return {
         loading: false,
         fail: true,

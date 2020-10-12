@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Card, ListGroup, Table, Row, Col } from "react-bootstrap";
+import { Button, Card, Col, ListGroup, Row, Table } from "react-bootstrap";
 
 const Order = (props) => {
-  const { order } = props;
+  const { order, onPay } = props;
 
   return (
     <Card>
@@ -57,7 +57,10 @@ const Order = (props) => {
             ))}
           </tbody>
         </Table>
-        <Button variant="primary" disabled={order.isPaymentDone}>
+        <Button
+          variant="primary"
+          disabled={order.isPaymentDone}
+          onClick={() => onPay(order._id)}>
           Pay ${order.totalPrice.toFixed(2)}
         </Button>
       </Card.Body>
