@@ -36,11 +36,9 @@ const CartPageContainer = ({ match, location, history }) => {
     dispatch(deleteItemFromCart(id));
   };
 
-  const paymentHandler = () => {
+  const orderHandler = () => {
     if (user) {
       history.push("/neworder");
-    } else {
-      history.push("/login");
     }
   };
 
@@ -138,9 +136,9 @@ const CartPageContainer = ({ match, location, history }) => {
                 <Button
                   type="button"
                   className="btn-block"
-                  disabled={cartItems.length === 0}
-                  onClick={paymentHandler}>
-                  Proceed To Payment
+                  disabled={cart.length === 0 || !user}
+                  onClick={orderHandler}>
+                  Order Now
                 </Button>
               </ListGroup.Item>
             </ListGroup>

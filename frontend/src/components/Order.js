@@ -24,11 +24,12 @@ const Order = (props) => {
           </ListGroup.Item>
           <ListGroup.Item>
             <Row>
+              <Col>Payment Status</Col>
               <Col>
                 {order.isPaymentDone ? (
-                  <div className="text text-success">Payment Successful</div>
+                  <strong className="text text-success">Successful</strong>
                 ) : (
-                  <div className="text text-danger">Payment pending</div>
+                  <strong className="text text-danger">Pending</strong>
                 )}
               </Col>
             </Row>
