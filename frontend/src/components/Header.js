@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Nav,
-  Navbar,
-  NavDropdown
-} from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logoutUser } from "../redux/user/userActions";
@@ -33,6 +29,9 @@ const Header = () => {
               <NavDropdown title={user.name} id="username">
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Profile</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/orders">
+                  <NavDropdown.Item>Orders</NavDropdown.Item>
                 </LinkContainer>
                 <NavDropdown.Item onClick={logoutHandler}>
                   Logout

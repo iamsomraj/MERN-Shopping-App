@@ -58,7 +58,7 @@ const UserProfilePageContainer = ({ history }) => {
             </>
           )}
           {fail && <Message variant="danger">Profile updation failed</Message>}
-          <h1>User Profile</h1>
+          <h1>User Profile & Update</h1>
           <Form>
             <Form.Group>
               <Form.Label>Full Name</Form.Label>
