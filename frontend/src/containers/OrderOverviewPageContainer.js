@@ -13,6 +13,7 @@ import { placeMyOrder, placeOrderInit } from "../redux/order/orderActions";
 import { Redirect } from "react-router-dom";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { deleteItemFromCart } from "../redux/cart/cartActions";
 
 const OrderOverviewPageContainer = ({ history }) => {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ const OrderOverviewPageContainer = ({ history }) => {
     if (placedOrder) {
       history.push(`/orders/${id}`);
       dispatch(placeOrderInit());
+      cartItems.forEach((element) => {
+        dispatch(deleteItemFromCart(element._id));
+      });
     }
   };
 
