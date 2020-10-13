@@ -14,6 +14,7 @@ import {
   ADMIN_ADD_PRODUCT_REQUEST,
   ADMIN_ADD_PRODUCT_SUCCESS,
   ADMIN_ADD_PRODUCT_FAILURE,
+  ADMIN_ADD_PRODUCT_INIT,
 } from "./adminTypes";
 
 export const adminAllUsersReducer = (state = { users: [] }, action) => {
@@ -136,6 +137,9 @@ export const adminAddProductReducer = (state = { product: {} }, action) => {
         loading: false,
         error: payload,
       };
+    }
+    case ADMIN_ADD_PRODUCT_INIT: {
+      return { product: {} };
     }
     default:
       return state;

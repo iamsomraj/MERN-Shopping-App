@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { adminCreateProduct } from "../redux/admin/adminActions";
+import {
+  adminCreateProduct,
+  createProductInit,
+} from "../redux/admin/adminActions";
 
 const AdminCreateProductPageContainer = ({ history }) => {
   const [name, setName] = useState("");
@@ -26,9 +29,10 @@ const AdminCreateProductPageContainer = ({ history }) => {
     if (success) {
       setTimeout(() => {
         history.push("/");
-      }, 2000);
+        dispatch(createProductInit());
+      }, 3000);
     }
-  }, [success, history]);
+  }, [success, dispatch, history]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -51,9 +55,10 @@ const AdminCreateProductPageContainer = ({ history }) => {
           {loading && <Loader />}
           {error && <Message>{error}</Message>}
           {success && (
-            <Message variant="success">
-              Product is created and redirecting to Home
-            </Message>
+            <>
+              <Message variant="success">Product is created</Message>
+              <Message>Redirecting...</Message>
+            </>
           )}
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
@@ -75,10 +80,9 @@ const AdminCreateProductPageContainer = ({ history }) => {
             </Form.Group>
 
             <Form.Group controlId="image">
-              <Form.Label>Image</Form.Label>
               <Form.File
                 id="image"
-                label="Choose an Image File"
+                label="Image"
                 onChange={uploadFileHandler}></Form.File>
             </Form.Group>
 

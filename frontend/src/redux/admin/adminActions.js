@@ -14,6 +14,7 @@ import {
   ADMIN_ADD_PRODUCT_REQUEST,
   ADMIN_ADD_PRODUCT_SUCCESS,
   ADMIN_ADD_PRODUCT_FAILURE,
+  ADMIN_ADD_PRODUCT_INIT,
 } from "./adminTypes";
 
 import Axios from "axios";
@@ -166,4 +167,10 @@ export const adminCreateProduct = (formData) => async (dispatch, getState) => {
           : error.message,
     });
   }
+};
+
+export const createProductInit = () => {
+  return {
+    type: ADMIN_ADD_PRODUCT_INIT,
+  };
 };
