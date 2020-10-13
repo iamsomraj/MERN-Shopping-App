@@ -53,7 +53,7 @@ const CartPageContainer = ({ match, location, history }) => {
         <Col md={8}>
           {cartItems.length === 0 ? (
             <Message variant="primary">
-              You have no items in the cart <Link to="/">Return To Home</Link>
+              You have no items in the cart
             </Message>
           ) : (
             <ListGroup fluid="true">

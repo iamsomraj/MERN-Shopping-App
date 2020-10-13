@@ -11,6 +11,7 @@ import {
   PAY_ORDER_REQUEST,
   PAY_ORDER_SUCCESS,
   PAY_ORDER_FAILURE,
+  PAY_ORDER_INIT,
 } from "./orderTypes";
 
 export const placeOrderReducer = (state = {}, action) => {
@@ -33,6 +34,9 @@ export const placeOrderReducer = (state = {}, action) => {
         loading: false,
         error: payload,
       };
+    }
+    case PAY_ORDER_INIT: {
+      return {};
     }
     default:
       return state;
@@ -61,6 +65,9 @@ export const getOrderReducer = (state = {}, action) => {
         error: payload,
       };
     }
+    case PAY_ORDER_INIT: {
+      return {};
+    }
     default:
       return state;
   }
@@ -88,6 +95,9 @@ export const getAllOrdersReducer = (state = {}, action) => {
         error: payload,
       };
     }
+    case PAY_ORDER_INIT: {
+      return {};
+    }
     default:
       return state;
   }
@@ -111,9 +121,11 @@ export const payOrderReducer = (state = {}, action) => {
     case PAY_ORDER_FAILURE: {
       return {
         loading: false,
-        fail: true,
         error: payload,
       };
+    }
+    case PAY_ORDER_INIT: {
+      return {};
     }
     default:
       return state;

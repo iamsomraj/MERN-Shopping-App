@@ -9,7 +9,7 @@ import {
   Table,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { placeMyOrder } from "../redux/order/orderActions";
+import { getMyOrder, placeMyOrder } from "../redux/order/orderActions";
 import { Redirect } from "react-router-dom";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -26,21 +26,22 @@ const OrderOverviewPageContainer = ({ history }) => {
   const orderPlace = useSelector((state) => state.orderPlace);
   const { loading, error, success, placedOrder } = orderPlace;
 
+  const orderGet = useSelector((state) => state.orderGet);
+  const { fetchedOrder } = orderGet;
+
   const placeOrderHandler = () => {
     dispatch(placeMyOrder(cartItems));
   };
 
   const payOrderHandler = (id) => {
-    if (placedOrder) {
-      history.push("/orders/" + placedOrder._id);
-    }
+    if (placedOrder) dispatch(getMyOrder(placedOrder._id));
   };
 
   useEffect(() => {
     if (!user) {
       history.push("/login");
     }
-  }, [user, cartItems, history]);
+  }, [user, cartItems, fetchedOrder, history]);
 
   return user && user.name ? (
     loading ? (
@@ -94,7 +95,10 @@ const OrderOverviewPageContainer = ({ history }) => {
                   <Button variant="primary" onClick={placeOrderHandler}>
                     Place Order
                   </Button>
-                  <Button variant="primary" disabled={!placedOrder} onClick={payOrderHandler}>
+                  <Button
+                    variant="primary"
+                    disabled={!placedOrder}
+                    onClick={payOrderHandler}>
                     Proceed to Payment
                   </Button>
                 </ButtonGroup>

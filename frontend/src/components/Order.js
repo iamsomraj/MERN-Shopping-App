@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Card, Col, ListGroup, Row, Table } from "react-bootstrap";
+import { Card, Col, ListGroup, Row, Table } from "react-bootstrap";
+import { PayPalButton } from "react-paypal-button-v2";
+import Loader from "./Loader";
 
 const Order = (props) => {
-  const { order, onPay } = props;
+  const { order, onPay, loading, ready } = props;
 
   return (
     <Card>
@@ -57,12 +59,25 @@ const Order = (props) => {
             ))}
           </tbody>
         </Table>
-        <Button
-          variant="primary"
-          disabled={order.isPaymentDone}
-          onClick={() => onPay(order._id)}>
-          Pay ${order.totalPrice.toFixed(2)}
-        </Button>
+        <Row className="justify-content-center">
+          <Col md={8}>
+            {!order.isPaymentDone && (
+              <ListGroup>
+                <ListGroup.Item>
+                  {loading && <Loader />}
+                  {!ready ? (
+                    <Loader />
+                  ) : (
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={(result) => onPay(order._id)}
+                    />
+                  )}
+                </ListGroup.Item>
+              </ListGroup>
+            )}
+          </Col>
+        </Row>
       </Card.Body>
       <Card.Footer className="text-muted">
         Order placed {order.updatedAt}

@@ -11,6 +11,7 @@ import {
   PAY_ORDER_REQUEST,
   PAY_ORDER_SUCCESS,
   PAY_ORDER_FAILURE,
+  PAY_ORDER_INIT,
 } from "./orderTypes";
 import Axios from "axios";
 
@@ -105,4 +106,10 @@ export const payMyOrder = (id) => async (dispatch, getState) => {
           : error.message,
     });
   }
+};
+
+export const payInit = () => {
+  return {
+    type: PAY_ORDER_INIT,
+  };
 };
