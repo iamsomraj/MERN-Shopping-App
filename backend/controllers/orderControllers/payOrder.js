@@ -15,7 +15,7 @@ const payOrder = asyncHandler(async (req, res) => {
     res.status(200).json(updatedOrder);
   } else {
     const message = "Order unavailable";
-    res.status(404).json(message);
+    res.status(404).json({message});
     throw new Error(message);
   }
 });

@@ -2,6 +2,7 @@ import {
   PLACE_ORDER_REQUEST,
   PLACE_ORDER_SUCCESS,
   PLACE_ORDER_FAILURE,
+  PLACE_ORDER_INIT,
   GET_ORDER_REQUEST,
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILURE,
@@ -34,10 +35,15 @@ export const placeOrderReducer = (state = {}, action) => {
         loading: false,
         error: payload,
       };
+    }  
+    
+    case PLACE_ORDER_INIT: {
+      return {
+        loading: false,
+        error: payload,
+      };
     }
-    case PAY_ORDER_INIT: {
-      return {};
-    }
+
     default:
       return state;
   }
@@ -65,9 +71,6 @@ export const getOrderReducer = (state = {}, action) => {
         error: payload,
       };
     }
-    case PAY_ORDER_INIT: {
-      return {};
-    }
     default:
       return state;
   }
@@ -94,9 +97,6 @@ export const getAllOrdersReducer = (state = {}, action) => {
         fail: true,
         error: payload,
       };
-    }
-    case PAY_ORDER_INIT: {
-      return {};
     }
     default:
       return state;

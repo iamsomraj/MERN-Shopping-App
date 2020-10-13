@@ -13,7 +13,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
     res.json(orders);
   } else {
     const message = "Orders are unvailable";
-    res.status(404).json(message);
+    res.status(404).json({message});
     throw new Error(message);
   }
 });

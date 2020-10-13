@@ -9,7 +9,7 @@ const placeOrder = asyncHandler(async (req, res) => {
   const { products } = req.body;
   if (products && products.length === 0) {
     const message = "Ordered products unavailable";
-    res.status(404).json(message);
+    res.status(404).json({message});
     throw new Error(message);
   } else {
     let totalPrice = products

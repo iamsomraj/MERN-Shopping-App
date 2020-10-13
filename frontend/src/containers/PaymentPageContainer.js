@@ -21,7 +21,7 @@ const PaymentPageContainer = ({ match, history }) => {
   const { loading, error, fetchedOrder } = orderGet;
 
   const orderPay = useSelector((state) => state.orderPay);
-  const { loading: loadingPay, success: successPay } = orderPay;
+  const { loading: loadingPay, success: successPay, order } = orderPay;
 
   useEffect(() => {
     if (!user) {
@@ -39,7 +39,7 @@ const PaymentPageContainer = ({ match, history }) => {
       };
       document.body.appendChild(script);
     };
-    if (!fetchedOrder || successPay) {
+    if (!fetchedOrder || successPay || fetchedOrder._id !== id) {
       dispatch(payInit());
       dispatch(getMyOrder(id));
     } else if (!fetchedOrder.isPaymentDone) {
@@ -49,7 +49,7 @@ const PaymentPageContainer = ({ match, history }) => {
         setIsPaypalReady(true);
       }
     }
-  }, [dispatch, history, user, fetchedOrder, successPay, id]);
+  }, [dispatch, history, order, user, fetchedOrder, successPay, id]);
 
   const payForOrder = (id) => {
     dispatch(payMyOrder(id));

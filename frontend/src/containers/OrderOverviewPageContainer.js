@@ -9,7 +9,7 @@ import {
   Table,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyOrder, placeMyOrder } from "../redux/order/orderActions";
+import { placeMyOrder, placeOrderInit } from "../redux/order/orderActions";
 import { Redirect } from "react-router-dom";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -34,11 +34,14 @@ const OrderOverviewPageContainer = ({ history }) => {
   };
 
   const payOrderHandler = (id) => {
-    if (placedOrder) dispatch(getMyOrder(placedOrder._id));
+    if (placedOrder) {
+      history.push(`/orders/${id}`);
+      dispatch(placeOrderInit());
+    }
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !user.name) {
       history.push("/login");
     }
   }, [user, cartItems, fetchedOrder, history]);
@@ -95,12 +98,13 @@ const OrderOverviewPageContainer = ({ history }) => {
                   <Button variant="primary" onClick={placeOrderHandler}>
                     Place Order
                   </Button>
-                  <Button
-                    variant="primary"
-                    disabled={!placedOrder}
-                    onClick={payOrderHandler}>
-                    Proceed to Payment
-                  </Button>
+                  {placedOrder && (
+                    <Button
+                      variant="primary"
+                      onClick={() => payOrderHandler(placedOrder._id)}>
+                      Proceed to Payment
+                    </Button>
+                  )}
                 </ButtonGroup>
               </Card.Body>
               <Card.Footer className="text-muted">

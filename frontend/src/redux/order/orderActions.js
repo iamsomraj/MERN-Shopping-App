@@ -2,6 +2,7 @@ import {
   PLACE_ORDER_REQUEST,
   PLACE_ORDER_SUCCESS,
   PLACE_ORDER_FAILURE,
+  PLACE_ORDER_INIT,
   GET_ORDER_REQUEST,
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILURE,
@@ -113,3 +114,10 @@ export const payInit = () => {
     type: PAY_ORDER_INIT,
   };
 };
+
+export const placeOrderInit = () => {
+  return {
+    type: PLACE_ORDER_INIT,
+  };
+};
+
