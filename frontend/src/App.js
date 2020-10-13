@@ -14,6 +14,7 @@ import OrderOverviewPageContainer from "./containers/OrderOverviewPageContainer"
 import PaymentPageContainer from "./containers/PaymentPageContainer";
 import AdminAllUserPageContainer from "./containers/AdminAllUserPageContainer";
 import AdminSingleUserPageContainer from "./containers/AdminSingleUserPageContainer";
+import AdminCreateProductPageContainer from "./containers/AdminCreateProductPageContainer";
 
 const App = () => {
   return (
@@ -38,6 +39,11 @@ const App = () => {
           <Route
             path="/admin/users/:id"
             component={AdminSingleUserPageContainer}
+            exact
+          />
+          <Route
+            path="/admin/products/create"
+            component={AdminCreateProductPageContainer}
             exact
           />
         </Container>

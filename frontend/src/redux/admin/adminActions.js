@@ -11,6 +11,9 @@ import {
   ADMIN_DELETE_USER_REQUEST,
   ADMIN_DELETE_USER_SUCCESS,
   ADMIN_DELETE_USER_FAILURE,
+  ADMIN_ADD_PRODUCT_REQUEST,
+  ADMIN_ADD_PRODUCT_SUCCESS,
+  ADMIN_ADD_PRODUCT_FAILURE,
 } from "./adminTypes";
 
 import Axios from "axios";
@@ -128,6 +131,35 @@ export const adminDeleteUser = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ADMIN_DELETE_USER_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const adminCreateProduct = (formData) => async (dispatch, getState) => {
+  try {
+    const {
+      userLogin: {
+        user: { token, isAdmin },
+      },
+    } = getState();
+    if (isAdmin) {
+      dispatch({ type: ADMIN_ADD_PRODUCT_REQUEST });
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await Axios.post("/api/products/", formData, config);
+      dispatch({ type: ADMIN_ADD_PRODUCT_SUCCESS, payload: data });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_ADD_PRODUCT_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

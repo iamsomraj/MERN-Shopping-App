@@ -11,6 +11,9 @@ import {
   ADMIN_DELETE_USER_REQUEST,
   ADMIN_DELETE_USER_SUCCESS,
   ADMIN_DELETE_USER_FAILURE,
+  ADMIN_ADD_PRODUCT_REQUEST,
+  ADMIN_ADD_PRODUCT_SUCCESS,
+  ADMIN_ADD_PRODUCT_FAILURE,
 } from "./adminTypes";
 
 export const adminAllUsersReducer = (state = { users: [] }, action) => {
@@ -103,6 +106,32 @@ export const adminDeleteUserReducer = (state = { user: {} }, action) => {
       };
     }
     case ADMIN_DELETE_USER_FAILURE: {
+      return {
+        loading: false,
+        error: payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const adminAddProductReducer = (state = { product: {} }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case ADMIN_ADD_PRODUCT_REQUEST: {
+      return {
+        loading: true,
+      };
+    }
+    case ADMIN_ADD_PRODUCT_SUCCESS: {
+      return {
+        loading: false,
+        success: true,
+        product: payload,
+      };
+    }
+    case ADMIN_ADD_PRODUCT_FAILURE: {
       return {
         loading: false,
         error: payload,
