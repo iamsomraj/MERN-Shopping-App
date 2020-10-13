@@ -13,6 +13,7 @@ import UserOrdersPageContainer from "./containers/UserOrdersPageContainer";
 import OrderOverviewPageContainer from "./containers/OrderOverviewPageContainer";
 import PaymentPageContainer from "./containers/PaymentPageContainer";
 import AdminAllUserPageContainer from "./containers/AdminAllUserPageContainer";
+import AdminSingleUserPageContainer from "./containers/AdminSingleUserPageContainer";
 
 const App = () => {
   return (
@@ -29,7 +30,16 @@ const App = () => {
           <Route path="/register" component={UserRegisterPageContainer} />
           <Route path="/profile" component={UserProfilePageContainer} />
           <Route path="/orders" component={UserOrdersPageContainer} exact />
-          <Route path="/admin/users" component={AdminAllUserPageContainer} />
+          <Route
+            path="/admin/users"
+            component={AdminAllUserPageContainer}
+            exact
+          />
+          <Route
+            path="/admin/users/:id"
+            component={AdminSingleUserPageContainer}
+            exact
+          />
         </Container>
       </main>
       <Footer />

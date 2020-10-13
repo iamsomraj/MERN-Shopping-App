@@ -12,6 +12,9 @@ const AdminAllUserPageContainer = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { user } = userLogin;
 
+  const adminAllUsers = useSelector((state) => state.adminAllUsers);
+  const { loading, users, error } = adminAllUsers;
+
   useEffect(() => {
     if (!user) {
       history.push("/login");
@@ -23,9 +26,6 @@ const AdminAllUserPageContainer = ({ history }) => {
 
     dispatch(adminGetAllUsers());
   }, [dispatch, user, history]);
-
-  const adminAllUsers = useSelector((state) => state.adminAllUsers);
-  const { loading, users, error } = adminAllUsers;
 
   return (
     <>

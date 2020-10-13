@@ -16,7 +16,7 @@ const User = (props) => {
             <strong>{user.name}</strong>
           </Card.Title>
         </Link>
-        <Card.Text>${user.email}</Card.Text>
+        <Card.Text>{user.email}</Card.Text>
       </Card.Body>
       <Card.Footer>{user.isAdmin ? "Admin" : "User"}</Card.Footer>
     </Card>
