@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import Order from "../components/Order";
 import { getMyOrder, payMyOrder } from "../redux/order/orderActions";
 
-const OrderPayPageContainer = ({ match, history }) => {
+const PaymentPageContainer = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const id = match.params.id;
@@ -27,7 +27,6 @@ const OrderPayPageContainer = ({ match, history }) => {
 
   const payForOrder = (id) => {
     dispatch(payMyOrder(id));
-    dispatch(getMyOrder(id));
   };
 
   return (
@@ -52,4 +51,4 @@ const OrderPayPageContainer = ({ match, history }) => {
   );
 };
 
-export default OrderPayPageContainer;
+export default PaymentPageContainer;

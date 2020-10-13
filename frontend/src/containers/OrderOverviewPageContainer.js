@@ -14,7 +14,7 @@ import { Redirect } from "react-router-dom";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 
-const OrderPageContainer = ({ history }) => {
+const OrderOverviewPageContainer = ({ history }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -24,9 +24,13 @@ const OrderPageContainer = ({ history }) => {
   const { user } = userLogin;
 
   const orderPlace = useSelector((state) => state.orderPlace);
-  const { loading, error, success, fail, placedOrder } = orderPlace;
+  const { loading, error, success, placedOrder } = orderPlace;
 
-  const payOrderHandler = () => {
+  const placeOrderHandler = () => {
+    dispatch(placeMyOrder(cartItems));
+  };
+
+  const payOrderHandler = (id) => {
     if (placedOrder) {
       history.push("/orders/" + placedOrder._id);
     }
@@ -35,7 +39,6 @@ const OrderPageContainer = ({ history }) => {
   useEffect(() => {
     if (!user) {
       history.push("/login");
-    } else {
     }
   }, [user, cartItems, history]);
 
@@ -50,14 +53,6 @@ const OrderPageContainer = ({ history }) => {
           <Col md={8}>
             {success && (
               <Message variant="success">Order placed successfully</Message>
-            )}
-            {fail && <Message variant="danger">Order failed</Message>}
-          </Col>
-          <Col md={4}>
-            {success && (
-              <Message variant="success">
-                You can now pay for your order
-              </Message>
             )}
           </Col>
         </Row>
@@ -96,13 +91,11 @@ const OrderPageContainer = ({ history }) => {
                   </tbody>
                 </Table>
                 <ButtonGroup>
-                  <Button
-                    variant="primary"
-                    onClick={() => dispatch(placeMyOrder(cartItems))}>
+                  <Button variant="primary" onClick={placeOrderHandler}>
                     Place Order
                   </Button>
-                  <Button variant="primary" onClick={payOrderHandler}>
-                    Pay Order
+                  <Button variant="primary" disabled={!placedOrder} onClick={payOrderHandler}>
+                    Proceed to Payment
                   </Button>
                 </ButtonGroup>
               </Card.Body>
@@ -152,4 +145,4 @@ const OrderPageContainer = ({ history }) => {
   );
 };
 
-export default OrderPageContainer;
+export default OrderOverviewPageContainer;
