@@ -89,10 +89,11 @@ export const payMyOrder = (id) => async (dispatch, getState) => {
     dispatch({ type: PAY_ORDER_REQUEST });
     const config = {
       headers: {
+        "Content-Type": "application/json",
         authorization: `Bearer ${getState().userLogin.user.token}`,
       },
     };
-    const { data } = await Axios.put(`/api/orders/${id}`, config);
+    const { data } = await Axios.put(`/api/orders/${id}`, null, config);
     dispatch({ type: PAY_ORDER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

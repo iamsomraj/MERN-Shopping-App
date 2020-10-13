@@ -27,6 +27,7 @@ const OrderPayPageContainer = ({ match, history }) => {
 
   const payForOrder = (id) => {
     dispatch(payMyOrder(id));
+    dispatch(getMyOrder(id));
   };
 
   return (
