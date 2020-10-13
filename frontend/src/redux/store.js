@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { adminAllUsersReducer } from "./admin/adminReducers";
 import { cartReducer } from "./cart/cartReducers";
 import {
   getAllOrdersReducer,
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
   orderGet: getOrderReducer,
   orderPay: payOrderReducer,
   userOrders: getAllOrdersReducer,
+  adminAllUsers: adminAllUsersReducer,
 });
 
 const store = createStore(

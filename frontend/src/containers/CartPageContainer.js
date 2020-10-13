@@ -136,7 +136,7 @@ const CartPageContainer = ({ match, location, history }) => {
                 <Button
                   type="button"
                   className="btn-block"
-                  disabled={cart.length === 0 || !user}
+                  disabled={cartItems.length === 0 || !user}
                   onClick={orderHandler}>
                   Order Now
                 </Button>
