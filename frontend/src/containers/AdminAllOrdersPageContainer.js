@@ -36,10 +36,10 @@ const AdminAllOrdersPageContainer = ({ history }) => {
         <Message>{error}</Message>
       ) : (
         <>
-          <Row>
-            {orders.length !== 0 &&
-              orders.map((order) => (
-                <Col key={order._id}>
+          {orders.length !== 0 &&
+            orders.map((order) => (
+              <Row key={order._id}>
+                <Col>
                   <Card>
                     <Card.Header>Order #{order._id}</Card.Header>
                     <Card.Body>
@@ -90,7 +90,7 @@ const AdminAllOrdersPageContainer = ({ history }) => {
                           </ListGroup>
                         </Col>
                       </Row>
-                      <Row className="my-2">
+                      <Row className="m-4">
                         <Col>
                           <Card.Title>Order Details</Card.Title>
                           <Table>
@@ -123,8 +123,8 @@ const AdminAllOrdersPageContainer = ({ history }) => {
                     </Card.Footer>
                   </Card>
                 </Col>
-              ))}
-          </Row>
+              </Row>
+            ))}
         </>
       )}
     </>

@@ -42,7 +42,7 @@ const AdminCreateProductPageContainer = ({ history }) => {
         dispatch(createProductInit());
       }, 3000);
     }
-  }, [success, dispatch, history]);
+  }, [success, dispatch, user, history]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

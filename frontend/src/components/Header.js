@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar bg="secondary" variant="dark" expand="lg" collapseOnSelect>
         <LinkContainer to="/">
           <Navbar.Brand>Coding Pillow Shop</Navbar.Brand>
         </LinkContainer>
@@ -29,7 +29,9 @@ const Header = () => {
               <Nav.Link>
                 Cart
                 {cartItems.length !== 0 && (
-                  <Badge className="mx-2" variant="success">{cartItems.length}</Badge>
+                  <Badge className="mx-2" variant="success">
+                    {cartItems.length}
+                  </Badge>
                 )}
               </Nav.Link>
             </LinkContainer>
