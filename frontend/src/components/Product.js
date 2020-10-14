@@ -6,9 +6,7 @@ const Product = (props) => {
   const { product } = props;
 
   return (
-    <Card
-      bg={product.isAvailable ? "" : "secondary"}
-      className="my-3 p-3 rounded">
+    <Card className="my-3 p-3 rounded">
       <Link to={`/product/${product._id}`}>
         <Card.Img src={product.image} variant="top" />
       </Link>
@@ -18,11 +16,7 @@ const Product = (props) => {
             <strong>{product.name}</strong>
           </Card.Title>
         </Link>
-        {product.isAvailable ? (
-          <Card.Text as="h3">${product.price}</Card.Text>
-        ) : (
-          <Card.Text as="h3">Unavailable</Card.Text>
-        )}
+        <Card.Text as="h3">${product.price}</Card.Text>
       </Card.Body>
     </Card>
   );
