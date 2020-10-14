@@ -23,8 +23,6 @@ const AdminSingleUserPageContainer = ({ match, history }) => {
   const adminSingleUser = useSelector((state) => state.adminSingleUser);
   const { user, loading, error } = adminSingleUser;
 
-  // const adminDelete = useSelector((state) => state.adminDelete);
-  // const { user: deletedUser } = adminDelete;
 
   const id = match.params.id;
 

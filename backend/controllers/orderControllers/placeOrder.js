@@ -1,4 +1,5 @@
 import Order from "../../models/Order.js";
+import Product from "../../models/Product.js";
 import asyncHandler from "express-async-handler";
 
 // @desc:   Create new order
@@ -9,9 +10,10 @@ const placeOrder = asyncHandler(async (req, res) => {
   const { products } = req.body;
   if (products && products.length === 0) {
     const message = "Ordered products unavailable";
-    res.status(404).json({message});
+    res.status(404).json({ message });
     throw new Error(message);
   } else {
+
     let totalPrice = products
       .reduce((acc, item) => acc + item.qty * item.price, 0)
       .toFixed(2);

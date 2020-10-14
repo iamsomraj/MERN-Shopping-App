@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProducts } from "../redux/product/productActions";
+import { deleteProduct } from "../redux/admin/adminActions";
 
 const AdminAllProductsPageContainer = ({ location }) => {
   const dispatch = useDispatch();
@@ -16,6 +17,12 @@ const AdminAllProductsPageContainer = ({ location }) => {
 
   const productList = useSelector((state) => state.productList);
   const { loading, products, pages, page, error } = productList;
+
+
+  const deleteBtnHandler = (id) => {
+    dispatch(deleteProduct(id));
+    dispatch(listProducts(pageNumber));
+  };
 
   return (
     <>
@@ -60,7 +67,13 @@ const AdminAllProductsPageContainer = ({ location }) => {
                   <td>{product.price.toFixed(2)}</td>
                   <td>{product.isAvailable ? "Available" : "Not Available"}</td>
                   <td>
-                    <Button>Delete</Button>
+                    {product.isAvailable ? (
+                      <Button onClick={() => deleteBtnHandler(product._id)}>
+                        Delete
+                      </Button>
+                    ) : (
+                      <div className="text-muted">Product Deleted</div>
+                    )}
                   </td>
                 </tr>
               ))}

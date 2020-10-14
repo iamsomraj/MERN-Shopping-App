@@ -98,18 +98,21 @@ const OrderOverviewPageContainer = ({ history }) => {
                     ))}
                   </tbody>
                 </Table>
-                <ButtonGroup>
-                  <Button variant="primary" onClick={placeOrderHandler}>
-                    Place Order
+
+                <Button
+                  variant="primary"
+                  disabled={!!placedOrder}
+                  onClick={placeOrderHandler}>
+                  Place Order
+                </Button>
+
+                {placedOrder && (
+                  <Button
+                    variant="primary"
+                    onClick={() => payOrderHandler(placedOrder._id)}>
+                    Proceed to Payment
                   </Button>
-                  {placedOrder && (
-                    <Button
-                      variant="primary"
-                      onClick={() => payOrderHandler(placedOrder._id)}>
-                      Proceed to Payment
-                    </Button>
-                  )}
-                </ButtonGroup>
+                )}
               </Card.Body>
               <Card.Footer className="text-muted">
                 Signed in as : {user.name}

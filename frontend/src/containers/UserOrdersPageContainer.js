@@ -62,7 +62,7 @@ const UserOrdersPageContainer = ({ history }) => {
                             0
                           )}
                         </td>
-                        <td>{order.isPaymentDone ? "Paid" : "Pending"}</td>
+                        <td>{order.isPaymentDone ? "Paid" : "Not Paid Yet"}</td>
                         <td>{order.createdAt}</td>
                       </tr>
                     ))}

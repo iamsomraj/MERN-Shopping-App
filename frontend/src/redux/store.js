@@ -5,6 +5,7 @@ import {
   adminAddProductReducer,
   adminAllOrdersReducer,
   adminAllUsersReducer,
+  adminDeleteProductReducer,
   adminDeleteUserReducer,
   adminSingleUserReducer,
   adminUpdateUserReducer,
@@ -62,9 +63,10 @@ const rootReducer = combineReducers({
   adminAllUsers: adminAllUsersReducer,
   adminSingleUser: adminSingleUserReducer,
   adminUpdate: adminUpdateUserReducer,
-  adminDelete: adminDeleteUserReducer,
+  adminDeleteUser: adminDeleteUserReducer,
   adminAddProduct: adminAddProductReducer,
   adminAllOrders: adminAllOrdersReducer,
+  adminDeleteProduct: adminDeleteProductReducer,
 });
 
 const store = createStore(
