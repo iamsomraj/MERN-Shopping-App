@@ -15,6 +15,9 @@ import {
   ADMIN_ADD_PRODUCT_SUCCESS,
   ADMIN_ADD_PRODUCT_FAILURE,
   ADMIN_ADD_PRODUCT_INIT,
+  ADMIN_ALL_ORDERS_REQUEST,
+  ADMIN_ALL_ORDERS_SUCCESS,
+  ADMIN_ALL_ORDERS_FAILURE,
 } from "./adminTypes";
 
 import Axios from "axios";
@@ -173,4 +176,32 @@ export const createProductInit = () => {
   return {
     type: ADMIN_ADD_PRODUCT_INIT,
   };
+};
+
+export const adminGetAllOrders = () => async (dispatch, getState) => {
+  try {
+    const {
+      userLogin: {
+        user: { token, isAdmin },
+      },
+    } = getState();
+    if (isAdmin) {
+      dispatch({ type: ADMIN_ALL_ORDERS_REQUEST });
+      const config = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await Axios.get("/api/orders/admin/all", config);
+      dispatch({ type: ADMIN_ALL_ORDERS_SUCCESS, payload: data });
+    }
+  } catch (error) {
+    dispatch({
+      type: ADMIN_ALL_ORDERS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };

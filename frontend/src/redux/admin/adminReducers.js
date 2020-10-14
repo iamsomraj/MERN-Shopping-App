@@ -15,6 +15,9 @@ import {
   ADMIN_ADD_PRODUCT_SUCCESS,
   ADMIN_ADD_PRODUCT_FAILURE,
   ADMIN_ADD_PRODUCT_INIT,
+  ADMIN_ALL_ORDERS_REQUEST,
+  ADMIN_ALL_ORDERS_SUCCESS,
+  ADMIN_ALL_ORDERS_FAILURE,
 } from "./adminTypes";
 
 export const adminAllUsersReducer = (state = { users: [] }, action) => {
@@ -141,6 +144,33 @@ export const adminAddProductReducer = (state = { product: {} }, action) => {
     case ADMIN_ADD_PRODUCT_INIT: {
       return { product: {} };
     }
+    default:
+      return state;
+  }
+};
+
+
+export const adminAllOrdersReducer = (state = { orders: [] }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case ADMIN_ALL_ORDERS_REQUEST: {
+      return {
+        loading: true,
+      };
+    }
+    case ADMIN_ALL_ORDERS_SUCCESS: {
+      return {
+        loading: false,
+        orders: payload,
+      };
+    }
+    case ADMIN_ALL_ORDERS_FAILURE: {
+      return {
+        loading: false,
+        error: payload,
+      };
+    }
+ 
     default:
       return state;
   }

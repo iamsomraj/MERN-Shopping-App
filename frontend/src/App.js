@@ -15,6 +15,7 @@ import PaymentPageContainer from "./containers/PaymentPageContainer";
 import AdminAllUserPageContainer from "./containers/AdminAllUserPageContainer";
 import AdminSingleUserPageContainer from "./containers/AdminSingleUserPageContainer";
 import AdminCreateProductPageContainer from "./containers/AdminCreateProductPageContainer";
+import AdminAllOrdersPageContainer from "./containers/AdminAllOrdersPageContainer";
 
 const App = () => {
   return (
@@ -44,6 +45,11 @@ const App = () => {
           <Route
             path="/admin/products/create"
             component={AdminCreateProductPageContainer}
+            exact
+          />
+           <Route
+            path="/admin/orders/"
+            component={AdminAllOrdersPageContainer}
             exact
           />
         </Container>

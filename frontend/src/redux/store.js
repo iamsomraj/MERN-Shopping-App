@@ -3,6 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import {
   adminAddProductReducer,
+  adminAllOrdersReducer,
   adminAllUsersReducer,
   adminDeleteUserReducer,
   adminSingleUserReducer,
@@ -63,6 +64,7 @@ const rootReducer = combineReducers({
   adminUpdate: adminUpdateUserReducer,
   adminDelete: adminDeleteUserReducer,
   adminAddProduct: adminAddProductReducer,
+  adminAllOrders: adminAllOrdersReducer,
 });
 
 const store = createStore(

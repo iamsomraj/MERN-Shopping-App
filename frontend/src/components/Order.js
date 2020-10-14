@@ -33,7 +33,7 @@ const Order = (props) => {
                     {order.isPaymentDone ? (
                       <strong className="text text-success">Successful</strong>
                     ) : (
-                      <strong className="text text-danger">Pending</strong>
+                      <strong className="text text-danger">Not Paid Yet</strong>
                     )}
                   </Col>
                 </Row>
