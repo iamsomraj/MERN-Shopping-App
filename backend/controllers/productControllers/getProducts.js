@@ -6,7 +6,7 @@ import asyncHandler from "express-async-handler";
 // @route:  GET api/products/
 
 const getProducts = asyncHandler(async (req, res) => {
-  const noOfProductsPerPage = 10;
+  const noOfProductsPerPage = 8;
   const page = Number(req.query.page) || 1;
   const products = await Product.find()
     .limit(noOfProductsPerPage)

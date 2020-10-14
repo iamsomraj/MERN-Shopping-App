@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import HomePageContainer from "./containers/HomePageContainer";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductPageContainer from "./containers/ProductPageContainer";
 import CartPageContainer from "./containers/CartPageContainer";
 import UserLoginPageContainer from "./containers/UserLoginPageContainer";
@@ -16,6 +16,7 @@ import AdminAllUserPageContainer from "./containers/AdminAllUserPageContainer";
 import AdminSingleUserPageContainer from "./containers/AdminSingleUserPageContainer";
 import AdminCreateProductPageContainer from "./containers/AdminCreateProductPageContainer";
 import AdminAllOrdersPageContainer from "./containers/AdminAllOrdersPageContainer";
+import AdminAllProductsPageContainer from "./containers/AdminAllProductsPageContainer";
 
 const App = () => {
   return (
@@ -42,12 +43,17 @@ const App = () => {
             component={AdminSingleUserPageContainer}
             exact
           />
+            <Route
+              path="/admin/product/new"
+              component={AdminCreateProductPageContainer}
+              
+            />
+            <Route
+              path="/admin/products/"
+              component={AdminAllProductsPageContainer}
+          
+            />
           <Route
-            path="/admin/products/create"
-            component={AdminCreateProductPageContainer}
-            exact
-          />
-           <Route
             path="/admin/orders/"
             component={AdminAllOrdersPageContainer}
             exact
