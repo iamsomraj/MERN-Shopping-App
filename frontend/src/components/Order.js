@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Col, ListGroup, Row, Table } from "react-bootstrap";
 import Loader from "./Loader";
 import { PayPalButton } from "react-paypal-button-v2";
+import { Link } from "react-router-dom";
 
 const Order = (props) => {
   const { order, onPay, loading, ready } = props;
@@ -74,7 +75,9 @@ const Order = (props) => {
             <tbody>
               {order.products.map((item, index) => (
                 <tr key={item._id}>
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">
+                    <Link to={`/product/${item.product}`}>{index + 1}</Link>
+                  </th>
                   <td>{item.name}</td>
                   <td>{item.qty}</td>
                   <td>{item.price.toFixed(2)}</td>

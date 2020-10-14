@@ -1,23 +1,34 @@
 import React, { useEffect } from "react";
-import { Button, Col, Pagination, Row, Table, Image } from "react-bootstrap";
+import { Button, Col, Image, Pagination, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { listProducts } from "../redux/product/productActions";
 import { deleteProduct } from "../redux/admin/adminActions";
+import { listProducts } from "../redux/product/productActions";
 
-const AdminAllProductsPageContainer = ({ location }) => {
+const AdminAllProductsPageContainer = ({ location, history }) => {
   const dispatch = useDispatch();
   const pageNumber = location.search.split("=")[1] || 1;
-  useEffect(() => {
-    dispatch(listProducts(pageNumber));
-  }, [dispatch, pageNumber]);
-
+  
   const productList = useSelector((state) => state.productList);
   const { loading, products, pages, page, error } = productList;
+  
+    const userLogin = useSelector((state) => state.userLogin);
+    const { user } = userLogin;
 
+  useEffect(() => {
+    if (!user) {
+      history.push("/login");
+    }
+
+    if (user && !user.isAdmin) {
+      history.push("/profile");
+    }
+
+    dispatch(listProducts(pageNumber));
+  }, [dispatch, history, user, pageNumber]);
 
   const deleteBtnHandler = (id) => {
     dispatch(deleteProduct(id));

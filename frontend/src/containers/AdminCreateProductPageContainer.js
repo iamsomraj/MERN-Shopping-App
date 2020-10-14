@@ -24,8 +24,18 @@ const AdminCreateProductPageContainer = ({ history }) => {
     let file = e.target.files[0];
     setImage(file);
   };
+  const userLogin = useSelector((state) => state.userLogin);
+  const { user } = userLogin;
 
   useEffect(() => {
+    if (!user) {
+      history.push("/login");
+    }
+
+    if (user && !user.isAdmin) {
+      history.push("/profile");
+    }
+
     if (success) {
       setTimeout(() => {
         history.push("/");

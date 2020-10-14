@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Badge, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logoutUser } from "../redux/user/userActions";
@@ -8,6 +8,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { user } = userLogin;
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   const logoutHandler = () => {
     dispatch(logoutUser());
@@ -23,7 +26,12 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <LinkContainer to="/cart">
-              <Nav.Link>Cart</Nav.Link>
+              <Nav.Link>
+                Cart
+                {cartItems.length !== 0 && (
+                  <Badge className="mx-2" variant="success">{cartItems.length}</Badge>
+                )}
+              </Nav.Link>
             </LinkContainer>
             {user ? (
               <NavDropdown title={user.name} id="username">

@@ -1,19 +1,11 @@
 import React, { useEffect } from "react";
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  Col,
-  ListGroup,
-  Row,
-  Table,
-} from "react-bootstrap";
+import { Button, Card, Col, ListGroup, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { placeMyOrder, placeOrderInit } from "../redux/order/orderActions";
 import { Redirect } from "react-router-dom";
-import Message from "../components/Message";
 import Loader from "../components/Loader";
+import Message from "../components/Message";
 import { deleteItemFromCart } from "../redux/cart/cartActions";
+import { placeMyOrder, placeOrderInit } from "../redux/order/orderActions";
 
 const OrderOverviewPageContainer = ({ history }) => {
   const dispatch = useDispatch();
