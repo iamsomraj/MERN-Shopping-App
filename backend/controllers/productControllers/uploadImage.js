@@ -1,12 +1,11 @@
 import multer from "multer";
-import asyncHandler from "express-async-handler";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads/");
   },
   filename: function (req, file, cb) {
-    cb(null, req.user.id + "-" + Date.now() + ".jpg");
+    cb(null, req.user.id + "-" + Date.now() + "-" + file.originalname);
   },
 });
 
