@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Col, Row, Table, ListGroup } from "react-bootstrap";
+import { Card, Col, ListGroup, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -38,8 +38,8 @@ const AdminAllOrdersPageContainer = ({ history }) => {
         <>
           {orders.length !== 0 &&
             orders.map((order) => (
-              <Row key={order._id}>
-                <Col>
+              <Row className="my-4  justify-content-center" key={order._id}>
+                <Col md={8}>
                   <Card>
                     <Card.Header>Order #{order._id}</Card.Header>
                     <Card.Body>

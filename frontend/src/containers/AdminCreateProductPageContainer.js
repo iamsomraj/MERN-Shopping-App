@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -67,7 +67,8 @@ const AdminCreateProductPageContainer = ({ history }) => {
           {success && (
             <>
               <Message variant="success">Product is created</Message>
-              <Message>Redirecting...</Message>
+              <Message variant="success">Image is uploading</Message>
+              <Loader />
             </>
           )}
           <Form onSubmit={submitHandler}>

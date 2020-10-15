@@ -11,12 +11,15 @@ import { listProducts } from "../redux/product/productActions";
 const AdminAllProductsPageContainer = ({ location, history }) => {
   const dispatch = useDispatch();
   const pageNumber = location.search.split("=")[1] || 1;
-  
+
   const productList = useSelector((state) => state.productList);
   const { loading, products, pages, page, error } = productList;
-  
-    const userLogin = useSelector((state) => state.userLogin);
-    const { user } = userLogin;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { user } = userLogin;
+
+  const adminDeleteProduct = useSelector((state) => state.adminDeleteProduct);
+  const { product: deletedProduct } = adminDeleteProduct;
 
   useEffect(() => {
     if (!user) {
@@ -27,8 +30,12 @@ const AdminAllProductsPageContainer = ({ location, history }) => {
       history.push("/profile");
     }
 
+    if (deletedProduct && deletedProduct._id) {
+      dispatch(listProducts(pageNumber));
+    }
+
     dispatch(listProducts(pageNumber));
-  }, [dispatch, history, user, pageNumber]);
+  }, [dispatch, history, user, pageNumber, deletedProduct]);
 
   const deleteBtnHandler = (id) => {
     dispatch(deleteProduct(id));

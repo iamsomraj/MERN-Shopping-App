@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Badge, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Product = (props) => {
@@ -14,6 +14,11 @@ const Product = (props) => {
         <Link to={`/product/${product._id}`}>
           <Card.Title as="div">
             <strong>{product.name}</strong>
+            {!product.isAvailable && (
+              <Badge className="mx-2" variant="danger">
+                Unavailable
+              </Badge>
+            )}
           </Card.Title>
         </Link>
         <Card.Text as="h3">${product.price}</Card.Text>
