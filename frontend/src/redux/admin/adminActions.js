@@ -1,3 +1,4 @@
+import Axios from "axios";
 import {
   ADMIN_ADD_PRODUCT_FAILURE,
   ADMIN_ADD_PRODUCT_INIT,
@@ -22,8 +23,6 @@ import {
   ADMIN_UPDATE_USER_REQUEST,
   ADMIN_UPDATE_USER_SUCCESS,
 } from "./adminTypes";
-
-import Axios from "axios";
 
 export const adminGetAllUsers = () => async (dispatch, getState) => {
   try {
