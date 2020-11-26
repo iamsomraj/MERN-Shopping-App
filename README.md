@@ -12,6 +12,13 @@ MERN-Shopping-App is a repository, which contains an app, built using MongoDB, E
 6. Users
 7. Admin
 
+
+## Walkthrough Video
+
+YouTube : [MERN Shopping Application - Coding Pillow Mart](https://youtu.be/UaGDAyCR0jQ) 😊
+
+
+
 ## Dependencies Used
 
 For backend 
