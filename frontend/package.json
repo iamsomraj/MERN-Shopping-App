@@ -1,7 +1,8 @@
 {
-  "name": "frontend",
+  "name": "iamsomraj-shop-app-client",
+  "version": "1.0.0",
+  "description": "Modern Full stack E-commerce Application, powered by MERN stack",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,10 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "lucide-react": "^0.269.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^1.14.0",

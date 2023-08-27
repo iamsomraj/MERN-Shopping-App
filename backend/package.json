@@ -1,7 +1,7 @@
 {
-  "name": "coding-pillow-mart",
+  "name": "iamsomraj-shop-app-api",
   "version": "1.0.0",
-  "description": "A full stack ecommerce application by coding pillow",
+  "description": "Modern Full stack E-commerce Application, powered by MERN stack",
   "main": "index.js",
   "type": "module",
   "scripts": {
