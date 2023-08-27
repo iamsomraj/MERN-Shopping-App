@@ -11,7 +11,7 @@ import {
 export const listProducts = (page = 1) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await Axios.get("/api/products/?page=" + page);
+    const { data } = await Axios.get("https://somraj-mern-shop-api.vercel.app/api/products/?page=" + page);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -27,7 +27,7 @@ export const listProducts = (page = 1) => async (dispatch) => {
 export const detailProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
-    const { data } = await Axios.get("/api/products/" + id);
+    const { data } = await Axios.get("https://somraj-mern-shop-api.vercel.app/api/products/" + id);
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

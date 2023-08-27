@@ -31,7 +31,7 @@ export const placeMyOrder = (items) => async (dispatch, getState) => {
         authorization: `Bearer ${getState().userLogin.user.token}`,
       },
     };
-    const { data } = await Axios.post("/api/orders/", { products }, config);
+    const { data } = await Axios.post("https://somraj-mern-shop-api.vercel.app/api/orders/", { products }, config);
     dispatch({ type: PLACE_ORDER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -52,7 +52,7 @@ export const getMyOrder = (id) => async (dispatch, getState) => {
         authorization: `Bearer ${getState().userLogin.user.token}`,
       },
     };
-    const { data } = await Axios.get(`/api/orders/${id}`, config);
+    const { data } = await Axios.get(`https://somraj-mern-shop-api.vercel.app/api/orders/${id}`, config);
     dispatch({ type: GET_ORDER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -73,7 +73,7 @@ export const getAllOrder = () => async (dispatch, getState) => {
         authorization: `Bearer ${getState().userLogin.user.token}`,
       },
     };
-    const { data } = await Axios.get(`/api/orders/`, config);
+    const { data } = await Axios.get(`https://somraj-mern-shop-api.vercel.app/api/orders/`, config);
     dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -95,7 +95,7 @@ export const payMyOrder = (id) => async (dispatch, getState) => {
         authorization: `Bearer ${getState().userLogin.user.token}`,
       },
     };
-    const { data } = await Axios.put(`/api/orders/${id}`, null, config);
+    const { data } = await Axios.put(`https://somraj-mern-shop-api.vercel.app/api/orders/${id}`, null, config);
     dispatch({ type: PAY_ORDER_SUCCESS, payload: data });
     dispatch({ type: GET_ORDER_SUCCESS, payload: data });
   } catch (error) {

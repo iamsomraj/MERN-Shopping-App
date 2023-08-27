@@ -38,7 +38,7 @@ export const adminGetAllUsers = () => async (dispatch, getState) => {
           authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await Axios.get("/api/users/", config);
+      const { data } = await Axios.get("https://somraj-mern-shop-api.vercel.app/api/users/", config);
       dispatch({ type: ADMIN_ALL_USERS_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -66,7 +66,7 @@ export const adminGetSingleUser = (id) => async (dispatch, getState) => {
           authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await Axios.get("/api/users/" + id, config);
+      const { data } = await Axios.get("https://somraj-mern-shop-api.vercel.app/api/users/" + id, config);
       dispatch({ type: ADMIN_SINGLE_USER_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -99,7 +99,7 @@ export const adminUpdateUser = (id, name, email, password) => async (
         },
       };
       const { data } = await Axios.put(
-        "/api/users/" + id,
+        "https://somraj-mern-shop-api.vercel.app/api/users/" + id,
         { name, email, password },
         config
       );
@@ -131,7 +131,7 @@ export const adminDeleteUser = (id) => async (dispatch, getState) => {
           authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await Axios.delete("/api/users/" + id, config);
+      const { data } = await Axios.delete("https://somraj-mern-shop-api.vercel.app/api/users/" + id, config);
       dispatch({ type: ADMIN_DELETE_USER_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -160,7 +160,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
           authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await Axios.delete("/api/products/" + id, config);
+      const { data } = await Axios.delete("https://somraj-mern-shop-api.vercel.app/api/products/" + id, config);
       dispatch({ type: ADMIN_DELETE_PRODUCT_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -189,7 +189,7 @@ export const adminCreateProduct = (formData) => async (dispatch, getState) => {
           authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await Axios.post("/api/products/", formData, config);
+      const { data } = await Axios.post("https://somraj-mern-shop-api.vercel.app/api/products/", formData, config);
       dispatch({ type: ADMIN_ADD_PRODUCT_SUCCESS, payload: data });
     }
   } catch (error) {
@@ -223,7 +223,7 @@ export const adminGetAllOrders = () => async (dispatch, getState) => {
           authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await Axios.get("/api/orders/admin/all", config);
+      const { data } = await Axios.get("https://somraj-mern-shop-api.vercel.app/api/orders/admin/all", config);
       dispatch({ type: ADMIN_ALL_ORDERS_SUCCESS, payload: data });
     }
   } catch (error) {

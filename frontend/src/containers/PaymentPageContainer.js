@@ -29,7 +29,7 @@ const PaymentPageContainer = ({ match, history }) => {
     }
 
     const addPayPalScript = async () => {
-      const { data: clientId } = await Axios.get("/api/config/paypal");
+      const { data: clientId } = await Axios.get("https://somraj-mern-shop-api.vercel.app/api/config/paypal");
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
