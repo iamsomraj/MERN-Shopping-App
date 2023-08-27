@@ -18,8 +18,7 @@ const app = express();
 app.use(
   cors({
     origin: ['https://somraj-mern-shop.vercel.app'],
-    methods: ['POST', 'GET'],
-    credentials: true,
+    methods: ['POST', 'GET', 'PUT', 'DELETE'],
   })
 );
 
