@@ -5,21 +5,21 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node backend/index",
-    "dev": "nodemon backend/index",
-    "db-init": "node backend/seeder",
-    "db-del": "node backend/seeder -d"
+    "start": "node index",
+    "dev": "nodemon index",
+    "db-init": "node seeder",
+    "db-del": "node seeder -d"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamsomraj/coding-pillow-mart.git"
+    "url": "git+https://github.com/iamsomraj/MERN-Shopping-App.git"
   },
   "author": "Somraj Mukherjee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iamsomraj/coding-pillow-mart/issues"
+    "url": "https://github.com/iamsomraj/MERN-Shopping-App/issues"
   },
-  "homepage": "https://github.com/iamsomraj/coding-pillow-mart#readme",
+  "homepage": "https://github.com/iamsomraj/MERN-Shopping-App#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
