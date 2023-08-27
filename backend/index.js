@@ -38,7 +38,7 @@ app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_I
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT || 4500;
 
-app.get('/', (res) => {
+app.get('/', (_req, res) => {
   res.send('Our Express API is running..');
 });
 
