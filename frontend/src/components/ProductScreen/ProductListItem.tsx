@@ -1,5 +1,4 @@
 import { IProduct } from '@/types';
-import React from 'react';
 
 type Props = {
   product: IProduct;
