@@ -18,7 +18,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.PRODUCTION_CLIENT_ORIGIN],
+    origin: [process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_CLIENT_ORIGIN : process.env.DEVELOPMENT_CLIENT_ORIGIN],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
   })
 );

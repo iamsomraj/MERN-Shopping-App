@@ -1,4 +1,5 @@
 import Header from '@/components/Navigation/Header';
+import { Toaster } from 'react-hot-toast';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
@@ -14,6 +15,10 @@ const App = () => {
         </section>
       </main>
       {/* END - MAIN CONTENT */}
+
+      {/* TOAST PROVIDER */}
+      <Toaster position='top-center' />
+      {/* TOAST PROVIDER */}
     </>
   );
 };
