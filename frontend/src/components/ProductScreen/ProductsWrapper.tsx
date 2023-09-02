@@ -38,8 +38,8 @@ const ProductsWrapper = () => {
 
   if (error) return 'Error occurred while fetching products!';
 
-  return (
-    <div className='flex flex-col'>
+  const content = (
+    <div className='flex flex-col gap-12'>
       <ProductCarousel products={products} />
       <ProductListView products={products} />
       <ProductPagination
@@ -48,6 +48,8 @@ const ProductsWrapper = () => {
       />
     </div>
   );
+
+  return content;
 };
 
 export default ProductsWrapper;
