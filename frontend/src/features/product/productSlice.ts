@@ -1,4 +1,5 @@
 import { SetProductsActionPayload } from '@/features/product/actionTypes';
+import { RootState } from '@/store';
 import { IProduct } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
@@ -10,8 +11,8 @@ interface IProductSliceInitialState {
 
 const initialState: IProductSliceInitialState = {
   products: [],
-  page: 0,
-  pages: 0,
+  page: 1,
+  pages: 1,
 };
 
 const productSlice = createSlice({
@@ -27,5 +28,9 @@ const productSlice = createSlice({
 });
 
 export const { setProducts } = productSlice.actions;
+
+export const selectProducts = (state: RootState) => state.product.products;
+export const selectPage = (state: RootState) => state.product.page;
+export const selectPages = (state: RootState) => state.product.pages;
 
 export default productSlice.reducer;

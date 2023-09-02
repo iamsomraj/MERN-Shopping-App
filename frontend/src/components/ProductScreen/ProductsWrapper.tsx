@@ -3,14 +3,17 @@ import ProductCarousel from '@/components/ProductScreen/ProductCarousel';
 import ProductListView from '@/components/ProductScreen/ProductListView';
 import ProductPagination from '@/components/ProductScreen/ProductPagination';
 import { getErrorMessage } from '@/config';
-import { setProducts } from '@/features/product/productSlice';
-import { useAppDispatch } from '@/hooks/hooks';
+import { selectPage, selectPages, selectProducts, setProducts } from '@/features/product/productSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 
 const ProductsWrapper = () => {
   const dispatch = useAppDispatch();
-  const page = 1;
+  const products = useAppSelector(selectProducts);
+  const page = useAppSelector(selectPage);
+  const pages = useAppSelector(selectPages);
+
   const { isLoading, error } = useQuery({
     queryKey: [`${page}-products`],
     queryFn: async () => {
@@ -37,9 +40,12 @@ const ProductsWrapper = () => {
 
   return (
     <div className='flex flex-col'>
-      <ProductCarousel />
-      <ProductListView />
-      <ProductPagination />
+      <ProductCarousel products={products} />
+      <ProductListView products={products} />
+      <ProductPagination
+        currentPage={page}
+        totalPage={pages}
+      />
     </div>
   );
 };
