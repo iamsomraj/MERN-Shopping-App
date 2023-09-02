@@ -1,7 +1,5 @@
-import ProductsWrapper from '@/components/ProductsWrapper';
-
 const ProfileScreen = () => {
-  return <ProductsWrapper />;
+  return <div>Profile Screen</div>;
 };
 
 export default ProfileScreen;

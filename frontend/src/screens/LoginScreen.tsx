@@ -1,7 +1,5 @@
-import ProductsWrapper from '@/components/ProductsWrapper';
-
 const LoginScreen = () => {
-  return <ProductsWrapper />;
+  return <div>Login Screen</div>;
 };
 
 export default LoginScreen;

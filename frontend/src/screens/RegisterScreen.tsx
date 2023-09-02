@@ -1,7 +1,5 @@
-import ProductsWrapper from '@/components/ProductsWrapper';
-
 const RegisterScreen = () => {
-  return <ProductsWrapper />;
+  return <div>Register Screen</div>;
 };
 
 export default RegisterScreen;
