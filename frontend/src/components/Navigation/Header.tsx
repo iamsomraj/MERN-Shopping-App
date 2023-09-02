@@ -1,5 +1,5 @@
-import GuestNavActions from '@/components/GuestNavActions';
-import UserNavActions from '@/components/UserNavActions';
+import GuestNavActions from '@/components/Navigation/GuestNavActions';
+import UserNavActions from '@/components/Navigation/UserNavActions';
 import { Link } from 'react-router-dom';
 
 const Header = () => {

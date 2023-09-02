@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/Navigation/Header';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {

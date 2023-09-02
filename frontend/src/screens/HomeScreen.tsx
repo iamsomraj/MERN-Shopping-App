@@ -1,4 +1,4 @@
-import ProductsWrapper from '@/components/ProductsWrapper';
+import ProductsWrapper from '@/components/ProductScreen/ProductsWrapper';
 
 const HomeScreen = () => {
   return <ProductsWrapper />;
