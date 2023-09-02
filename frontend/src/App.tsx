@@ -1,9 +1,13 @@
-import Hello from '@/components/Hello';
+import { Outlet } from 'react-router-dom';
 
-export default function App() {
+const App = () => {
   return (
-    <div>
-      <Hello />
-    </div>
+    <>
+      <div>Header</div>
+      <Outlet />
+      <div>Footer</div>
+    </>
   );
-}
+};
+
+export default App;
