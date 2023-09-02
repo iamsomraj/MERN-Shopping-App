@@ -1,5 +1,7 @@
+import SingleProductWrapper from '@/components/SingleProductScreen/SingleProductWrapper';
+
 const SingleProductScreen = () => {
-  return <div>SingleProductScreen</div>;
+  return <SingleProductWrapper />;
 };
 
 export default SingleProductScreen;

@@ -1,22 +1,41 @@
 type Props = {
-  variant?: 'primary';
-  disabled?: boolean;
+  variant?: 'primary' | 'transparent';
   loading?: boolean;
   children: React.ReactNode;
-};
+} & React.HTMLAttributes<HTMLButtonElement>;
 
 const PrimaryButton = (props: Props) => {
-  return <button className='bg-zinc-900 text-white py-3 px-6 rounded-lg font-bold'>{props.children}</button>;
+  const { children, ...rest } = props;
+
+  return (
+    <button
+      className='bg-zinc-900 text-white py-3 px-6 rounded-lg font-bold'
+      {...rest}>
+      {children}
+    </button>
+  );
+};
+
+const TransparentButton = (props: Props) => {
+  const { children, ...rest } = props;
+  return (
+    <button
+      className='py-3 px-6 rounded-lg'
+      {...rest}>
+      {children}
+    </button>
+  );
 };
 
 const Button = (props: Props) => {
-  const variant = props?.variant || 'primary';
-  const loading = props?.loading || false;
-  const disabled = props?.disabled || false;
-  const children = props?.children || null;
+  const { variant: propVariant, loading: propLoading, children: propChildren, ...rest } = props;
+  const variant = propVariant || 'primary';
+  const loading = propLoading || undefined;
+  const children = propChildren || null;
 
   const buttonVariants = {
     primary: PrimaryButton,
+    transparent: TransparentButton,
   };
 
   const Component = buttonVariants[variant];
@@ -25,7 +44,7 @@ const Button = (props: Props) => {
     <Component
       variant={variant}
       loading={loading}
-      disabled={disabled}>
+      {...rest}>
       {children}
     </Component>
   );
