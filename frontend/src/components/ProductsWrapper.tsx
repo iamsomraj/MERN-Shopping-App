@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
+import ProductCarousel from '@/components/ProductCarousel';
 
 const ProductsWrapper = () => {
   return (
     <div>
-      <Link to={`products/1`}>Product</Link>
+      <ProductCarousel />
     </div>
   );
 };
