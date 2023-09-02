@@ -9,7 +9,7 @@ const PrimaryButton = (props: Props) => {
 
   return (
     <button
-      className='bg-zinc-900 text-white py-3 px-6 rounded-lg font-bold'
+      className='bg-zinc-900 text-white py-3 px-6 rounded-lg font-bold hover:bg-zinc-800'
       {...rest}>
       {children}
     </button>
@@ -20,7 +20,7 @@ const TransparentButton = (props: Props) => {
   const { children, ...rest } = props;
   return (
     <button
-      className='py-3 px-6 rounded-lg'
+      className='py-3 px-6 rounded-lg hover:bg-zinc-100'
       {...rest}>
       {children}
     </button>
