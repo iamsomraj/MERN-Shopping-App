@@ -12,7 +12,7 @@ const Header = () => {
         {/* BEGIN - NAVIGATION BAR CONTAINER */}
         <nav className='container flex items-center justify-between py-3'>
           {/* BEGIN - NAV BAR BRAND NAME */}
-          <h1 className='text-2xl font-bold cursor-pointer text-zinc-900 dark:text-zinc-50'>
+          <h1 className='text-sm md:text-2xl font-bold cursor-pointer text-zinc-900 dark:text-zinc-50'>
             <Link to={'/'}>One Stop Shop</Link>
           </h1>
           {/* END - NAV BAR BRAND NAME */}

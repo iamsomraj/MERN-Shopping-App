@@ -14,7 +14,7 @@ const ProductCarouselItem = ({ product }: Props) => {
         />
       </div>
       <p className='text-3xl capitalize font-bold text-zinc-900 transition-all duration-300 dark:text-zinc-200'>{product.name}</p>
-      <span className='-mt-2 text-2xl uppercase font-bold text-zinc-500 dark:text-zinc-300 duration-300 transition-all'>$ {product.price}</span>
+      <span className='-mt-2 text-4xl uppercase font-thin text-zinc-500 dark:text-zinc-300 duration-300 transition-all'>$ {product.price}</span>
     </div>
   );
 };
