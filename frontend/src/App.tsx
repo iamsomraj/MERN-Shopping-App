@@ -7,7 +7,7 @@ const App = () => {
     <>
       <Header />
       {/* BEGIN - MAIN CONTENT */}
-      <main className='py-24 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 transition-all duration-300'>
+      <main className='py-24 flex-1 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 transition-all duration-300'>
         <section className='container py-6'>
           {/* SCREEN CONTENT */}
           <Outlet />
