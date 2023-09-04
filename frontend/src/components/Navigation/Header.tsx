@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <>
       {/* BEGIN - HEADER */}
-      <header className='fixed z-10 w-full transition-all duration-300 border-b bg-zinc-50 dark:bg-zinc-900'>
+      <header className='fixed z-10 w-full transition-all duration-300 shadow dark:shadow-zinc-50/10 dark:shadow-lg bg-zinc-50 dark:bg-zinc-900'>
         {/* BEGIN - NAVIGATION BAR CONTAINER */}
         <nav className='container flex items-center justify-between py-3'>
           {/* BEGIN - NAV BAR BRAND NAME */}

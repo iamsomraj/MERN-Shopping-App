@@ -54,7 +54,7 @@ const ProductCarousel = (props: ProductCarouselProps) => {
   return (
     <>
       {/* BEGIN - PRODUCT SLIDER CAROUSEL */}
-      <div className='relative w-full py-12 bg-zinc-100 flex justify-center items-center text-center'>
+      <div className='relative w-full py-12 bg-zinc-100 dark:bg-zinc-700 duration-300 transition-all flex justify-center items-center text-center'>
         <Button
           variant='transparent'
           onClick={() => changeToPrevious()}>
