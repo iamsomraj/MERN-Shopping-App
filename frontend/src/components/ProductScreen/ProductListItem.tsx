@@ -6,7 +6,7 @@ type Props = {
 
 const ProductListItem = ({ product }: Props) => {
   return (
-    <div className='group bg-white md:flex gap-4 rounded-xl border overflow-hidden'>
+    <div className='group bg-zinc-50 md:flex gap-4 rounded-xl border overflow-hidden'>
       <div className='bg-zinc-100 p-6 flex justify-center items-center'>
         <img
           className='h-60 w-60 object-cover mix-blend-multiply object-center group-hover:scale-110 transition-all duration-300'

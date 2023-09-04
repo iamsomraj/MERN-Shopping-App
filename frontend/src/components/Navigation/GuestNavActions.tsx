@@ -14,7 +14,9 @@ const GuestNavActions = () => {
 
       {/* LINK FOR REGISTER */}
       <li>
-        <Link to={'/register'}>Register</Link>
+        <Button variant='transparent'>
+          <Link to={'/register'}>Register</Link>
+        </Button>
       </li>
       {/* LINK FOR REGISTER */}
     </>
