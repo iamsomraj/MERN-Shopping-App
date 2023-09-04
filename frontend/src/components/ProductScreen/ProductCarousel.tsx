@@ -1,5 +1,4 @@
 import ProductCarouselItem from '@/components/ProductScreen/ProductCarouselItem';
-import Button from '@/components/UI/Button';
 import { IProduct } from '@/types';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import { useEffect, useMemo, useState } from 'react';
@@ -55,19 +54,25 @@ const ProductCarousel = (props: ProductCarouselProps) => {
     <>
       {/* BEGIN - PRODUCT SLIDER CAROUSEL */}
       <div className='relative w-full py-12 bg-zinc-100 dark:bg-zinc-700 duration-300 transition-all flex justify-center rounded-xl items-center text-center'>
-        <Button
-          variant='transparent'
-          onClick={() => changeToPrevious()}>
-          <ArrowLeftIcon className='absolute h-6 w-6 left-5 top-[50%] transform -translate-y-1/2 opacity-50' />
-        </Button>
+        {/* BEGIN - LEFT ARROW */}
+        <ArrowLeftIcon
+          onClick={() => changeToPrevious()}
+          className='absolute h-6 w-6 left-5 top-[50%] cursor-pointer transform -translate-y-1/2 opacity-50'
+        />
+        {/* END - LEFT ARROW */}
+
+        {/* ITEM */}
         <Link to={`/products/${product._id}`}>
           <ProductCarouselItem product={product} />
         </Link>
-        <Button
-          variant='transparent'
-          onClick={() => changeToNext()}>
-          <ArrowRightIcon className='absolute h-6 w-6 right-5 top-[50%] transform -translate-y-1/2 opacity-50' />
-        </Button>
+        {/* ITEM */}
+
+        {/* BEGIN - RIGHT ARROW */}
+        <ArrowRightIcon
+          onClick={() => changeToNext()}
+          className='absolute h-6 w-6 cursor-pointer right-5 top-[50%] transform -translate-y-1/2 opacity-50'
+        />
+        {/* END - RIGHT ARROW */}
       </div>
       {/* END - PRODUCT SLIDER CAROUSEL */}
     </>

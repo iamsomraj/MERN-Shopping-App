@@ -1,10 +1,10 @@
 import GuestNavActions from '@/components/Navigation/GuestNavActions';
 import UserNavActions from '@/components/Navigation/UserNavActions';
+import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
 import { Link } from 'react-router-dom';
-import ThemeToggleButton from '../UI/ThemeToggleButton';
 
 const Header = () => {
-  const user = false;
+  const user = false; // TODO - add auth
   return (
     <>
       {/* BEGIN - HEADER */}
