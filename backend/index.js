@@ -16,18 +16,10 @@ connectToDatabase();
 
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: [process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_CLIENT_ORIGIN : process.env.DEVELOPMENT_CLIENT_ORIGIN],
-//     methods: ['POST', 'GET', 'PUT', 'DELETE'],
-//   })
-// );
 app.use(
   cors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+    origin: [process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_CLIENT_ORIGIN : process.env.DEVELOPMENT_CLIENT_ORIGIN],
+    methods: ['POST', 'GET', 'PUT', 'DELETE'],
   })
 );
 
