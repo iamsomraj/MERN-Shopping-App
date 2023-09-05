@@ -1,4 +1,4 @@
-import { SetProductsActionPayload } from '@/features/product/actionTypes';
+import { SetPageActionPayload, SetProductsActionPayload } from '@/features/product/actionTypes';
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
@@ -24,10 +24,13 @@ const productSlice = createSlice({
       state.page = action.payload.page;
       state.pages = action.payload.pages;
     },
+    setPage: (state, action: PayloadAction<SetPageActionPayload>) => {
+      state.page = action.payload.page;
+    },
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, setPage } = productSlice.actions;
 
 export const selectProducts = (state: RootState) => state.product.products;
 export const selectPage = (state: RootState) => state.product.page;

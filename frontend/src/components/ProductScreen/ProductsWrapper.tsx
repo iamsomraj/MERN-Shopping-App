@@ -3,16 +3,31 @@ import ProductCarousel from '@/components/ProductScreen/ProductCarousel';
 import ProductListView from '@/components/ProductScreen/ProductListView';
 import ProductPagination from '@/components/ProductScreen/ProductPagination';
 import { getErrorMessage } from '@/config';
-import { selectPage, selectPages, selectProducts, setProducts } from '@/features/product/productSlice';
+import { selectPage, selectPages, selectProducts, setPage, setProducts } from '@/features/product/productSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import { useLocation } from 'react-router-dom';
 
 const ProductsWrapper = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const pageNumberFromQuery = queryParams.get('page');
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
   const page = useAppSelector(selectPage);
   const pages = useAppSelector(selectPages);
+
+  useEffect(() => {
+    if (pageNumberFromQuery) {
+      dispatch(
+        setPage({
+          page: Number(pageNumberFromQuery),
+        })
+      );
+    }
+  }, [pageNumberFromQuery, dispatch]);
 
   const { isLoading, error } = useQuery({
     queryKey: [`${page}-products`],

@@ -1,4 +1,4 @@
-import Button from '../UI/Button';
+import { Link } from 'react-router-dom';
 
 type ProductPaginationProps = {
   currentPage: number;
@@ -9,15 +9,15 @@ const ProductPagination = (props: ProductPaginationProps) => {
   return (
     <>
       {/* BEGIN - PRODUCT PAGINATION */}
-      <div className='flex justify-start gap-1 items-center'>
+      <div className='flex justify-start gap-6 items-center'>
         {Array(props.totalPage)
           .fill(1)
           .map((_pageBtn, index) => (
-            <Button
+            <Link
               key={index}
-              variant='transparent'>
-              <div className={index + 1 === props.currentPage ? 'text-2xl' : ''}>{index + 1}</div>
-            </Button>
+              to={`?page=${index + 1}`}>
+              <div className={index + 1 === props.currentPage ? 'text-4xl font-thin' : 'text-sm'}>{index + 1}</div>
+            </Link>
           ))}
       </div>
       {/* END - PRODUCT PAGINATION */}

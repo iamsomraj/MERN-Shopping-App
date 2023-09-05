@@ -5,3 +5,8 @@ export type SetProductsActionPayload = {
   page: number;
   pages: number;
 };
+
+export type SetPageActionPayload = {
+  page: number;
+};
+
