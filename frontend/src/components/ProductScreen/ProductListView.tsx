@@ -1,5 +1,4 @@
 import { IProduct } from '@/types';
-import { Link } from 'react-router-dom';
 import ProductListItem from './ProductListItem';
 
 type ProductListViewProps = {
@@ -18,13 +17,9 @@ const ProductListView = (props: ProductListViewProps) => {
       {/* BEGIN - HUGE DISCOUNT IS LIVE BANNER */}
 
       {/* BEGIN - PRODUCTS LIST VIEW */}
-      <div className='grid col-span-1 md:grid-cols-2 gap-12'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
         {props.products.map((product) => (
-          <Link
-            key={product._id}
-            to={`/products/${product._id}`}>
-            <ProductListItem product={product} />
-          </Link>
+          <ProductListItem product={product} />
         ))}
       </div>
       {/* END - PRODUCTS LIST VIEW */}

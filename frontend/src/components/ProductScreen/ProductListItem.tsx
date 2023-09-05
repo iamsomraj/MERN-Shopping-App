@@ -1,4 +1,5 @@
 import { IProduct } from '@/types';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: IProduct;
@@ -14,7 +15,11 @@ const ProductListItem = ({ product }: Props) => {
         />
       </div>
       <div className='p-6 flex flex-col md:flex-1 bg-zinc-50 dark:bg-zinc-800 gap-6 md:group-hover:px-9 transition-all duration-300'>
-        <h3 className='text-4xl font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline'>{product.name}</h3>
+        <Link
+          key={product._id}
+          to={`/products/${product._id}`}>
+          <h3 className='text-4xl font-medium text-zinc-900 dark:text-zinc-50 group-hover:underline'>{product.name}</h3>
+        </Link>
         <div className='text-2xl font-medium text-zinc-500'>Price</div>
         <div className='flex gap-6 items-center'>
           <h3 className='text-xl line-through font-medium text-red-500'>${(product.price * 1.5).toFixed(2)}</h3>
