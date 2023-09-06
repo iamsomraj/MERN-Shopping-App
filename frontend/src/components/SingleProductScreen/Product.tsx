@@ -5,7 +5,7 @@ type Props = {
   product: IProduct;
 };
 
-const ProductListItem = ({ product }: Props) => {
+const Product = ({ product }: Props) => {
   return (
     <div className='group bg-zinc-50 md:flex rounded-xl border overflow-hidden'>
       <div className='bg-zinc-100 dark:bg-zinc-300 duration-300 transition-all p-6 flex justify-center items-center'>
@@ -30,4 +30,4 @@ const ProductListItem = ({ product }: Props) => {
   );
 };
 
-export default ProductListItem;
+export default Product;

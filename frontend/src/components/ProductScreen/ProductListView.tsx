@@ -19,7 +19,10 @@ const ProductListView = (props: ProductListViewProps) => {
       {/* BEGIN - PRODUCTS LIST VIEW */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
         {props.products.map((product) => (
-          <ProductListItem product={product} />
+          <ProductListItem
+            key={product._id}
+            product={product}
+          />
         ))}
       </div>
       {/* END - PRODUCTS LIST VIEW */}

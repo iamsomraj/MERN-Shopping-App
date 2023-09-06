@@ -10,3 +10,6 @@ export type SetPageActionPayload = {
   page: number;
 };
 
+export type SetCurrentProductActionPayload = {
+  currentProduct: IProduct;
+};

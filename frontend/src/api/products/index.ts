@@ -12,3 +12,9 @@ export const getProducts = async (page: number) => {
   const data = response.data as ProductListResponseType;
   return data;
 };
+
+export const getProduct = async (id: string) => {
+  const response = await serverAPI.get(`/products/${id}`);
+  const data = response.data as IProduct;
+  return data;
+};
