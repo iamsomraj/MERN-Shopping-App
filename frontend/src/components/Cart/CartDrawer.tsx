@@ -1,5 +1,5 @@
 import Button from '@/components/UI/Button';
-import { clearCart, closeDrawer, openDrawer, selectShowDrawer } from '@/features/cart/cartSlice';
+import { clearCart, closeDrawer, openDrawer, selectCart, selectShowDrawer } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { ForwardIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect } from 'react';
@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const CartDrawer = () => {
   const dispatch = useAppDispatch();
   const showDrawer = useAppSelector(selectShowDrawer);
+  const cart = useAppSelector(selectCart);
 
   useEffect(() => {
     if (showDrawer) {
@@ -60,16 +61,22 @@ const CartDrawer = () => {
 
           {/* BEGIN - CART FOOTER  */}
           <div className='flex justify-between items-center px-6 py-3 border-t border-t-zinc-200 dark:border-t-zinc-700 drop-shadow-lg'>
-            {/* BEGIN - CLEAR CART BUTTON */}
-            <Button
-              variant='transparent'
-              onClick={deleteCartItems}>
-              <div className='flex justify-center items-center gap-3'>
-                <TrashIcon className='h-5 w-5 flex-shrink-0' />
-                <span className='hidden md:block'>Clear Cart</span>
-              </div>
-            </Button>
-            {/* END - CLEAR CART BUTTON */}
+            {cart.length > 0 ? (
+              <>
+                {/* BEGIN - CLEAR CART BUTTON */}
+                <Button
+                  variant='transparent'
+                  onClick={deleteCartItems}>
+                  <div className='flex justify-center items-center gap-3'>
+                    <TrashIcon className='h-5 w-5 flex-shrink-0' />
+                    <span className='hidden md:block'>Clear Cart</span>
+                  </div>
+                </Button>
+                {/* END - CLEAR CART BUTTON */}
+              </>
+            ) : (
+              <span className='text-base text-zinc-900 font-bold dark:text-zinc-50 duration-300 transition-all'>No Items In Cart</span>
+            )}
 
             {/* BEGIN - PLACE ORDER BUTTON */}
             <Button onClick={onToggle}>

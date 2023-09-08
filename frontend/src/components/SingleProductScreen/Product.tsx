@@ -1,23 +1,28 @@
-import { IProduct } from '@/types';
-import Button from '../UI/Button';
-import { ArrowTrendingUpIcon, ExclamationTriangleIcon, ShoppingCartIcon } from '@heroicons/react/20/solid';
-import QuantityChips from './QuantityChips';
-import { useAppDispatch } from '@/hooks/hooks';
 import { addToCart } from '@/features/cart/cartSlice';
+import { useAppDispatch } from '@/hooks/hooks';
+import { IProduct } from '@/types';
+import { ArrowTrendingUpIcon, CheckBadgeIcon, ExclamationTriangleIcon, ShoppingCartIcon } from '@heroicons/react/20/solid';
+import { useState } from 'react';
+import Button from '../UI/Button';
+import QuantityChips from './QuantityChips';
 
 type Props = {
   product: IProduct;
 };
 
 const Product = ({ product }: Props) => {
+  const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const addProduct = (product: IProduct) => {
-    console.log("🚀 ~ file: Product.tsx:15 ~ addProduct ~ product:", product);
+    setIsAddedToCart(true);
     dispatch(
       addToCart({
         product,
       })
     );
+    setTimeout(() => {
+      setIsAddedToCart(false);
+    }, 2000);
   };
 
   return (
@@ -56,8 +61,17 @@ const Product = ({ product }: Props) => {
           <QuantityChips />
           <Button onClick={() => addProduct(product)}>
             <div className='flex justify-center items-center gap-3'>
-              <ShoppingCartIcon className='h-5 w-5 flex-shrink-0' />
-              <span>Add To Cart</span>
+              {isAddedToCart ? (
+                <>
+                  <CheckBadgeIcon className='h-5 w-5 flex-shrink-0 text-green-400 dark:text-green-600' />
+                  <span className='text-green-400 dark:text-green-600'>Added</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingCartIcon className='h-5 w-5 flex-shrink-0' />
+                  <span>Add To Cart</span>
+                </>
+              )}
             </div>
           </Button>
         </div>
