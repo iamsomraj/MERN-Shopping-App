@@ -22,8 +22,7 @@ const Header = () => {
           {/* BEGIN - NAV BAR BRAND NAME */}
           <h1 className='text-sm md:text-2xl font-bold cursor-pointer text-zinc-900 dark:text-zinc-50'>
             <Link to={'/'}>
-              <span className='hidden md:block'>One Stop Shop</span>
-              <span className='block md:hidden'>OS Shop</span>
+              <span>One Stop Shop</span>
             </Link>
           </h1>
           {/* END - NAV BAR BRAND NAME */}
