@@ -37,7 +37,7 @@ const CartDrawer = () => {
         <Button onClick={onToggle}>
           <div className='flex justify-center items-center gap-1'>
             <XMarkIcon className='h-5 w-5 flex-shrink-0' />
-            <span className='hidden md:block font-medium text-sm'>Close</span>
+            <span className='hidden md:block'>Close</span>
           </div>
         </Button>
       </div>
