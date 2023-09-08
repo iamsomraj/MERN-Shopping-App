@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Button from '../UI/Button';
 
 type ProductPaginationProps = {
   currentPage: number;
@@ -6,6 +7,7 @@ type ProductPaginationProps = {
 };
 
 const ProductPagination = (props: ProductPaginationProps) => {
+  const navigate = useNavigate();
   return (
     <>
       {/* BEGIN - PRODUCT PAGINATION */}
@@ -13,19 +15,18 @@ const ProductPagination = (props: ProductPaginationProps) => {
         {Array(props.totalPage)
           .fill(1)
           .map((_pageBtn, index) => (
-            <Link
+            <Button
+              variant='transparent'
               key={index}
-              to={`?page=${index + 1}`}
               onClick={() => {
-                setTimeout(() => {
-                  window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                  });
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
                 });
+                navigate(`?page=${index + 1}`);
               }}>
               <div className={index + 1 === props.currentPage ? 'text-4xl font-thin' : 'text-sm'}>{index + 1}</div>
-            </Link>
+            </Button>
           ))}
       </div>
       {/* END - PRODUCT PAGINATION */}
