@@ -29,7 +29,7 @@ const Header = () => {
           {/* END - NAV BAR BRAND NAME */}
 
           {/* BEGIN - NAV BAR LINK LIST */}
-          <ul className='flex items-center justify-end gap-1 md:gap-6 text-base font-medium text-zinc-500'>
+          <ul className='flex items-center justify-end gap-1 md:gap-3 text-base font-medium text-zinc-500'>
             {/* BEGIN - THEME BUTTON */}
             <ThemeToggleButton />
             {/* END - THEME BUTTON */}

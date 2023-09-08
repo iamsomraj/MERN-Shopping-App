@@ -11,7 +11,7 @@ const PrimaryButton = (props: Props) => {
   const content = rest.loading ? <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' /> : children;
   return (
     <button
-      className='px-6 py-3 font-bold rounded-lg flex justify-center items-center bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 hover:bg-zinc-800 duration-300 transition-all'
+      className='px-3 py-3 font-bold rounded-lg flex justify-center items-center bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 hover:bg-zinc-800 duration-300 transition-all'
       {...rest}>
       {content}
     </button>
