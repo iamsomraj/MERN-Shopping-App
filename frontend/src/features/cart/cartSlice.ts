@@ -8,7 +8,15 @@ interface ICartSliceInitialState {
   cart: IProduct[];
 }
 
-const storedCart = JSON.parse(localStorage.getItem('cart') as string) as IProduct[];
+const getCartFromStorage = () => {
+  return JSON.parse(localStorage.getItem('cart') as string) as IProduct[];
+};
+
+const storeCartToStorage = (cart: IProduct[]) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+const storedCart = getCartFromStorage();
 
 const initialState: ICartSliceInitialState = {
   showDrawer: false,
@@ -21,7 +29,11 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<SetCartItemActionPayload>) => {
       state.cart = [...state.cart, action.payload.product];
-      localStorage.setItem('cart', JSON.stringify(state.cart));
+      storeCartToStorage(state.cart);
+    },
+    clearCart: (state) => {
+      state.cart = [];
+      storeCartToStorage(state.cart);
     },
     openDrawer: (state) => {
       state.showDrawer = true;
@@ -32,7 +44,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, openDrawer, closeDrawer } = cartSlice.actions;
+export const { addToCart, openDrawer, closeDrawer, clearCart } = cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart.cart;
 export const selectShowDrawer = (state: RootState) => state.cart.showDrawer;

@@ -23,7 +23,7 @@ const TransparentButton = (props: Props) => {
   const content = rest.loading ? <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' /> : children;
   return (
     <button
-      className='px-3 py-3 rounded-lg flex justify-center items-center dark:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 duration-300 transition-all'
+      className='px-3 py-3 rounded-lg flex justify-center items-center dark:text-zinc-50 duration-300 transition-all'
       {...rest}>
       {content}
     </button>

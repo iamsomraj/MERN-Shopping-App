@@ -15,7 +15,15 @@ const ProductPagination = (props: ProductPaginationProps) => {
           .map((_pageBtn, index) => (
             <Link
               key={index}
-              to={`?page=${index + 1}`}>
+              to={`?page=${index + 1}`}
+              onClick={() => {
+                setTimeout(() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                });
+              }}>
               <div className={index + 1 === props.currentPage ? 'text-4xl font-thin' : 'text-sm'}>{index + 1}</div>
             </Link>
           ))}
