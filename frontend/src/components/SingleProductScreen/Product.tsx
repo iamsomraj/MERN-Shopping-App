@@ -2,12 +2,24 @@ import { IProduct } from '@/types';
 import Button from '../UI/Button';
 import { ArrowTrendingUpIcon, ExclamationTriangleIcon, ShoppingCartIcon } from '@heroicons/react/20/solid';
 import QuantityChips from './QuantityChips';
+import { useAppDispatch } from '@/hooks/hooks';
+import { addToCart } from '@/features/cart/cartSlice';
 
 type Props = {
   product: IProduct;
 };
 
 const Product = ({ product }: Props) => {
+  const dispatch = useAppDispatch();
+  const addProduct = (product: IProduct) => {
+    console.log("🚀 ~ file: Product.tsx:15 ~ addProduct ~ product:", product);
+    dispatch(
+      addToCart({
+        product,
+      })
+    );
+  };
+
   return (
     <>
       {/* BEGIN - PRODUCT */}
@@ -42,7 +54,7 @@ const Product = ({ product }: Props) => {
             <h3 className='text-6xl font-thin text-zinc-500'>${product.price}</h3>
           </div>
           <QuantityChips />
-          <Button>
+          <Button onClick={() => addProduct(product)}>
             <div className='flex justify-center items-center gap-3'>
               <ShoppingCartIcon className='h-5 w-5 flex-shrink-0' />
               <span>Add To Cart</span>

@@ -1,10 +1,18 @@
 import GuestNavActions from '@/components/Navigation/GuestNavActions';
 import UserNavActions from '@/components/Navigation/UserNavActions';
 import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
+import { openDrawer } from '@/features/cart/cartSlice';
+import { useAppDispatch } from '@/hooks/hooks';
+import { ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
+import Button from '../UI/Button';
 
 const Header = () => {
   const user = false; // TODO - add auth
+  const dispatch = useAppDispatch();
+  const openCart = () => {
+    dispatch(openDrawer());
+  };
   return (
     <>
       {/* BEGIN - HEADER */}
@@ -13,12 +21,15 @@ const Header = () => {
         <nav className='container flex items-center justify-between py-3'>
           {/* BEGIN - NAV BAR BRAND NAME */}
           <h1 className='text-sm md:text-2xl font-bold cursor-pointer text-zinc-900 dark:text-zinc-50'>
-            <Link to={'/'}>One Stop Shop</Link>
+            <Link to={'/'}>
+              <span className='hidden md:block'>One Stop Shop</span>
+              <span className='block md:hidden'>OS Shop</span>
+            </Link>
           </h1>
           {/* END - NAV BAR BRAND NAME */}
 
           {/* BEGIN - NAV BAR LINK LIST */}
-          <ul className='flex items-center justify-end gap-6 text-base font-medium text-zinc-500'>
+          <ul className='flex items-center justify-end gap-1 md:gap-6 text-base font-medium text-zinc-500'>
             {/* BEGIN - THEME BUTTON */}
             <ThemeToggleButton />
             {/* END - THEME BUTTON */}
@@ -30,6 +41,15 @@ const Header = () => {
             {/* BEGIN - WHEN LOGGED IN - USER ACTIONS */}
             {!!user && <UserNavActions />}
             {/* END - WHEN LOGGED IN - USER ACTIONS */}
+
+            {/* BEGIN - CART */}
+            <Button onClick={openCart}>
+              <div className='flex justify-center items-center gap-3'>
+                <ShoppingCartIcon className='h-5 w-5 flex-shrink-0' />
+                <span className='hidden md:block'>Cart</span>
+              </div>
+            </Button>
+            {/* END - CART */}
           </ul>
           {/* END - NAV BAR LINK LIST */}
         </nav>
