@@ -58,7 +58,7 @@ const Product = ({ product }: Props) => {
             <h3 className='text-xl line-through font-medium text-red-500'>${(product.price * 1.5).toFixed(2)}</h3>
             <h3 className='text-6xl font-thin text-zinc-500'>${product.price}</h3>
           </div>
-          <QuantityChips />
+          <QuantityChips product={product} />
           <Button onClick={() => addProduct(product)}>
             <div className='flex justify-center items-center gap-3'>
               {isAddedToCart ? (
