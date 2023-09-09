@@ -14,6 +14,10 @@ export interface IProduct extends IDataBaseRecords {
   user: string;
 }
 
+export interface ICartProduct extends IProduct {
+  qty: number;
+}
+
 export interface IUser {
   _id: string;
   name: string;

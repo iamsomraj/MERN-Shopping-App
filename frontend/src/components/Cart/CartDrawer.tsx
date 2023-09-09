@@ -1,15 +1,17 @@
 import Button from '@/components/UI/Button';
+import { selectUser } from '@/features/auth/authSlice';
 import { clearCart, closeDrawer, openDrawer, removeFromCart, selectCart, selectShowDrawer } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { IProduct } from '@/types';
-import { ForwardIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { ForwardIcon, LockClosedIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect } from 'react';
-import CartItem from './CartItem';
 import { useNavigate } from 'react-router-dom';
+import CartItem from './CartItem';
 
 const CartDrawer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
   const showDrawer = useAppSelector(selectShowDrawer);
   const cart = useAppSelector(selectCart);
 
@@ -116,9 +118,11 @@ const CartDrawer = () => {
             )}
 
             {/* BEGIN - PLACE ORDER BUTTON */}
-            <Button onClick={onToggle}>
+            <Button
+              disabled={user === null}
+              onClick={onToggle}>
               <div className='flex justify-center items-center gap-3'>
-                <ForwardIcon className='h-5 w-5 flex-shrink-0' />
+                {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}
                 <span>Place Order</span>
               </div>
             </Button>
