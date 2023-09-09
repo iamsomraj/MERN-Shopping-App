@@ -2,6 +2,7 @@ import App from '@/App';
 import PrivateRoute from '@/components/PrivateRoute';
 import HomeScreen from '@/screens/HomeScreen';
 import LoginScreen from '@/screens/LoginScreen';
+import OrderScreen from '@/screens/OrderScreen';
 import PaymentScreen from '@/screens/PaymentScreen';
 import ProfileScreen from '@/screens/ProfileScreen';
 import RegisterScreen from '@/screens/RegisterScreen';
@@ -36,6 +37,10 @@ const router = createBrowserRouter(
         <Route
           path='/profile'
           element={<ProfileScreen />}
+        />
+        <Route
+          path='/orders'
+          element={<OrderScreen />}
         />
         <Route
           path='/payment/:orderId'

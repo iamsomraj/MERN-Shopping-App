@@ -60,7 +60,7 @@ const PayementWrapper = () => {
     },
     onSuccess: () => {
       toast.success('Yayy! Your payment is successful!');
-      navigate('/profile');
+      navigate('/orders');
     },
   });
 
@@ -69,7 +69,7 @@ const PayementWrapper = () => {
   };
 
   const onPaymentError = async () => {
-    navigate('/profile');
+    navigate('/orders');
     toast.error('Error occurred while we were making your payment!');
   };
 
@@ -78,16 +78,24 @@ const PayementWrapper = () => {
   }
 
   if (orderError) {
-    return <Navigate to={'/profile'} />;
+    return <Navigate to={'/orders'} />;
   }
 
   if ((orderId || '').trim().length === 0 || !order || order.isPaymentDone) {
-    return <Navigate to={'/profile'} />;
+    return <Navigate to={'/orders'} />;
   }
 
+  const loadingContent = (
+    <div className='my-12 mx-auto'>
+      <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
+    </div>
+  );
+
   const paypalContent =
-    !isPaypalConfigLoading && !paypalConfigError && paypalClientId ? (
-      <div className='px-12'>
+    isPaypalConfigLoading || paypalConfigError || !paypalClientId ? (
+      loadingContent
+    ) : (
+      <div className='mx-auto max-w-xs'>
         <PayPalScriptProvider options={{ clientId: paypalClientId }}>
           <PayPalButtons
             style={{ shape: 'pill' }}
@@ -97,14 +105,12 @@ const PayementWrapper = () => {
           />
         </PayPalScriptProvider>
       </div>
-    ) : (
-      <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
     );
 
   const orderContent = (
     <article
       key={order._id}
-      className='rounded-xl bg-zinc-50 dark:bg-zinc-800 overflow-hidden border drop-shadow'>
+      className='rounded-xl w-full bg-zinc-50 dark:bg-zinc-800 overflow-hidden border drop-shadow'>
       <div className='p-6 bg-zinc-200 dark:bg-zinc-700 text-3xl font-medium'>Payment Details</div>
       <div className='p-6 flex flex-col gap-3'>
         <p className='font-medium text-lg'>Total Items - {order.products.length}</p>
@@ -121,17 +127,21 @@ const PayementWrapper = () => {
           ))}
         </div>
       </div>
-      {paypalContent}
     </article>
   );
 
-  const loadingContent = (
-    <div className='my-12 mx-auto'>
-      <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
+  return (
+    <div className='flex flex-col gap-12'>
+      {isPaymentInProgress ? (
+        loadingContent
+      ) : (
+        <div className='flex flex-col gap-12 md:flex-row items-start'>
+          {orderContent}
+          {paypalContent}
+        </div>
+      )}
     </div>
   );
-
-  return <div className='flex flex-col gap-12'>{isPaymentInProgress ? loadingContent : orderContent}</div>;
 };
 
 export default PayementWrapper;

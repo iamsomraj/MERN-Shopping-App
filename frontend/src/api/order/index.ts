@@ -23,7 +23,7 @@ export const updateOrder = async (orderId: string) => {
 export const getUserOrders = async () => {
   const response = await serverAPI.get(`/orders`);
   const data = response.data as IOrder[];
-  return data || [];
+  return data.sort((orderA, orderB) => new Date(orderB.createdAt).getTime() - new Date(orderA.createdAt).getTime());
 };
 
 export const fetchOrderDetail = async (orderId: string) => {

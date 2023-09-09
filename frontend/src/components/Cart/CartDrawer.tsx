@@ -50,13 +50,12 @@ const CartDrawer = () => {
       toast.error(errorMessage);
     },
     onSuccess: (data) => {
-      console.log('🚀 ~ file: CartDrawer.tsx:53 ~ CartDrawer ~ data:', data);
       if (!data) {
         return;
       }
       deleteCartItems();
       onToggle();
-      navigate('/profile');
+      navigate('/orders');
       toast.success('Order placed successfully!');
     },
   });
