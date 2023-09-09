@@ -4,13 +4,13 @@ import { getErrorMessage } from '@/config';
 import { selectUser } from '@/features/auth/authSlice';
 import { clearCart, closeDrawer, openDrawer, removeFromCart, selectCart, selectShowDrawer } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
+import { ICartProduct } from '@/types';
 import { ForwardIcon, LockClosedIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useMutation } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
-import { ICartProduct } from '@/types';
 
 const CartDrawer = () => {
   const navigate = useNavigate();
@@ -30,6 +30,16 @@ const CartDrawer = () => {
       document.body.style.overflow = 'auto';
     };
   }, [showDrawer]);
+
+  const total = useMemo(() => {
+    if (cart.length === 0) {
+      return 0;
+    }
+    const sum = cart.reduce((acc, curr) => {
+      return acc + curr.price * curr.qty;
+    }, 0);
+    return sum.toFixed(2);
+  }, [cart]);
 
   const { mutate: placeOrder, isLoading } = useMutation({
     mutationFn: async () => {
@@ -144,17 +154,23 @@ const CartDrawer = () => {
               <span className='text-base text-zinc-900 font-bold dark:text-zinc-50 duration-300 transition-all'>No Items In Cart</span>
             )}
 
-            {/* BEGIN - PLACE ORDER BUTTON */}
-            <Button
-              disabled={user === null}
-              onClick={createOrderFromCart}
-              loading={isLoading}>
-              <div className='flex justify-center items-center gap-3'>
-                {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}
-                <span>Place Order</span>
-              </div>
-            </Button>
-            {/* END - PLACE ORDER BUTTON */}
+            <div className='flex justify-end items-center gap-6'>
+              {/* BEGIN - TOTAL PRICE */}
+              {cart.length > 0 && <span className='text-2xl font-medium '>$ {total}</span>}
+              {/* END - TOTAL PRICE */}
+
+              {/* BEGIN - PLACE ORDER BUTTON */}
+              <Button
+                disabled={user === null}
+                onClick={createOrderFromCart}
+                loading={isLoading}>
+                <div className='flex justify-center items-center gap-3'>
+                  {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}
+                  <span>Place Order</span>
+                </div>
+              </Button>
+              {/* END - PLACE ORDER BUTTON */}
+            </div>
           </div>
           {/* END - CART FOOTER  */}
         </div>
