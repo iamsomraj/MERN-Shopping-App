@@ -7,6 +7,7 @@ interface CartItemProps {
   deleteSingleItem: (product: IProduct) => void;
   redirectToProduct: (product: IProduct) => void;
 }
+
 const CartItem = ({ product, deleteSingleItem, redirectToProduct }: CartItemProps) => {
   return (
     <>
