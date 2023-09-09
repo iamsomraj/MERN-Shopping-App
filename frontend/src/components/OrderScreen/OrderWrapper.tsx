@@ -1,10 +1,10 @@
 import { getUserOrders } from '@/api/order';
+import OrderItem from '@/components/OrderScreen/OrderItem';
 import { getErrorMessage } from '@/config';
 import { IOrder } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import OrderItem from './OrderItem';
 
 const OrderWrapper = () => {
   const navigate = useNavigate();
