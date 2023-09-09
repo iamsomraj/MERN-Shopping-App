@@ -26,23 +26,28 @@ const UserMenu = () => {
   };
 
   return (
-    <div className='relative flex justify-center items-center'>
+    <div className='relative z-20 flex justify-center items-center'>
       <button
         onClick={onToggle}
         className='h-10 w-10 flex justify-center items-center border bg-zinc-50 dark:bg-zinc-200 rounded-full'>
         {nameParts}
       </button>
       {show && (
-        <ul className='absolute top-[115%] right-0 w-fit py-2 border dark:border-zinc-600 bg-zinc-50 dark:text-zinc-50 dark:bg-zinc-700 rounded-lg drop-shadow-xl overflow-hidden'>
-          <li
-            onClick={signOut}
-            className='px-3 py-2 hover:bg-zinc-100 hover:dark:bg-zinc-800 cursor-pointer'>
-            <div className='flex justify-start items-center gap-3'>
-              <ArrowLeftOnRectangleIcon className='h-5 w-5 flex-shrink-0 ' />
-              <span className=''>Logout</span>
-            </div>
-          </li>
-        </ul>
+        <>
+          <div
+            onClick={onToggle}
+            className='fixed inset-0'></div>
+          <ul className='absolute top-[115%] right-0 w-fit py-2 border dark:border-zinc-600 bg-zinc-50 dark:text-zinc-50 dark:bg-zinc-700 rounded-lg drop-shadow-xl overflow-hidden'>
+            <li
+              onClick={signOut}
+              className='px-3 py-2 hover:bg-zinc-100 hover:dark:bg-zinc-800 cursor-pointer'>
+              <div className='flex justify-start items-center gap-3'>
+                <ArrowLeftOnRectangleIcon className='h-5 w-5 flex-shrink-0 ' />
+                <span>Logout</span>
+              </div>
+            </li>
+          </ul>
+        </>
       )}
     </div>
   );
