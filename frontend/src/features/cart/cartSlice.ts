@@ -1,4 +1,4 @@
-import { SetCartItemActionPayload } from '@/features/cart/actionTypes';
+import { DeleteCartItemActionPayload, SetCartItemActionPayload } from '@/features/cart/actionTypes';
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
@@ -28,8 +28,20 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<SetCartItemActionPayload>) => {
-      state.cart = [...state.cart, action.payload.product];
+      if (state.cart.length > 0) {
+        const filteredCart = state.cart.filter((prod) => prod._id != action.payload.product._id);
+        state.cart = [...filteredCart, action.payload.product];
+      } else {
+        state.cart = [action.payload.product];
+      }
       storeCartToStorage(state.cart);
+    },
+    removeFromCart: (state, action: PayloadAction<DeleteCartItemActionPayload>) => {
+      if (state.cart.length === 0) {
+        return;
+      }
+      const filteredCart = state.cart.filter((prod) => prod._id != action.payload.product._id);
+      state.cart = [...filteredCart];
     },
     clearCart: (state) => {
       state.cart = [];
@@ -44,7 +56,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, openDrawer, closeDrawer, clearCart } = cartSlice.actions;
+export const { addToCart, openDrawer, closeDrawer, clearCart, removeFromCart } = cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart.cart;
 export const selectShowDrawer = (state: RootState) => state.cart.showDrawer;
