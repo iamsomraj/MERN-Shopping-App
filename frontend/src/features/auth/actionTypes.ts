@@ -1,3 +1,5 @@
+import { IUser } from '@/types';
+
 export type SetUserActionPayload = {
-  user: null;
+  user: IUser;
 };

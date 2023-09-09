@@ -1,8 +1,10 @@
+import { selectUser } from '@/features/auth/authSlice';
+import { useAppSelector } from '@/hooks/hooks';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRoute = () => {
-  const cond = true;
-  return cond ? (
+  const user = useAppSelector(selectUser);
+  return user != null ? (
     <Outlet />
   ) : (
     <Navigate

@@ -2,13 +2,14 @@ import GuestNavActions from '@/components/Navigation/GuestNavActions';
 import UserNavActions from '@/components/Navigation/UserNavActions';
 import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
 import { openDrawer } from '@/features/cart/cartSlice';
-import { useAppDispatch } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
+import { selectUser } from '@/features/auth/authSlice';
 
 const Header = () => {
-  const user = false; // TODO - add auth
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const openCart = () => {
     dispatch(openDrawer());
@@ -32,12 +33,8 @@ const Header = () => {
             {/* END - THEME BUTTON */}
 
             {/* BEGIN - WHEN NOT LOGGED IN - GUEST ACTIONS */}
-            {!user && <GuestNavActions />}
+            {user == null && <GuestNavActions />}
             {/* END - WHEN NOT LOGGED IN - GUEST ACTIONS */}
-
-            {/* BEGIN - WHEN LOGGED IN - USER ACTIONS */}
-            {!!user && <UserNavActions />}
-            {/* END - WHEN LOGGED IN - USER ACTIONS */}
 
             {/* BEGIN - CART */}
             <Button onClick={openCart}>
@@ -47,6 +44,10 @@ const Header = () => {
               </div>
             </Button>
             {/* END - CART */}
+
+            {/* BEGIN - WHEN LOGGED IN - USER ACTIONS */}
+            {user != null && <UserNavActions />}
+            {/* END - WHEN LOGGED IN - USER ACTIONS */}
           </ul>
           {/* END - NAV BAR LINK LIST */}
         </nav>

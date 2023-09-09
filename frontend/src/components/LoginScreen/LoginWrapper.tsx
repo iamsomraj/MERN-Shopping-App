@@ -1,19 +1,59 @@
+import { signIn } from '@/api/auth';
 import Button from '@/components/UI/Button';
+import { getErrorMessage } from '@/config';
+import { selectUser, setUser } from '@/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useMutation } from '@tanstack/react-query';
 import { FormEvent, useState } from 'react';
+import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
+
+type TLoginForm = {
+  email: string;
+  password: string;
+};
 
 const LoginWrapper = () => {
-  type TLoginForm = {
-    email: string;
-    password: string;
-  };
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+
+  if (user != null) {
+    return <Navigate to={'/'} />;
+  }
 
   const [loginForm, setLoginForm] = useState<TLoginForm>({
     email: '',
     password: '',
   });
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const { mutate: login, isLoading } = useMutation({
+    mutationFn: async () => {
+      return await signIn(loginForm.email, loginForm.password);
+    },
+    onError: (error) => {
+      const errorMessage = getErrorMessage(error, 'Error occurred while we were trying to log you in!');
+      toast.error(errorMessage);
+    },
+    onSuccess: (data) => {
+      if (!data) {
+        return;
+      }
+      dispatch(
+        setUser({
+          user: data,
+        })
+      );
+      navigate('/');
+    },
+  });
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (loginForm.email?.trim().length === 0 || loginForm.password?.trim().length === 0) {
+      return;
+    }
+    await login();
   };
 
   return (
@@ -58,8 +98,7 @@ const LoginWrapper = () => {
           />
         </div>
         <div className='mx-auto text-zinc-500 max-w-xs text-xs text-justify'>By continuing, you are setting up a One Stop Shop account and agree to our User Agreement and Privacy Policy.</div>
-
-        <Button>Login</Button>
+        <Button loading={isLoading}>Login</Button>
       </form>
     </div>
   );
