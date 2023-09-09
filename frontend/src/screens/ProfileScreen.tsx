@@ -1,5 +1,7 @@
+import ProfileWrapper from '@/components/ProfileScreen/ProfileWrapper';
+
 const ProfileScreen = () => {
-  return <div>Profile Screen</div>;
+  return <ProfileWrapper />;
 };
 
 export default ProfileScreen;

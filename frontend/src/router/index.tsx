@@ -36,6 +36,10 @@ const router = createBrowserRouter(
           path='/profile'
           element={<ProfileScreen />}
         />
+        <Route
+          path='/payment'
+          element={<ProfileScreen />}
+        />
       </Route>
     </Route>
   )

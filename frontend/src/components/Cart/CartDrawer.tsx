@@ -43,18 +43,20 @@ const CartDrawer = () => {
 
   const { mutate: placeOrder, isLoading } = useMutation({
     mutationFn: async () => {
-      return await createOrder([]);
+      return await createOrder(cart);
     },
     onError: (error) => {
       const errorMessage = getErrorMessage(error, 'Error occurred while we were trying to place your order!');
       toast.error(errorMessage);
     },
     onSuccess: (data) => {
+      console.log('🚀 ~ file: CartDrawer.tsx:53 ~ CartDrawer ~ data:', data);
       if (!data) {
         return;
       }
       deleteCartItems();
-      navigate('/');
+      onToggle();
+      navigate('/profile');
       toast.success('Order placed successfully!');
     },
   });
@@ -65,11 +67,6 @@ const CartDrawer = () => {
     } else {
       dispatch(openDrawer());
     }
-  };
-
-  const createOrderFromCart = () => {
-    placeOrder();
-    onToggle();
   };
 
   const deleteCartItems = () => {
@@ -156,13 +153,13 @@ const CartDrawer = () => {
 
             <div className='flex justify-end items-center gap-6'>
               {/* BEGIN - TOTAL PRICE */}
-              {cart.length > 0 && <span className='text-2xl font-medium '>$ {total}</span>}
+              {cart.length > 0 && <span className='text-2xl font-medium dark:text-zinc-100'>$ {total}</span>}
               {/* END - TOTAL PRICE */}
 
               {/* BEGIN - PLACE ORDER BUTTON */}
               <Button
                 disabled={user === null}
-                onClick={createOrderFromCart}
+                onClick={() => placeOrder()}
                 loading={isLoading}>
                 <div className='flex justify-center items-center gap-3'>
                   {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}

@@ -1,10 +1,27 @@
 import { serverAPI } from '@/config';
-import { ICartProduct } from '@/types';
+import { ICartProduct, IOrder } from '@/types';
 
 export const createOrder = async (products: ICartProduct[]) => {
   const response = await serverAPI.post(`/orders`, {
-    products,
+    products: products.map((prod) => ({
+      name: prod.name,
+      price: prod.price,
+      product: prod._id,
+      qty: prod.qty,
+    })),
   });
-  const data = response.data;
+  const data = response.data as IOrder;
+  return data;
+};
+
+export const getUserOrders = async () => {
+  const response = await serverAPI.get(`/orders`);
+  const data = response.data as IOrder[];
+  return data || [];
+};
+
+export const fetchOrderDetail = async (orderId: string) => {
+  const response = await serverAPI.get(`/orders/${orderId}`);
+  const data = response.data as IOrder;
   return data;
 };

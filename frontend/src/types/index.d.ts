@@ -25,3 +25,20 @@ export interface IUser {
   isAdmin: boolean;
   token: string;
 }
+
+interface IOrder extends IDataBaseRecords {
+  totalPrice: number;
+  isPaymentDone: boolean;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  products: {
+    _id: string;
+    name: string;
+    price: number;
+    product: string;
+    qty: number;
+  }[];
+}
