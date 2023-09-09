@@ -18,10 +18,6 @@ const LoginWrapper = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
 
-  if (user != null) {
-    return <Navigate to={'/'} />;
-  }
-
   const [loginForm, setLoginForm] = useState<TLoginForm>({
     email: '',
     password: '',
@@ -47,6 +43,10 @@ const LoginWrapper = () => {
       navigate('/');
     },
   });
+
+  if (user != null) {
+    return <Navigate to={'/'} />;
+  }
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
