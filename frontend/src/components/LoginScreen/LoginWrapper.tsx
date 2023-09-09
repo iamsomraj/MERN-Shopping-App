@@ -41,6 +41,7 @@ const LoginWrapper = () => {
         })
       );
       navigate('/');
+      toast.success('User logged in successfully!');
     },
   });
 
