@@ -5,8 +5,10 @@ import { IProduct } from '@/types';
 import { ForwardIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect } from 'react';
 import CartItem from './CartItem';
+import { useNavigate } from 'react-router-dom';
 
 const CartDrawer = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const showDrawer = useAppSelector(selectShowDrawer);
   const cart = useAppSelector(selectCart);
@@ -41,6 +43,11 @@ const CartDrawer = () => {
         product,
       })
     );
+  };
+
+  const navigateToProductPage = (product: IProduct) => {
+    navigate(`/products/${product._id}`);
+    onToggle();
   };
 
   const drawerContent = (
@@ -83,6 +90,7 @@ const CartDrawer = () => {
                 key={product._id}
                 product={product}
                 deleteSingleItem={deleteSingleItem}
+                redirectToProduct={navigateToProductPage}
               />
             ))}
           </div>

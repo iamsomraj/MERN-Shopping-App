@@ -5,8 +5,9 @@ import { TrashIcon } from '@heroicons/react/20/solid';
 interface CartItemProps {
   product: IProduct;
   deleteSingleItem: (product: IProduct) => void;
+  redirectToProduct: (product: IProduct) => void;
 }
-const CartItem = ({ product, deleteSingleItem }: CartItemProps) => {
+const CartItem = ({ product, deleteSingleItem, redirectToProduct }: CartItemProps) => {
   return (
     <>
       {/* BEGIN - CART ITEM */}
@@ -20,7 +21,11 @@ const CartItem = ({ product, deleteSingleItem }: CartItemProps) => {
             src={product.image}
           />
           <div className='flex flex-col gap-3'>
-            <p className='text-2xl font-medium line-clamp-2'>{product.name}</p>
+            <p
+              onClick={() => redirectToProduct(product)}
+              className='text-2xl font-medium line-clamp-2 hover:underline hover:cursor-pointer'>
+              {product.name}
+            </p>
             <p>$ {product.price}</p>
           </div>
         </div>
