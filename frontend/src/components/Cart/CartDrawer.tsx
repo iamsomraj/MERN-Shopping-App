@@ -1,6 +1,6 @@
 import Button from '@/components/UI/Button';
 import { clearCart, closeDrawer, openDrawer, removeFromCart, selectCart, selectShowDrawer } from '@/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { IProduct } from '@/types';
 import { ForwardIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect } from 'react';

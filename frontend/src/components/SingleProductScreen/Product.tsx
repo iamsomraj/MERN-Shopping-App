@@ -1,5 +1,5 @@
 import { addToCart } from '@/features/cart/cartSlice';
-import { useAppDispatch } from '@/hooks/hooks';
+import { useAppDispatch } from '@/hooks';
 import { IProduct } from '@/types';
 import { ArrowTrendingUpIcon, CheckBadgeIcon, ExclamationTriangleIcon, ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';

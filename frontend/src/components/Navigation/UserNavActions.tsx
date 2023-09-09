@@ -1,6 +1,6 @@
 import Button from '@/components/UI/Button';
 import { logOutUser } from '@/features/auth/authSlice';
-import { useAppDispatch } from '@/hooks/hooks';
+import { useAppDispatch } from '@/hooks';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/react/20/solid';
 import toast from 'react-hot-toast';
 

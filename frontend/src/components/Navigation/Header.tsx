@@ -2,7 +2,7 @@ import GuestNavActions from '@/components/Navigation/GuestNavActions';
 import UserNavActions from '@/components/Navigation/UserNavActions';
 import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
 import { openDrawer } from '@/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 import Button from '../UI/Button';

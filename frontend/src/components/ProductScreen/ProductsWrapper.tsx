@@ -4,7 +4,7 @@ import ProductListView from '@/components/ProductScreen/ProductListView';
 import ProductPagination from '@/components/ProductScreen/ProductPagination';
 import { getErrorMessage } from '@/config';
 import { selectPage, selectPages, selectProducts, setPage, setProducts } from '@/features/product/productSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';

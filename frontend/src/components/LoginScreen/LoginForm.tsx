@@ -2,7 +2,7 @@ import { signIn } from '@/api/auth';
 import Button from '@/components/UI/Button';
 import { getErrorMessage } from '@/config';
 import { selectUser, setUser } from '@/features/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -13,7 +13,7 @@ type TLoginForm = {
   password: string;
 };
 
-const LoginWrapper = () => {
+const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
@@ -78,7 +78,7 @@ const LoginWrapper = () => {
             }
             type='email'
             placeholder='Enter email'
-            className='flex h-10 w-full rounded-md border bg-zinc-50 px-3 py-2 text-sm ring-offset-zinc-100 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+            className='flex h-10 w-full rounded-md border bg-zinc-50 px-3 py-2 text-sm text-zinc-900 ring-offset-zinc-100 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
           />
           <span className='text-zinc-500 text-xs'>We'll never share your email with anyone else.</span>
         </div>
@@ -95,7 +95,7 @@ const LoginWrapper = () => {
             }
             type='password'
             placeholder='Password'
-            className='flex h-10 w-full rounded-md border bg-zinc-50 px-3 py-2 text-sm ring-offset-zinc-100 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+            className='flex h-10 w-full rounded-md border bg-zinc-50 px-3 py-2 text-sm text-zinc-900 ring-offset-zinc-100 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
           />
         </div>
         <div className='mx-auto text-zinc-500 max-w-xs text-xs text-justify'>By continuing, you are setting up a One Stop Shop account and agree to our User Agreement and Privacy Policy.</div>
@@ -105,4 +105,4 @@ const LoginWrapper = () => {
   );
 };
 
-export default LoginWrapper;
+export default LoginForm;

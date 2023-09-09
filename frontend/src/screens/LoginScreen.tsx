@@ -1,9 +1,9 @@
-import LoginWrapper from '@/components/LoginScreen/LoginWrapper';
+import LoginForm from '@/components/LoginScreen/LoginForm';
 
 const LoginScreen = () => {
   return (
     <div>
-      <LoginWrapper />
+      <LoginForm />
     </div>
   );
 };

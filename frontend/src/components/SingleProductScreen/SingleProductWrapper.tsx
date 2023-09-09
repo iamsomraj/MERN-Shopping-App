@@ -2,7 +2,7 @@ import { getProduct } from '@/api/products';
 import Product from '@/components/SingleProductScreen/Product';
 import { getErrorMessage } from '@/config';
 import { selectCurrentProduct, setCurrenProduct } from '@/features/product/productSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';

@@ -1,9 +1,9 @@
-import RegisterWrapper from '@/components/RegisterScreen/RegisterWrapper';
+import RegisterForm from '@/components/RegisterScreen/RegisterForm';
 
 const RegisterScreen = () => {
   return (
     <div>
-      <RegisterWrapper />
+      <RegisterForm />
     </div>
   );
 };
