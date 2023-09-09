@@ -29,7 +29,7 @@ const UserMenu = () => {
     <div className='relative z-20 flex justify-center items-center'>
       <button
         onClick={onToggle}
-        className='h-10 w-10 flex justify-center items-center border bg-zinc-50 dark:bg-zinc-200 rounded-full'>
+        className='h-10 w-10 flex cursor-pointer justify-center items-center border bg-zinc-50 dark:bg-zinc-200 rounded-full'>
         {nameParts}
       </button>
       {show && (
