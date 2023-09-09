@@ -1,15 +1,15 @@
 import GuestNavActions from '@/components/Navigation/GuestNavActions';
 import UserNavActions from '@/components/Navigation/UserNavActions';
 import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
-import { openDrawer } from '@/features/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { ShoppingCartIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
-import Button from '../UI/Button';
 import { selectUser } from '@/features/auth/authSlice';
+import { openDrawer, selectCart } from '@/features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { Link } from 'react-router-dom';
+import CartButton from './CartButton';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
+  const cart = useAppSelector(selectCart);
   const dispatch = useAppDispatch();
   const openCart = () => {
     dispatch(openDrawer());
@@ -37,12 +37,10 @@ const Header = () => {
             {/* END - WHEN NOT LOGGED IN - GUEST ACTIONS */}
 
             {/* BEGIN - CART */}
-            <Button onClick={openCart}>
-              <div className='flex justify-center items-center gap-3'>
-                <ShoppingCartIcon className='h-5 w-5 flex-shrink-0' />
-                <span className='hidden md:block'>Cart</span>
-              </div>
-            </Button>
+            <CartButton
+              cart={cart}
+              openCart={openCart}
+            />
             {/* END - CART */}
 
             {/* BEGIN - WHEN LOGGED IN - USER ACTIONS */}
