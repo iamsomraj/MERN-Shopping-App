@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
-    "db-init": "node seeder",
-    "db-del": "node seeder -d"
+    "up": "node seeder",
+    "down": "node seeder -d"
   },
   "repository": {
     "type": "git",
