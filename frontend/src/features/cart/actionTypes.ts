@@ -1,9 +1,9 @@
-import { IProduct } from '@/types';
+import { ICartProduct } from '@/types';
 
 export type SetCartItemActionPayload = {
-  product: IProduct;
+  product: ICartProduct;
 };
 
 export type DeleteCartItemActionPayload = {
-  product: IProduct;
+  product: ICartProduct;
 };

@@ -1,11 +1,11 @@
 import Button from '@/components/UI/Button';
-import { IProduct } from '@/types';
+import { ICartProduct } from '@/types';
 import { TrashIcon } from '@heroicons/react/20/solid';
 
 interface CartItemProps {
-  product: IProduct;
-  deleteSingleItem: (product: IProduct) => void;
-  redirectToProduct: (product: IProduct) => void;
+  product: ICartProduct;
+  deleteSingleItem: (product: ICartProduct) => void;
+  redirectToProduct: (product: ICartProduct) => void;
 }
 
 const CartItem = ({ product, deleteSingleItem, redirectToProduct }: CartItemProps) => {
@@ -30,6 +30,9 @@ const CartItem = ({ product, deleteSingleItem, redirectToProduct }: CartItemProp
               {product.name}
             </p>
             <p>$ {product.price}</p>
+            <p className='text-lg font-bold text-zinc-900'>
+              {product.qty} {product.qty > 1 ? 'Quantities' : 'Quantity'}
+            </p>
           </div>
         </div>
         {/* END - IMAGE, NAME, PRICE */}

@@ -1,12 +1,16 @@
+import { createOrder } from '@/api/order';
 import Button from '@/components/UI/Button';
+import { getErrorMessage } from '@/config';
 import { selectUser } from '@/features/auth/authSlice';
 import { clearCart, closeDrawer, openDrawer, removeFromCart, selectCart, selectShowDrawer } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { IProduct } from '@/types';
 import { ForwardIcon, LockClosedIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { useMutation } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
+import { ICartProduct } from '@/types';
 
 const CartDrawer = () => {
   const navigate = useNavigate();
@@ -27,6 +31,24 @@ const CartDrawer = () => {
     };
   }, [showDrawer]);
 
+  const { mutate: placeOrder, isLoading } = useMutation({
+    mutationFn: async () => {
+      return await createOrder([]);
+    },
+    onError: (error) => {
+      const errorMessage = getErrorMessage(error, 'Error occurred while we were trying to place your order!');
+      toast.error(errorMessage);
+    },
+    onSuccess: (data) => {
+      if (!data) {
+        return;
+      }
+      deleteCartItems();
+      navigate('/');
+      toast.success('Order placed successfully!');
+    },
+  });
+
   const onToggle = () => {
     if (showDrawer) {
       dispatch(closeDrawer());
@@ -35,11 +57,16 @@ const CartDrawer = () => {
     }
   };
 
+  const createOrderFromCart = () => {
+    placeOrder();
+    onToggle();
+  };
+
   const deleteCartItems = () => {
     dispatch(clearCart());
   };
 
-  const deleteSingleItem = (product: IProduct) => {
+  const deleteSingleItem = (product: ICartProduct) => {
     dispatch(
       removeFromCart({
         product,
@@ -47,7 +74,7 @@ const CartDrawer = () => {
     );
   };
 
-  const navigateToProductPage = (product: IProduct) => {
+  const navigateToProductPage = (product: ICartProduct) => {
     navigate(`/products/${product._id}`);
     onToggle();
   };
@@ -120,7 +147,8 @@ const CartDrawer = () => {
             {/* BEGIN - PLACE ORDER BUTTON */}
             <Button
               disabled={user === null}
-              onClick={onToggle}>
+              onClick={createOrderFromCart}
+              loading={isLoading}>
               <div className='flex justify-center items-center gap-3'>
                 {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}
                 <span>Place Order</span>

@@ -1,6 +1,6 @@
 import { addToCart } from '@/features/cart/cartSlice';
 import { useAppDispatch } from '@/hooks';
-import { IProduct } from '@/types';
+import { ICartProduct, IProduct } from '@/types';
 import { ArrowTrendingUpIcon, CheckBadgeIcon, ExclamationTriangleIcon, ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import Button from '../UI/Button';
@@ -11,9 +11,13 @@ type Props = {
 };
 
 const Product = ({ product }: Props) => {
+  const [cartProduct, setCartProduct] = useState<ICartProduct>({
+    ...product,
+    qty: 1,
+  });
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const addProduct = (product: IProduct) => {
+  const addProductToCart = (product: ICartProduct) => {
     setIsAddedToCart(true);
     dispatch(
       addToCart({
@@ -23,6 +27,10 @@ const Product = ({ product }: Props) => {
     setTimeout(() => {
       setIsAddedToCart(false);
     }, 2000);
+  };
+
+  const onQuantityChange = (newCartProduct: ICartProduct) => {
+    setCartProduct(() => ({ ...newCartProduct }));
   };
 
   return (
@@ -58,8 +66,11 @@ const Product = ({ product }: Props) => {
             <h3 className='text-xl line-through font-medium text-red-500'>${(product.price * 1.5).toFixed(2)}</h3>
             <h3 className='text-6xl font-thin text-zinc-500'>${product.price}</h3>
           </div>
-          <QuantityChips product={product} />
-          <Button onClick={() => addProduct(product)}>
+          <QuantityChips
+            product={cartProduct}
+            onQuantityChange={onQuantityChange}
+          />
+          <Button onClick={() => addProductToCart(cartProduct)}>
             <div className='flex justify-center items-center gap-3'>
               {isAddedToCart ? (
                 <>

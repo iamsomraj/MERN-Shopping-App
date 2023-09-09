@@ -1,18 +1,18 @@
 import { DeleteCartItemActionPayload, SetCartItemActionPayload } from '@/features/cart/actionTypes';
 import { RootState } from '@/store';
-import { IProduct } from '@/types';
+import { ICartProduct } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface ICartSliceInitialState {
   showDrawer: boolean;
-  cart: IProduct[];
+  cart: ICartProduct[];
 }
 
 const getCartFromStorage = () => {
-  return JSON.parse(localStorage.getItem('cart') as string) as IProduct[];
+  return JSON.parse(localStorage.getItem('cart') as string) as ICartProduct[];
 };
 
-const storeCartToStorage = (cart: IProduct[]) => {
+const storeCartToStorage = (cart: ICartProduct[]) => {
   localStorage.setItem('cart', JSON.stringify(cart));
 };
 
