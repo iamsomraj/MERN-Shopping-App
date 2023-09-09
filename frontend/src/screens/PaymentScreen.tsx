@@ -1,7 +1,7 @@
 import PaymentWrapper from '@/components/PaymentScreen/PaymentWrapper';
 
-const ProfileScreen = () => {
+const PaymentScreen = () => {
   return <PaymentWrapper />;
 };
 
-export default ProfileScreen;
+export default PaymentScreen;

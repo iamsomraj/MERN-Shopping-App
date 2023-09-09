@@ -14,6 +14,12 @@ export const createOrder = async (products: ICartProduct[]) => {
   return data;
 };
 
+export const updateOrder = async (orderId: string) => {
+  const response = await serverAPI.put(`/orders/${orderId}`);
+  const data = response.data as IOrder;
+  return data;
+};
+
 export const getUserOrders = async () => {
   const response = await serverAPI.get(`/orders`);
   const data = response.data as IOrder[];
