@@ -24,7 +24,7 @@ const PayementWrapper = () => {
       return await fetchOrderDetail(orderId);
     },
     onError: (error) => {
-      const errorMessage = getErrorMessage(error, 'Error occurred while fetching order!');
+      const errorMessage = getErrorMessage(error, 'Error occurred while fetching order details!');
       toast.error(errorMessage);
     },
   });
@@ -78,7 +78,7 @@ const PayementWrapper = () => {
   }
 
   if (orderError) {
-    return 'Error occurred while fetching few details';
+    return <Navigate to={'/profile'} />;
   }
 
   if ((orderId || '').trim().length === 0 || !order || order.isPaymentDone) {
@@ -125,13 +125,13 @@ const PayementWrapper = () => {
     </article>
   );
 
-  const paymentInProgressContent = (
+  const loadingContent = (
     <div className='my-12 mx-auto'>
       <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
     </div>
   );
 
-  return <div className='flex flex-col gap-12'>{isPaymentInProgress ? paymentInProgressContent : orderContent}</div>;
+  return <div className='flex flex-col gap-12'>{isPaymentInProgress ? loadingContent : orderContent}</div>;
 };
 
 export default PayementWrapper;
