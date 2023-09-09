@@ -150,9 +150,9 @@ const CartDrawer = () => {
               <span className='text-base text-zinc-900 font-bold dark:text-zinc-50 duration-300 transition-all'>No Items In Cart</span>
             )}
 
-            <div className='flex justify-end items-center gap-6'>
+            <div className='flex justify-end items-center gap-3 md:gap-6'>
               {/* BEGIN - TOTAL PRICE */}
-              {cart.length > 0 && <span className='text-2xl font-medium dark:text-zinc-100'>$ {total}</span>}
+              {cart.length > 0 && <span className='text-base md:text-2xl font-medium dark:text-zinc-100'>$ {total}</span>}
               {/* END - TOTAL PRICE */}
 
               {/* BEGIN - PLACE ORDER BUTTON */}
