@@ -23,11 +23,11 @@ const authInterceptor = (req: InternalAxiosRequestConfig) => {
 
 serverAPI.interceptors.request.use(authInterceptor);
 
-export const getErrorMessage = (error: unknown, message = 'A Unknown Error has occurred!') => {
+export const getErrorMessage = (error: unknown, defaultMessage = 'A Unknown Error has occurred!') => {
   if (axios.isAxiosError(error)) {
-    const errorMessage = error?.response?.data?.message || error?.message || message;
+    const errorMessage = error?.response?.data?.message || error?.message || defaultMessage;
     return errorMessage;
   } else {
-    return message;
+    return defaultMessage;
   }
 };
