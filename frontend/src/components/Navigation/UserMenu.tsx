@@ -5,6 +5,7 @@ import { ArrowLeftOnRectangleIcon, QueueListIcon, UserCircleIcon } from '@heroic
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import UserMenuList from './UserMenuList';
 
 const UserMenu = () => {
   const navigate = useNavigate();
@@ -43,28 +44,23 @@ const UserMenu = () => {
         {nameParts}
       </button>
       {show && (
-        <>
-          <div
-            onClick={onToggle}
-            className='fixed inset-0'></div>
-          <ul className='absolute top-[115%] right-0 w-fit py-2 border dark:border-zinc-600 bg-zinc-50 dark:text-zinc-50 dark:bg-zinc-700 rounded-lg drop-shadow-xl overflow-hidden'>
-            <UserMenuItem
-              label='Profile'
-              icon={<UserCircleIcon className='h-5 w-5 flex-shrink-0 ' />}
-              onClick={() => onNavigate('profile')}
-            />
-            <UserMenuItem
-              label='Orders'
-              icon={<QueueListIcon className='h-5 w-5 flex-shrink-0 ' />}
-              onClick={() => onNavigate('orders')}
-            />
-            <UserMenuItem
-              label='Logout'
-              icon={<ArrowLeftOnRectangleIcon className='h-5 w-5 flex-shrink-0 ' />}
-              onClick={signOut}
-            />
-          </ul>
-        </>
+        <UserMenuList onToggle={onToggle}>
+          <UserMenuItem
+            label='Profile'
+            icon={<UserCircleIcon className='h-5 w-5 flex-shrink-0 ' />}
+            onClick={() => onNavigate('profile')}
+          />
+          <UserMenuItem
+            label='Orders'
+            icon={<QueueListIcon className='h-5 w-5 flex-shrink-0 ' />}
+            onClick={() => onNavigate('orders')}
+          />
+          <UserMenuItem
+            label='Logout'
+            icon={<ArrowLeftOnRectangleIcon className='h-5 w-5 flex-shrink-0 ' />}
+            onClick={signOut}
+          />
+        </UserMenuList>
       )}
     </div>
   );
