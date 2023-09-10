@@ -13,9 +13,13 @@ One Stop EShop - A Modern Fullstack E-commerce Website Built with the React, Red
 - Modern Payment Gateway using Paypal Client SDK
 - much more
 
-## Demo
+## Preview Link
 
-✅ [Preview] [https://one-stop-eshop.vercel.app/] 😊
+✅ [Live] [https://one-stop-eshop.vercel.app/] 😊
+
+## Walkthrough of Payment
+
+✅ [Overview] [https://youtu.be/QjBAAmpt8oM]
 
 ## Run This Application
 
