@@ -17,13 +17,13 @@ const OrderItem = ({ order, goToPayment }: IOrderItemProps) => {
         {/* BEGIN - ORDER HEADER */}
         <div className={`p-6  ${order.isPaymentDone ? 'bg-green-100 dark:bg-zinc-700 text-green-700 dark:text-green-300' : 'bg-zinc-200 dark:bg-zinc-700'} text-3xl font-medium flex justify-start items-center gap-6`}>
           <span>Order Overview</span>
-
           {order.isPaymentDone && <CheckBadgeIcon className='h-5 w-5 flex-shrink-0' />}
         </div>
         {/* END - ORDER HEADER */}
 
         {/* BEGIN - ORDER BODY */}
         <div className='p-6 flex flex-col gap-3'>
+          <p className='opacity-50 text-xs'>Order #{order._id}</p>
           <p className='font-medium text-lg'>Total Items - {order.products.length}</p>
           <p className='text-2xl font-medium'>$ {order.totalPrice.toFixed(2)}</p>
           <div className='grid grid-cols-5 gap-3 text-sm font-semibold text-zinc-500 dark:text-zinc-400'>
