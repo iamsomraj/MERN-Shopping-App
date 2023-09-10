@@ -17,6 +17,7 @@ const UserMenu = () => {
 
   const nameParts = user.name
     .split(' ')
+    .slice(0, 2)
     .map((item) => item[0])
     .join('');
 

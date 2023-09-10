@@ -1,4 +1,4 @@
-import { signUp } from '@/api/auth';
+import { signUp } from '@/api/users';
 import Button from '@/components/UI/Button';
 import { getErrorMessage } from '@/config';
 import { selectUser, setUser } from '@/features/auth/authSlice';
