@@ -97,7 +97,7 @@ const CartDrawer = () => {
 
       {/* BEGIN - CART CONTAINER */}
       <div className={`fixed z-20 flex flex-col min-h-screen max-h-screen w-full inset-0 md:inset-y-0 md:left-auto md:right-0 md:w-1/2 md:rounded-l-lg bg-zinc-100 dark:bg-zinc-800 transition-all duration-300 drop-shadow-xl transform ${showDrawer ? 'translate-x-0' : 'translate-x-full'}`}>
-        {/* BEGIN - CART HEADER */}
+        {/* BEGIN - CART UPPER HEADER */}
         <div className='flex justify-between items-center px-6 py-3 border-b border-b-zinc-200 dark:border-b-zinc-700 drop-shadow-lg'>
           {/* BEGIN - HEADING */}
           <h3 className='text-2xl text-zinc-900 dark:text-zinc-100 font-medium'>
@@ -115,23 +115,10 @@ const CartDrawer = () => {
           </Button>
           {/* END - CLOSE BUTTON */}
         </div>
-        {/* END - CART HEADER */}
+        {/* END - CART UPPER HEADER */}
 
-        {/* BEGIN - CART BODY */}
-        <div className='flex-1 overflow-y-auto'>
-          {cart.map((product) => (
-            <CartItem
-              key={product._id}
-              product={product}
-              deleteSingleItem={deleteSingleItem}
-              redirectToProduct={navigateToProductPage}
-            />
-          ))}
-        </div>
-        {/* END - CART BODY  */}
-
-        {/* BEGIN - CART FOOTER  */}
-        <div className='bottom-0 flex justify-between items-center px-6 py-3 border-t border-t-zinc-200 dark:border-t-zinc-700 drop-shadow-lg'>
+        {/* BEGIN - CART LOWER HEADER */}
+        <div className='flex justify-between items-center px-6 py-3 border-t border-t-zinc-200 dark:border-t-zinc-700 drop-shadow-lg'>
           {cart.length > 0 ? (
             <>
               {/* BEGIN - CLEAR CART BUTTON */}
@@ -156,7 +143,7 @@ const CartDrawer = () => {
 
             {/* BEGIN - PLACE ORDER BUTTON */}
             <Button
-              disabled={user === null}
+              disabled={user === null || cart.length === 0}
               onClick={() => placeOrder()}
               loading={isLoading}>
               <div className='flex justify-center items-center gap-3'>
@@ -167,7 +154,20 @@ const CartDrawer = () => {
             {/* END - PLACE ORDER BUTTON */}
           </div>
         </div>
-        {/* END - CART FOOTER  */}
+        {/* END - CART LOWER HEADER */}
+
+        {/* BEGIN - CART BODY */}
+        <div className='flex-1 overflow-y-auto'>
+          {cart.map((product) => (
+            <CartItem
+              key={product._id}
+              product={product}
+              deleteSingleItem={deleteSingleItem}
+              redirectToProduct={navigateToProductPage}
+            />
+          ))}
+        </div>
+        {/* END - CART BODY  */}
       </div>
       {/* END - CART CONTAINER */}
     </>
