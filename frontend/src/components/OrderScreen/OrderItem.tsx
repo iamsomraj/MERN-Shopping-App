@@ -28,13 +28,15 @@ const OrderItem = ({ order, goToPayment }: IOrderItemProps) => {
           <p className='text-2xl font-medium'>$ {order.totalPrice.toFixed(2)}</p>
           <div className='grid grid-cols-5 gap-3 text-sm font-semibold text-zinc-500 dark:text-zinc-400'>
             {order.products.map((prod, index) => (
-              <>
+              <div
+                key={prod._id}
+                className='col-span-5 grid grid-cols-5'>
                 <span className='col-span-5 md:col-span-1'>Product {index + 1}</span>
                 <span className='col-span-5 md:col-span-1'>{prod.name}</span>
                 <span className='col-span-5 md:col-span-1'>{prod.qty}</span>
                 <span className='col-span-5 md:col-span-1'>{prod.price}</span>
                 <span className='col-span-5 md:col-span-1'>{(prod.qty * prod.price).toFixed(2)}</span>
-              </>
+              </div>
             ))}
           </div>
         </div>
