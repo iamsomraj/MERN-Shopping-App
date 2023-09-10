@@ -1,10 +1,10 @@
 import { IOrder } from '@/types';
 
-interface PaymentOrderProps {
+interface PaymentOrderItemProps {
   order: IOrder;
 }
 
-const PaymentOrder = ({ order }: PaymentOrderProps) => {
+const PaymentOrderItem = ({ order }: PaymentOrderItemProps) => {
   return (
     <article
       key={order._id}
@@ -50,4 +50,4 @@ const PaymentOrder = ({ order }: PaymentOrderProps) => {
   );
 };
 
-export default PaymentOrder;
+export default PaymentOrderItem;

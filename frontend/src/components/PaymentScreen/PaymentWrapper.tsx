@@ -1,9 +1,9 @@
 import { fetchOrderDetail, updateOrder } from '@/api/order';
 import { getPaypalConfig } from '@/api/payment';
-import PaymentOrder from '@/components/PaymentScreen/PaymentOrder';
+import PaymentOrderItem from '@/components/PaymentScreen/PaymentOrderItem';
+import PaypalProvider from '@/components/PaymentScreen/PaypalProvider';
 import { getErrorMessage } from '@/config';
 import { ArrowPathIcon } from '@heroicons/react/20/solid';
-import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
@@ -96,21 +96,16 @@ const PayementWrapper = () => {
     isPaypalConfigLoading || paypalConfigError || !paypalClientId ? (
       loadingContent
     ) : (
-      <div className='w-fit z-0'>
-        <PayPalScriptProvider options={{ clientId: paypalClientId }}>
-          <PayPalButtons
-            style={{ shape: 'pill' }}
-            onApprove={onPaymentSuccess}
-            onCancel={onPaymentError}
-            onError={onPaymentError}
-          />
-        </PayPalScriptProvider>
-      </div>
+      <PaypalProvider
+        paypalClientId={paypalClientId}
+        onPaymentSuccess={onPaymentSuccess}
+        onPaymentError={onPaymentError}
+      />
     );
 
-  const orderContent = <PaymentOrder order={order} />;
+  const orderContent = <PaymentOrderItem order={order} />;
 
-  return (
+  const content = (
     <div className='flex flex-col gap-12'>
       {isPaymentInProgress ? (
         loadingContent
@@ -122,6 +117,8 @@ const PayementWrapper = () => {
       )}
     </div>
   );
+
+  return content;
 };
 
 export default PayementWrapper;
