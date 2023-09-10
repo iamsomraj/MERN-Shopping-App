@@ -98,7 +98,7 @@ const LoginForm = () => {
             className='flex h-10 w-full rounded-md border bg-zinc-50 px-3 py-2 text-sm text-zinc-900 ring-offset-zinc-100 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
           />
         </div>
-        <div className='mx-auto text-zinc-500 max-w-xs text-xs text-justify'>By continuing, you are setting up a One Stop Shop account and agree to our User Agreement and Privacy Policy.</div>
+        <div className='mx-auto text-zinc-500 max-w-xs text-xs text-justify'>By continuing, you are setting up a One Stop EShop account and agree to our User Agreement and Privacy Policy.</div>
         <Button loading={isLoading}>Login</Button>
       </form>
     </div>
