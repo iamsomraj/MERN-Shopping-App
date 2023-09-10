@@ -25,7 +25,7 @@ const ThemeToggleButton = () => {
   if (isDarkMode === 'dark') {
     return (
       <SunIcon
-        className='mx-1 h-6 w-6 rounded-full text-zinc-100'
+        className='h-6 w-6 rounded-full text-zinc-100'
         role='button'
         onClick={() => toggleTheme()}
       />
@@ -33,7 +33,7 @@ const ThemeToggleButton = () => {
   } else {
     return (
       <MoonIcon
-        className='mx-1 h-6 w-6 rounded-full text-zinc-900'
+        className='h-6 w-6 rounded-full text-zinc-900'
         role='button'
         onClick={() => toggleTheme()}
       />
