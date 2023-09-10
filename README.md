@@ -1,6 +1,6 @@
 # One Stop EShop (MERN-Shopping-App)
 
-One Stop EShop is a repository, which contains an app, built using MongoDB, Express, React and Nodejs. The main state of the application is maintained using Redux.
+One Stop EShop - A Modern Fullstack E-commerce Website Built with the React, Redux Toolkit, Express, Tailwind CSS, Heroicons, Mongo DB and Payment Gateway.
 
 ## Features
 
@@ -74,6 +74,7 @@ Create these environment variables, save them in respective folders. File name c
 - Tailwind
 - React Paypal SDK
 - Redux Toolkit
+- React Router DOM
 
 **Backend:**
 
