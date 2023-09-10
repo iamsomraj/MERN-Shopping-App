@@ -4,11 +4,12 @@ import PaymentOrderItem from '@/components/PaymentScreen/PaymentOrderItem';
 import PaypalProvider from '@/components/PaymentScreen/PaypalProvider';
 import { getErrorMessage } from '@/config';
 import { ArrowPathIcon } from '@heroicons/react/20/solid';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 const PayementWrapper = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { orderId } = useParams();
 
@@ -62,6 +63,7 @@ const PayementWrapper = () => {
     onSuccess: async () => {
       await new Promise((res) => setTimeout(res, 2000));
       toast.success('Yayy! Your payment is successful!');
+      queryClient.invalidateQueries({ queryKey: ['user-orders'] });
       navigate('/orders');
     },
   });
@@ -71,6 +73,7 @@ const PayementWrapper = () => {
   };
 
   const onPaymentError = async () => {
+    queryClient.invalidateQueries({ queryKey: ['user-orders'] });
     navigate('/orders');
     toast.error('Error occurred while we were making your payment!');
   };

@@ -6,13 +6,14 @@ import { clearCart, closeDrawer, openDrawer, removeFromCart, selectCart, selectS
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { ICartProduct } from '@/types';
 import { ForwardIcon, LockClosedIcon, TrashIcon, XMarkIcon } from '@heroicons/react/20/solid';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
 
 const CartDrawer = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
@@ -55,6 +56,7 @@ const CartDrawer = () => {
       }
       deleteCartItems();
       onToggle();
+      queryClient.invalidateQueries({ queryKey: ['user-orders'] });
       navigate('/orders');
       toast.success('Order placed successfully!');
     },
