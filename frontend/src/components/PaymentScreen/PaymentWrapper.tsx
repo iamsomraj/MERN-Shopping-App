@@ -59,7 +59,8 @@ const PayementWrapper = () => {
       const errorMessage = getErrorMessage(error, 'Error occurred while we were making your payment!');
       toast.error(errorMessage);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await new Promise((res) => setTimeout(res, 2000));
       toast.success('Yayy! Your payment is successful!');
       navigate('/orders');
     },
