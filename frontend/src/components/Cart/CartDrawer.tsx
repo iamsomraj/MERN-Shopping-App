@@ -154,7 +154,7 @@ const CartDrawer = () => {
             {/* END - PLACE ORDER BUTTON */}
           </div>
         </div>
-        {/* END - CART LOWER HEADER */}
+        {/* END - CART LOWER HEADE=R */}
 
         {/* BEGIN - CART BODY */}
         <div className='flex-1 overflow-y-auto'>
