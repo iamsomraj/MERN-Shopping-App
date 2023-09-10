@@ -20,7 +20,7 @@ const userLogin = asyncHandler(async (req, res) => {
 			token: getToken(user._id),
 		});
 	} else {
-		const message = "Inavalid credentials";
+		const message = "Invalid Email Address or Password";
 		res.status(401).json({ message });
 		throw new Error(message);
 	}
