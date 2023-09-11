@@ -43,9 +43,16 @@ const OrderItem = ({ order, goToPayment }: IOrderItemProps) => {
         {/* END - ORDER BODY */}
 
         {/* BEGIN - ORDER PAYMENT BUTTON */}
-        {!order.isPaymentDone && (
+        {!order.isPaymentDone ? (
           <div className='px-6 pb-6'>
             <Button onClick={() => goToPayment(order)}>Proceed To Payment</Button>
+          </div>
+        ) : (
+          <div className='px-6 py-6 border-t'>
+            <div className='text-sm capitalize font-medium'>Payment Successful</div>
+            <span className='text-xs opacity-50'>
+              {order.user.name} - {order.user.email}
+            </span>
           </div>
         )}
         {/* END - ORDER PAYMENT BUTTON */}
