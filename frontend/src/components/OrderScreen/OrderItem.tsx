@@ -42,20 +42,26 @@ const OrderItem = ({ order, goToPayment }: IOrderItemProps) => {
         </div>
         {/* END - ORDER BODY */}
 
-        {/* BEGIN - ORDER PAYMENT BUTTON */}
         {!order.isPaymentDone ? (
-          <div className='px-6 pb-6'>
-            <Button onClick={() => goToPayment(order)}>Proceed To Payment</Button>
-          </div>
+          <>
+            {/* BEGIN - ORDER PAYMENT BUTTON */}
+            <div className='px-6 pb-6'>
+              <Button onClick={() => goToPayment(order)}>Proceed To Payment</Button>
+            </div>
+            {/* END - ORDER PAYMENT BUTTON */}
+          </>
         ) : (
-          <div className='px-6 py-6 border-t'>
-            <div className='text-sm capitalize font-medium'>Payment Successful</div>
-            <span className='text-xs opacity-50'>
-              {order.user.name} - {order.user.email}
-            </span>
-          </div>
+          <>
+            {/* BEGIN - PAYMENT SUCCESS */}
+            <div className='px-6 py-6 border-t'>
+              <div className='text-sm capitalize font-medium'>Payment Successful</div>
+              <span className='text-xs opacity-50'>
+                {order.user.name} - {order.user.email}
+              </span>
+            </div>
+            {/* END - PAYMENT SUCCESS */}
+          </>
         )}
-        {/* END - ORDER PAYMENT BUTTON */}
       </article>
       {/* END - ORDER ITEM CARD */}
     </>
