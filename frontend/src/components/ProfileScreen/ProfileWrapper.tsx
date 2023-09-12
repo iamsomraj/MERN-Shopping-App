@@ -71,6 +71,7 @@ const ProfileWrapper = () => {
 
   return (
     <div className='mx-auto w-fit h-full p-12 rounded-xl border dark:border-zinc-500/50'>
+      {/* BEGIN - PROFILE FORM */}
       <form
         onSubmit={onSubmit}
         className='flex flex-col gap-6'>
@@ -129,6 +130,7 @@ const ProfileWrapper = () => {
           Update Profile
         </Button>
       </form>
+      {/* END - PROFILE FORM */}
     </div>
   );
 };
