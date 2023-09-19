@@ -31,3 +31,9 @@ export const fetchOrderDetail = async (orderId: string) => {
   const data = response.data as IOrder;
   return data;
 };
+
+export const fetchAllOrders = async () => {
+  const response = await serverAPI.get(`/orders/admin/all`);
+  const data = response.data as IOrder[];
+  return data;
+};
