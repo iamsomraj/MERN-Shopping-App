@@ -5,7 +5,7 @@ import { InboxStackIcon } from '@heroicons/react/20/solid';
 const InventoryCard = () => {
   return (
     <div className='p-6 rounded-xl border dark:border-zinc-500/50 flex flex-col gap-6'>
-      <p className='text-4xl font-medium'>Check your Inventory</p>
+      <p className='text-4xl font-medium'>Check Inventory</p>
       <div className='w-fit'>
         <Button>
           <Link to={'/inventory'}>

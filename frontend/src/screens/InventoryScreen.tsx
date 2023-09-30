@@ -1,7 +1,7 @@
-import ProfileWrapper from '@/components/ProfileScreen/ProfileWrapper';
+import InventoryWrapper from '@/components/InventoryScreen/InventoryWrapper';
 
 const InventoryScreen = () => {
-  return <ProfileWrapper />;
+  return <InventoryWrapper />;
 };
 
 export default InventoryScreen;
