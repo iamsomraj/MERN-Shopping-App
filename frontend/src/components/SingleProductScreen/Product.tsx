@@ -18,6 +18,10 @@ const Product = ({ product }: Props) => {
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const addProductToCart = (product: ICartProduct) => {
+    if (!product.isAvailable) {
+      return;
+    }
+
     setIsAddedToCart(true);
     dispatch(
       addToCart({
@@ -70,7 +74,9 @@ const Product = ({ product }: Props) => {
             product={cartProduct}
             onQuantityChange={onQuantityChange}
           />
-          <Button onClick={() => addProductToCart(cartProduct)}>
+          <Button
+            disabled={!product.isAvailable}
+            onClick={() => addProductToCart(cartProduct)}>
             <div className='flex justify-center items-center gap-3'>
               {isAddedToCart ? (
                 <>
