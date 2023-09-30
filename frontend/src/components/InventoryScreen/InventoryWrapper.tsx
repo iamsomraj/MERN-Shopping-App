@@ -74,9 +74,9 @@ const InventoryWrapper = () => {
           product={product}
           deleteSingleItem={deleteSingleItem}
           redirectToProduct={navigateToProductPage}
-          isRounded
-          replaceQuantityWithStock
-          isActionLoading={selectedProductId === product._id && productAvailabilityLoading}
+          shouldAddRoundedBorders
+          showProductStock
+          isProductActionOngoing={selectedProductId === product._id && productAvailabilityLoading}
         />
       ))}
       <InventoryPagination

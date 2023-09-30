@@ -6,18 +6,18 @@ interface ProductRowItemProps {
   product: ICartProduct;
   deleteSingleItem: (product: ICartProduct) => void;
   redirectToProduct: (product: ICartProduct) => void;
-  isRounded?: boolean;
-  replaceQuantityWithStock?: boolean;
-  isActionLoading?: boolean;
+  shouldAddRoundedBorders?: boolean;
+  showProductStock?: boolean;
+  isProductActionOngoing?: boolean;
 }
 
-const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounded, replaceQuantityWithStock, isActionLoading }: ProductRowItemProps) => {
+const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, shouldAddRoundedBorders, showProductStock, isProductActionOngoing }: ProductRowItemProps) => {
   return (
     <>
-      {/* BEGIN - CART ITEM */}
+      {/* BEGIN - PRODUCT CART ITEM */}
       <div
         key={product._id}
-        className={`flex justify-between w-full transition-all duration-300 bg-zinc-50 dark:bg-zinc-700 items-center gap-6 px-12 py-6 border ${isRounded ? 'rounded-lg' : ''} dark:border-zinc-500/50`}>
+        className={`flex justify-between w-full transition-all duration-300 bg-zinc-50 dark:bg-zinc-700 items-center gap-6 px-12 py-6 border ${shouldAddRoundedBorders ? 'rounded-lg' : ''} dark:border-zinc-500/50`}>
         {/* BEGIN - IMAGE, NAME, PRICE */}
         <div className='flex flex-col md:flex-row justify-start md:items-center gap-6'>
           <div className='bg-zinc-100 w-fit dark:bg-zinc-300 p-3 rounded-lg drop-shadow'>
@@ -33,7 +33,7 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
               {product.name}
             </p>
             <p>$ {product.price}</p>
-            {replaceQuantityWithStock ? (
+            {showProductStock ? (
               <p className='text-lg font-bold text-zinc-900'>
                 {product.qtyInStock || 1} {(product.qtyInStock || 1) > 1 ? 'Stocks' : 'Stock'}
               </p>
@@ -48,18 +48,18 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
 
         {/* BEGIN - DELETE ITEM */}
         <Button
-          disabled={isActionLoading}
+          disabled={isProductActionOngoing}
           onClick={() => {
-            if (isActionLoading) {
+            if (isProductActionOngoing) {
               return;
             }
 
             deleteSingleItem(product);
           }}>
           <div className='flex gap-3 items-center'>
-            {isActionLoading ? (
+            {isProductActionOngoing ? (
               <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
-            ) : replaceQuantityWithStock ? (
+            ) : showProductStock ? (
               product.isAvailable ? (
                 <MinusCircleIcon
                   key={'delete'}
@@ -81,7 +81,7 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
         </Button>
         {/* END - DELETE ITEM */}
       </div>
-      {/* END - CART ITEM */}
+      {/* END - PRODUCT CART ITEM */}
     </>
   );
 };
