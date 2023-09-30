@@ -15,7 +15,7 @@ export interface IProduct extends IDataBaseRecords {
 }
 
 export interface ICartProduct extends IProduct {
-  qty: number;
+  qty?: number;
 }
 
 export interface IUser {
