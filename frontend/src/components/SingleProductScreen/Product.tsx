@@ -18,10 +18,6 @@ const Product = ({ product }: Props) => {
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const addProductToCart = (product: ICartProduct) => {
-    if (!product.isAvailable) {
-      return;
-    }
-
     setIsAddedToCart(true);
     dispatch(
       addToCart({

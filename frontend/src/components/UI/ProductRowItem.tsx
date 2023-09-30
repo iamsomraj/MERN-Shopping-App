@@ -17,7 +17,7 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
       {/* BEGIN - CART ITEM */}
       <div
         key={product._id}
-        className={`flex justify-between w-full transition-all duration-300 bg-zinc-50 dark:bg-zinc-700 items-center gap-6 px-12 py-6 border-b ${isRounded ? 'rounded-lg' : ''} dark:border-b-zinc-500/50`}>
+        className={`flex justify-between w-full transition-all duration-300 bg-zinc-50 dark:bg-zinc-700 items-center gap-6 px-12 py-6 border ${isRounded ? 'rounded-lg' : ''} dark:border-zinc-500/50`}>
         {/* BEGIN - IMAGE, NAME, PRICE */}
         <div className='flex flex-col md:flex-row justify-start md:items-center gap-6'>
           <div className='bg-zinc-100 w-fit dark:bg-zinc-300 p-3 rounded-lg drop-shadow'>
@@ -69,7 +69,7 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
                 <>
                   <span key={'undo'}>Undo</span>
                   <PlusCircleIcon
-                    key={'undo'}
+                    key={'undo-plus-icon'}
                     className='h-5 w-5 flex-shrink-0'
                   />
                 </>
