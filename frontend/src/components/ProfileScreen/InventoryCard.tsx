@@ -11,7 +11,7 @@ const InventoryCard = () => {
           <Link to={'/inventory'}>
             <div className='flex justify-center items-center gap-3'>
               <InboxStackIcon className='h-5 w-5 flex-shrink-0' />
-              <span>Find Out</span>
+              <span>Visit</span>
             </div>
           </Link>
         </Button>
