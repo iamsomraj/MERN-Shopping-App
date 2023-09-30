@@ -42,6 +42,7 @@ const InventoryWrapper = () => {
       const errorMessage = getErrorMessage(error, 'Error occurred while we were trying to update product details!');
       toast.error(errorMessage);
       setSelectedProductId(null);
+      queryClient.invalidateQueries({ queryKey: [`inventory-${page}-products`] });
     },
     onSuccess: (data) => {
       if (!data) {
@@ -59,7 +60,7 @@ const InventoryWrapper = () => {
 
   const deleteSingleItem = async (product: IProduct) => {
     setSelectedProductId(product._id);
-    toggleProductAvailability(product._id);
+    await toggleProductAvailability(product._id);
   };
 
   const navigateToProductPage = (product: IProduct) => {

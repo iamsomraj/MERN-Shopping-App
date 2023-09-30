@@ -61,11 +61,17 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
               <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
             ) : replaceQuantityWithStock ? (
               product.isAvailable ? (
-                <MinusCircleIcon className='h-5 w-5 flex-shrink-0' />
+                <MinusCircleIcon
+                  key={'delete'}
+                  className='h-5 w-5 flex-shrink-0'
+                />
               ) : (
                 <>
-                  <span>Undo</span>
-                  <PlusCircleIcon className='h-5 w-5 flex-shrink-0' />
+                  <span key={'undo'}>Undo</span>
+                  <PlusCircleIcon
+                    key={'undo'}
+                    className='h-5 w-5 flex-shrink-0'
+                  />
                 </>
               )
             ) : (
