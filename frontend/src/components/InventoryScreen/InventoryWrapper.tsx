@@ -1,11 +1,14 @@
 import { getProducts } from '@/api/products';
+import ProductRowItem from '@/components/UI/ProductRowItem';
 import { getErrorMessage } from '@/config';
+import { IProduct } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const InventoryWrapper = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -30,9 +33,33 @@ const InventoryWrapper = () => {
 
   if (isLoading) return 'Loading...';
 
-  if (error) return 'Error occurred while fetching inventory details!';
+  if (error || !data) return 'Error occurred while fetching inventory details!';
 
-  const content = <div className='flex flex-col gap-12'>{JSON.stringify(data)}</div>;
+  const deleteSingleItem = (product: IProduct) => {
+    console.log(product);
+  };
+
+  const navigateToProductPage = (product: IProduct) => {
+    navigate(`/products/${product._id}`);
+  };
+
+  const content = (
+    <div className='flex flex-col gap-12'>
+      <div className='flex flex-col text-center py-6 text-3xl gap-6 rounded-xl text-zinc-500 dark:text-zinc-300 duration-300 transition-all'>
+        <p className='uppercase tracking-widest'>Inventory</p>
+      </div>
+      {data.products.map((product) => (
+        <ProductRowItem
+          key={product._id}
+          product={product}
+          deleteSingleItem={deleteSingleItem}
+          redirectToProduct={navigateToProductPage}
+          isRounded
+          replaceQuantityWithStock
+        />
+      ))}
+    </div>
+  );
 
   return content;
 };

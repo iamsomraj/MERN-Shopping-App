@@ -1,5 +1,6 @@
 import { createOrder } from '@/api/order';
 import Button from '@/components/UI/Button';
+import ProductRowItem from '@/components/UI/ProductRowItem';
 import { getErrorMessage } from '@/config';
 import { selectUser } from '@/features/auth/authSlice';
 import { clearCart, closeDrawer, openDrawer, removeFromCart, selectCart, selectShowDrawer } from '@/features/cart/cartSlice';
@@ -10,7 +11,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import CartItem from './CartItem';
 
 const CartDrawer = () => {
   const queryClient = useQueryClient();
@@ -37,7 +37,7 @@ const CartDrawer = () => {
       return 0;
     }
     const sum = cart.reduce((acc, curr) => {
-      return acc + curr.price * curr.qty;
+      return acc + curr.price * (curr.qty || 1);
     }, 0);
     return sum.toFixed(2);
   }, [cart]);
@@ -161,7 +161,7 @@ const CartDrawer = () => {
         {/* BEGIN - CART BODY */}
         <div className='flex-1 overflow-y-auto'>
           {cart.map((product) => (
-            <CartItem
+            <ProductRowItem
               key={product._id}
               product={product}
               deleteSingleItem={deleteSingleItem}
