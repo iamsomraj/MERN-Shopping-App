@@ -4,24 +4,15 @@ import ProductRowItem from '@/components/UI/ProductRowItem';
 import { getErrorMessage } from '@/config';
 import { IProduct } from '@/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const InventoryWrapper = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [page, setPage] = useState<number>(1);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const pageNumberFromQuery = queryParams.get('page');
-
-  useEffect(() => {
-    if (pageNumberFromQuery) {
-      setPage(Number(pageNumberFromQuery));
-    }
-  }, [pageNumberFromQuery]);
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: [`inventory-${page}-products`],
