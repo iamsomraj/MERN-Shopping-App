@@ -1,5 +1,6 @@
 import { fetchAllOrders } from '@/api/order';
 import { updateUser } from '@/api/users';
+import InventoryCard from '@/components/ProfileScreen/InventoryCard';
 import OrderRevenueCard from '@/components/ProfileScreen/OrderRevenueCard';
 import Button from '@/components/UI/Button';
 import { getErrorMessage } from '@/config';
@@ -150,11 +151,18 @@ const ProfileWrapper = () => {
 
   const orderCard = areOrderDataLoading ? loadingSpinner : orderDataError ? null : <OrderRevenueCard orders={allOrderDetails || []} />;
 
+  const inventoryCard = <InventoryCard />;
+
   return (
     <div className='mx-auto w-full p-4'>
-      <div className='flex flex-col md:flex-row gap-12'>
+      <div className='flex flex-col md:flex-row gap-12 items-center'>
         <div className='w-full md:w-1/2'>{profileUpdateFormContent}</div>
-        {user?.isAdmin && <div className='w-full'>{orderCard}</div>}
+        {user?.isAdmin && (
+          <div className='flex flex-col gap-12 w-full'>
+            <div className='w-full'>{orderCard}</div>
+            <div className='w-full'>{inventoryCard}</div>
+          </div>
+        )}
       </div>
     </div>
   );
