@@ -1,15 +1,17 @@
-import { getProducts } from '@/api/products';
+import { deleteProduct, getProducts } from '@/api/products';
 import ProductRowItem from '@/components/UI/ProductRowItem';
 import { getErrorMessage } from '@/config';
 import { IProduct } from '@/types';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const InventoryWrapper = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [page, setPage] = useState<number>(1);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const pageNumberFromQuery = queryParams.get('page');
@@ -31,12 +33,32 @@ const InventoryWrapper = () => {
     },
   });
 
+  const { mutate: toggleProductAvailability, isLoading: productAvailabilityLoading } = useMutation({
+    mutationFn: async (productId: string) => {
+      return await deleteProduct(productId);
+    },
+    onError: (error) => {
+      const errorMessage = getErrorMessage(error, 'Error occurred while we were trying to update product details!');
+      toast.error(errorMessage);
+      setSelectedProductId(null);
+    },
+    onSuccess: (data) => {
+      if (!data) {
+        return;
+      }
+      queryClient.invalidateQueries({ queryKey: [`inventory-${page}-products`] });
+      toast.success('Product details updated!');
+      setSelectedProductId(null);
+    },
+  });
+
   if (isLoading) return 'Loading...';
 
   if (error || !data) return 'Error occurred while fetching inventory details!';
 
-  const deleteSingleItem = (product: IProduct) => {
-    console.log(product);
+  const deleteSingleItem = async (product: IProduct) => {
+    setSelectedProductId(product._id);
+    toggleProductAvailability(product._id);
   };
 
   const navigateToProductPage = (product: IProduct) => {
@@ -56,6 +78,7 @@ const InventoryWrapper = () => {
           redirectToProduct={navigateToProductPage}
           isRounded
           replaceQuantityWithStock
+          isActionLoading={selectedProductId === product._id && productAvailabilityLoading}
         />
       ))}
     </div>

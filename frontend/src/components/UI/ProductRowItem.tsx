@@ -1,6 +1,6 @@
 import Button from '@/components/UI/Button';
 import { ICartProduct } from '@/types';
-import { TrashIcon } from '@heroicons/react/20/solid';
+import { ArrowPathIcon, MinusCircleIcon, PlusCircleIcon, TrashIcon } from '@heroicons/react/20/solid';
 
 interface ProductRowItemProps {
   product: ICartProduct;
@@ -8,9 +8,10 @@ interface ProductRowItemProps {
   redirectToProduct: (product: ICartProduct) => void;
   isRounded?: boolean;
   replaceQuantityWithStock?: boolean;
+  isActionLoading?: boolean;
 }
 
-const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounded, replaceQuantityWithStock }: ProductRowItemProps) => {
+const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounded, replaceQuantityWithStock, isActionLoading }: ProductRowItemProps) => {
   return (
     <>
       {/* BEGIN - CART ITEM */}
@@ -46,8 +47,26 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, isRounde
         {/* END - IMAGE, NAME, PRICE */}
 
         {/* BEGIN - DELETE ITEM */}
-        <Button onClick={() => deleteSingleItem(product)}>
-          <TrashIcon className='h-5 w-5 flex-shrink-0' />
+        <Button
+          disabled={isActionLoading}
+          onClick={() => {
+            if (isActionLoading) {
+              return;
+            }
+
+            deleteSingleItem(product);
+          }}>
+          {isActionLoading ? (
+            <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
+          ) : replaceQuantityWithStock ? (
+            product.isAvailable ? (
+              <MinusCircleIcon className='h-5 w-5 flex-shrink-0' />
+            ) : (
+              <PlusCircleIcon className='h-5 w-5 flex-shrink-0' />
+            )
+          ) : (
+            <TrashIcon className='h-5 w-5 flex-shrink-0' />
+          )}
         </Button>
         {/* END - DELETE ITEM */}
       </div>

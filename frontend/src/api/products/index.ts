@@ -18,3 +18,9 @@ export const getProduct = async (id: string) => {
   const data = response.data as IProduct;
   return data;
 };
+
+export const deleteProduct = async (id: string) => {
+  const response = await serverAPI.delete(`/products/${id}`);
+  const data = response.data as IProduct;
+  return data;
+};
