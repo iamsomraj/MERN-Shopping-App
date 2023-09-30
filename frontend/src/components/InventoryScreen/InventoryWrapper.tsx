@@ -1,4 +1,5 @@
 import { deleteProduct, getProducts } from '@/api/products';
+import InventoryPagination from '@/components/InventoryScreen/InventoryPagination';
 import ProductRowItem from '@/components/UI/ProductRowItem';
 import { getErrorMessage } from '@/config';
 import { IProduct } from '@/types';
@@ -22,7 +23,7 @@ const InventoryWrapper = () => {
     }
   }, [pageNumberFromQuery]);
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, refetch } = useQuery({
     queryKey: [`inventory-${page}-products`],
     queryFn: async () => {
       return await getProducts(page);
@@ -65,6 +66,11 @@ const InventoryWrapper = () => {
     navigate(`/products/${product._id}`);
   };
 
+  const fetchInventoryByPage = (pageNumber: number) => {
+    setPage(pageNumber);
+    refetch();
+  };
+
   const content = (
     <div className='flex flex-col gap-12'>
       <div className='flex flex-col text-center py-6 text-3xl gap-6 rounded-xl text-zinc-500 dark:text-zinc-300 duration-300 transition-all'>
@@ -81,6 +87,11 @@ const InventoryWrapper = () => {
           isActionLoading={selectedProductId === product._id && productAvailabilityLoading}
         />
       ))}
+      <InventoryPagination
+        currentPage={page}
+        totalPage={data.pages}
+        fetchInventoryByPage={fetchInventoryByPage}
+      />
     </div>
   );
 
