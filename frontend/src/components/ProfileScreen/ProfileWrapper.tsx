@@ -159,8 +159,8 @@ const ProfileWrapper = () => {
         <div className='w-full md:w-1/2'>{profileUpdateFormContent}</div>
         {user?.isAdmin && (
           <div className='flex flex-col gap-12 w-full'>
-            <div className='w-full'>{orderCard}</div>
             <div className='w-full'>{inventoryCard}</div>
+            <div className='w-full'>{orderCard}</div>
           </div>
         )}
       </div>
