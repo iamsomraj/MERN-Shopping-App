@@ -12,7 +12,7 @@ const OrderRevenueCard = ({ orders }: OrderRevenueCardProps) => {
       <p className='text-4xl font-medium'>Total Orders</p>
       <div className='text-3xl font-light text-zinc-400 tracking-wider'>{orders.length}</div>
       <p className='text-4xl font-medium'>Total Order Revenue</p>
-      <div className='text-3xl font-light text-zinc-400 tracking-wider'>$ {orders.reduce((acc, order) => acc + order.totalPrice, 0)}</div>
+      <div className='text-3xl font-light text-zinc-400 tracking-wider'>$ {orders.reduce((acc, order) => acc + order.totalPrice, 0).toFixed(2)}</div>
     </div>
   );
 };
