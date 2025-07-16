@@ -8,7 +8,7 @@ import { selectUser, setUser } from '@/features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { ArrowPathIcon } from '@heroicons/react/20/solid';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 type TProfileDetail = {
@@ -36,7 +36,7 @@ const ProfileWrapper = () => {
     };
   });
 
-  const { mutate: update, isLoading } = useMutation({
+  const { mutate: update, isPending } = useMutation({
     mutationFn: async () => {
       return await updateUser(profileDetail.name, profileDetail.email, profileDetail.password);
     },
@@ -68,15 +68,20 @@ const ProfileWrapper = () => {
     queryKey: [`all-orders`],
     queryFn: () => {
       if (!user?.isAdmin) {
-        return;
+        return undefined;
       }
       return fetchAllOrders();
     },
-    onError: (error) => {
-      const errorMessage = getErrorMessage(error, 'Error occurred while fetching order details!');
-      toast.error(errorMessage);
-    },
+    enabled: user?.isAdmin || false,
   });
+
+  // Handle errors in useEffect for TanStack Query v5
+  useEffect(() => {
+    if (orderDataError) {
+      const errorMessage = getErrorMessage(orderDataError, 'Error occurred while fetching order details!');
+      toast.error(errorMessage);
+    }
+  }, [orderDataError]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -91,7 +96,8 @@ const ProfileWrapper = () => {
   const profileUpdateFormContent = (
     <form
       onSubmit={onSubmit}
-      className='w-full flex flex-col gap-6 rounded-xl border dark:border-zinc-500/50 p-12'>
+      className='w-full flex flex-col gap-6 rounded-xl border dark:border-zinc-500/50 p-12'
+    >
       <div className='flex flex-col gap-3'>
         <label>Full Name</label>
         <input
@@ -143,7 +149,8 @@ const ProfileWrapper = () => {
       </div>
       <Button
         disabled={profileDetail.email.trim() === '' || profileDetail.name.trim() === '' || profileDetail.password.trim() === ''}
-        loading={isLoading}>
+        loading={isPending}
+      >
         Update Profile
       </Button>
     </form>

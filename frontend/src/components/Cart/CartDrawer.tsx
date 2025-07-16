@@ -42,7 +42,7 @@ const CartDrawer = () => {
     return sum.toFixed(2);
   }, [cart]);
 
-  const { mutate: placeOrder, isLoading } = useMutation({
+  const { mutate: placeOrder, isPending } = useMutation({
     mutationFn: async () => {
       return await createOrder(cart);
     },
@@ -93,7 +93,8 @@ const CartDrawer = () => {
       {showDrawer && (
         <div
           onClick={onToggle}
-          className='fixed inset-0 bg-zinc-900/50 z-10'></div>
+          className='fixed inset-0 bg-zinc-900/50 z-10'
+        ></div>
       )}
       {/* END - DRAWER OVERLAY */}
 
@@ -126,7 +127,8 @@ const CartDrawer = () => {
               {/* BEGIN - CLEAR CART BUTTON */}
               <Button
                 variant='transparent'
-                onClick={deleteCartItems}>
+                onClick={deleteCartItems}
+              >
                 <div className='flex justify-center items-center gap-3'>
                   <TrashIcon className='h-5 w-5 flex-shrink-0' />
                   <span className='hidden md:block'>Clear Cart</span>
@@ -147,7 +149,8 @@ const CartDrawer = () => {
             <Button
               disabled={user === null || cart.length === 0}
               onClick={() => placeOrder()}
-              loading={isLoading}>
+              loading={isPending}
+            >
               <div className='flex justify-center items-center gap-3'>
                 {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}
                 <span>Place Order</span>

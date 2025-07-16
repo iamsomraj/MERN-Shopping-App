@@ -7,6 +7,7 @@ import { ArrowPathIcon } from '@heroicons/react/20/solid';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const PayementWrapper = () => {
   const queryClient = useQueryClient();
@@ -15,41 +16,47 @@ const PayementWrapper = () => {
 
   const {
     data: order,
-    isLoading: isOrderLoading,
+    isPending: isOrderLoading,
     error: orderError,
   } = useQuery({
     queryKey: [`user-orders-${orderId}`],
     queryFn: async () => {
       if (!orderId) {
-        return;
+        return undefined;
       }
       return await fetchOrderDetail(orderId);
     },
-    onError: (error) => {
-      const errorMessage = getErrorMessage(error, 'Error occurred while fetching order details!');
-      toast.error(errorMessage);
-    },
+    enabled: !!orderId,
   });
 
   const {
     data: paypalClientId,
-    isLoading: isPaypalConfigLoading,
+    isPending: isPaypalConfigLoading,
     error: paypalConfigError,
   } = useQuery({
     queryKey: [`paypal-config`],
     queryFn: async () => {
       if (!orderId) {
-        return;
+        return undefined;
       }
       return await getPaypalConfig();
     },
-    onError: (error) => {
-      const errorMessage = getErrorMessage(error, 'Error occurred while fetching payment configuration!');
-      toast.error(errorMessage);
-    },
+    enabled: !!orderId,
   });
 
-  const { isLoading: isPaymentInProgress, mutate: setOrderDetail } = useMutation({
+  // Handle errors in useEffect for TanStack Query v5
+  useEffect(() => {
+    if (orderError) {
+      const errorMessage = getErrorMessage(orderError, 'Error occurred while fetching order details!');
+      toast.error(errorMessage);
+    }
+    if (paypalConfigError) {
+      const errorMessage = getErrorMessage(paypalConfigError, 'Error occurred while fetching payment configuration!');
+      toast.error(errorMessage);
+    }
+  }, [orderError, paypalConfigError]);
+
+  const { isPending: isPaymentInProgress, mutate: setOrderDetail } = useMutation({
     mutationFn: async () => {
       if (!orderId) {
         return;

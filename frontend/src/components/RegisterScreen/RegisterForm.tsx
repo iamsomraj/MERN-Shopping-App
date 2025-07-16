@@ -25,7 +25,7 @@ const RegisterForm = () => {
     password: '',
   });
 
-  const { mutate: register, isLoading } = useMutation({
+  const { mutate: register, isPending } = useMutation({
     mutationFn: async () => {
       return await signUp(registerForm.name, registerForm.email, registerForm.password);
     },
@@ -66,7 +66,8 @@ const RegisterForm = () => {
       </div>
       <form
         onSubmit={onSubmit}
-        className='flex flex-col gap-6'>
+        className='flex flex-col gap-6'
+      >
         <div className='flex flex-col gap-3'>
           <label>Full Name</label>
           <input
@@ -117,7 +118,7 @@ const RegisterForm = () => {
           />
         </div>
         <div className='mx-auto text-zinc-500 max-w-xs text-xs text-justify'>By continuing, you are setting up a One Stop EShop account and agree to our User Agreement and Privacy Policy.</div>
-        <Button loading={isLoading}>Register</Button>
+        <Button loading={isPending}>Register</Button>
       </form>
     </div>
   );

@@ -5,29 +5,34 @@ import { IOrder } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const OrderWrapper = () => {
   const navigate = useNavigate();
   const {
     data: orders,
-    isLoading,
+    isPending,
     error,
   } = useQuery({
     queryKey: ['user-orders'],
     queryFn: async () => {
       return await getUserOrders();
     },
-    onError: (error) => {
+  });
+
+  // Handle errors in useEffect for TanStack Query v5
+  useEffect(() => {
+    if (error) {
       const errorMessage = getErrorMessage(error, 'Error occurred while fetching orders!');
       toast.error(errorMessage);
-    },
-  });
+    }
+  }, [error]);
 
   const goToPayment = (order: IOrder) => {
     navigate(`/payment/${order._id}`);
   };
 
-  if (isLoading) {
+  if (isPending) {
     return 'Loading...';
   }
 

@@ -4,7 +4,7 @@ import ProductRowItem from '@/components/UI/ProductRowItem';
 import { getErrorMessage } from '@/config';
 import { IProduct } from '@/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,18 +14,22 @@ const InventoryWrapper = () => {
   const [page, setPage] = useState<number>(1);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
-  const { isLoading, error, data, refetch } = useQuery({
+  const { isPending, error, data, refetch } = useQuery({
     queryKey: [`inventory-${page}-products`],
     queryFn: async () => {
       return await getProducts(page);
     },
-    onError: (error) => {
-      const errorMessage = getErrorMessage(error, 'Error occurred while fetching inventory details!');
-      toast.error(errorMessage);
-    },
   });
 
-  const { mutate: toggleProductAvailability, isLoading: productAvailabilityLoading } = useMutation({
+  // Handle errors in useEffect for TanStack Query v5
+  useEffect(() => {
+    if (error) {
+      const errorMessage = getErrorMessage(error, 'Error occurred while fetching inventory details!');
+      toast.error(errorMessage);
+    }
+  }, [error]);
+
+  const { mutate: toggleProductAvailability, isPending: productAvailabilityLoading } = useMutation({
     mutationFn: async (productId: string) => {
       return await deleteProduct(productId);
     },
@@ -45,7 +49,7 @@ const InventoryWrapper = () => {
     },
   });
 
-  if (isLoading) return 'Loading...';
+  if (isPending) return 'Loading...';
 
   if (error || !data) return 'Error occurred while fetching inventory details!';
 

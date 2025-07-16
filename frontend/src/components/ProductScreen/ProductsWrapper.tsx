@@ -29,16 +29,23 @@ const ProductsWrapper = () => {
     }
   }, [pageNumberFromQuery, dispatch]);
 
-  const { isLoading, error } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: [`${page}-products`],
     queryFn: async () => {
       return await getProducts(page);
     },
-    onError: (error) => {
+  });
+
+  // Handle success and error in useEffect for TanStack Query v5
+  useEffect(() => {
+    if (error) {
       const errorMessage = getErrorMessage(error, 'Error occurred while fetching products!');
       toast.error(errorMessage);
-    },
-    onSuccess: (data) => {
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data) {
       dispatch(
         setProducts({
           products: data.products,
@@ -46,10 +53,10 @@ const ProductsWrapper = () => {
           pages: data.pages,
         })
       );
-    },
-  });
+    }
+  }, [data, dispatch]);
 
-  if (isLoading) return 'Loading...';
+  if (isPending) return 'Loading...';
 
   if (error) return 'Error occurred while fetching products!';
 
