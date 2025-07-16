@@ -6,36 +6,41 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const SingleProductWrapper = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectCurrentProduct);
   const { productId } = useParams();
-  const { isLoading, error } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: [`product-${productId}`],
     queryFn: async () => {
       if (!productId) {
-        return;
+        return undefined;
       }
       return await getProduct(productId);
     },
-    onError: (error) => {
+    enabled: !!productId,
+  });
+
+  useEffect(() => {
+    if (error) {
       const errorMessage = getErrorMessage(error, 'Error occurred while fetching product detail!');
       toast.error(errorMessage);
-    },
-    onSuccess: (data) => {
-      if (!data) {
-        return;
-      }
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data) {
       dispatch(
         setCurrenProduct({
           currentProduct: data,
         })
       );
-    },
-  });
+    }
+  }, [data, dispatch]);
 
-  if (isLoading) return 'Loading...';
+  if (isPending) return 'Loading...';
 
   if (error || !product) return 'Error occurred while fetching product!';
 

@@ -23,7 +23,7 @@ const LoginForm = () => {
     password: '',
   });
 
-  const { mutate: login, isLoading } = useMutation({
+  const { mutate: login, isPending } = useMutation({
     mutationFn: async () => {
       return await signIn(loginForm.email, loginForm.password);
     },
@@ -54,7 +54,7 @@ const LoginForm = () => {
     if (loginForm.email?.trim().length === 0 || loginForm.password?.trim().length === 0) {
       return;
     }
-    await login();
+    login();
   };
 
   return (
@@ -64,7 +64,8 @@ const LoginForm = () => {
       </div>
       <form
         onSubmit={onSubmit}
-        className='flex flex-col gap-6'>
+        className='flex flex-col gap-6'
+      >
         <div className='flex flex-col gap-3'>
           <label>Email address</label>
           <input
@@ -99,7 +100,7 @@ const LoginForm = () => {
           />
         </div>
         <div className='mx-auto text-zinc-500 max-w-xs text-xs text-justify'>By continuing, you are setting up a One Stop EShop account and agree to our User Agreement and Privacy Policy.</div>
-        <Button loading={isLoading}>Login</Button>
+        <Button loading={isPending}>Login</Button>
       </form>
     </div>
   );
