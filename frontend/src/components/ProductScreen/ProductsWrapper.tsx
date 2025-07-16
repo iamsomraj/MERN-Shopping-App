@@ -36,7 +36,6 @@ const ProductsWrapper = () => {
     },
   });
 
-  // Handle success and error in useEffect for TanStack Query v5
   useEffect(() => {
     if (error) {
       const errorMessage = getErrorMessage(error, 'Error occurred while fetching products!');
