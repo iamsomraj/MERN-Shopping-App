@@ -14,7 +14,7 @@ React 19 + TypeScript single-page app, built with Vite 8 and styled with Tailwin
 
 ## Setup
 
-Requires Node.js **20.19+**.
+Requires Node.js **22** (Vite 8 needs 20.19+ at minimum).
 
 ```bash
 cd frontend

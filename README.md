@@ -25,7 +25,7 @@ One Stop EShop - A Modern Fullstack E-commerce Website Built with React, Redux T
 
 ## Run This Application
 
-Requirements: **Node.js 20.19+** (22 recommended) and a **MongoDB** database (MongoDB Atlas, or a local `mongod` / Docker container).
+Requirements: **Node.js 22** and a **MongoDB** database (MongoDB Atlas, or a local `mongod` / Docker container).
 
 - Clone One Stop EShop Repository
 
@@ -122,7 +122,7 @@ GITHUB_TOKEN=$(gh auth token) npx changelogen gh release  # publish the GitHub R
 
 **Backend:**
 
-- Node 20.19+ / 22
+- Node 22
 - Express 5
 - TypeScript
 - Mongoose 9

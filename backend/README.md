@@ -4,7 +4,7 @@ Express 5 + Mongoose 9 REST API for One Stop EShop, written in TypeScript.
 
 ## Requirements
 
-- Node.js **20.19+** (22 recommended)
+- Node.js **22** (same as Vercel)
 - A MongoDB database (MongoDB Atlas, or a local `mongod` / Docker container)
 
 ## Setup
@@ -89,6 +89,6 @@ Protected routes expect `Authorization: Bearer <token>`. Errors are returned as 
 
 ## Deployment (Vercel)
 
-The Vercel project `one-stop-eshop-api` uses root directory `backend`. `vercel.json` rewrites every path to `api/index.ts`, which Vercel compiles and runs as one Node function. The MongoDB connection is cached across warm invocations.
+The Vercel project `one-stop-eshop-api` uses root directory `backend`. `vercel.json` builds `api/index.ts` with `@vercel/node` (TypeScript is compiled by Vercel; `npm run build` isn't used on Vercel) and routes every path to it, so the whole API runs as one Node 22 function. The MongoDB connection is cached across warm invocations.
 
 Set the environment variables above in the Vercel project, with `NODE_ENV=production` and `PRODUCTION_CLIENT_ORIGIN` set to the frontend URL. MongoDB Atlas must allow connections from Vercel (Network Access `0.0.0.0/0`).
