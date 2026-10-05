@@ -10,7 +10,7 @@ import { ForwardIcon, LockClosedIcon, TrashIcon, XMarkIcon } from '@heroicons/re
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const CartDrawer = () => {
   const queryClient = useQueryClient();
@@ -112,7 +112,7 @@ const CartDrawer = () => {
           {/* BEGIN - CLOSE BUTTON */}
           <Button onClick={onToggle}>
             <div className='flex justify-center items-center gap-3'>
-              <XMarkIcon className='h-5 w-5 flex-shrink-0' />
+              <XMarkIcon className='h-5 w-5 shrink-0' />
               <span className='hidden md:block'>Close</span>
             </div>
           </Button>
@@ -130,7 +130,7 @@ const CartDrawer = () => {
                 onClick={deleteCartItems}
               >
                 <div className='flex justify-center items-center gap-3'>
-                  <TrashIcon className='h-5 w-5 flex-shrink-0' />
+                  <TrashIcon className='h-5 w-5 shrink-0' />
                   <span className='hidden md:block'>Clear Cart</span>
                 </div>
               </Button>
@@ -152,7 +152,7 @@ const CartDrawer = () => {
               loading={isPending}
             >
               <div className='flex justify-center items-center gap-3'>
-                {user !== null ? <ForwardIcon className='h-5 w-5 flex-shrink-0' /> : <LockClosedIcon className='h-5 w-5 flex-shrink-0' />}
+                {user !== null ? <ForwardIcon className='h-5 w-5 shrink-0' /> : <LockClosedIcon className='h-5 w-5 shrink-0' />}
                 <span>Place Order</span>
               </div>
             </Button>

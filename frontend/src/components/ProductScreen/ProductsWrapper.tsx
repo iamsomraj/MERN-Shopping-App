@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const ProductsWrapper = () => {
   const location = useLocation();

@@ -1,5 +1,5 @@
 import { IProduct } from '@/types';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 type Props = {
   product: IProduct;
@@ -8,7 +8,7 @@ type Props = {
 const ProductListItem = ({ product }: Props) => {
   return (
     <div className='group bg-zinc-50 md:flex rounded-xl border overflow-hidden'>
-      <div className='h-60 w-full md:w-60 flex-shrink-0 bg-zinc-100 dark:bg-zinc-300 duration-300 transition-all p-6 flex justify-center items-center'>
+      <div className='h-60 w-full md:w-60 shrink-0 bg-zinc-100 dark:bg-zinc-300 duration-300 transition-all p-6 flex justify-center items-center'>
         <img
           className='h-60 w-60 object-cover mix-blend-multiply object-center group-hover:scale-110 transition-all duration-300'
           src={product.image}

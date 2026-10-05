@@ -7,8 +7,8 @@ React 19 + TypeScript single-page app, built with Vite 8 and styled with Tailwin
 - **React 19** with `createRoot` and StrictMode
 - **Vite 8** (`@vitejs/plugin-react` 6)
 - **TanStack Query v5** for server state, **Redux Toolkit** for auth, cart and product state
-- **React Router 6**
-- **Tailwind CSS 3** + Heroicons, dark mode
+- **React Router 7**
+- **Tailwind CSS 4** (CSS-first config in `src/styles/globals.css`) + Heroicons, dark mode
 - **PayPal** via `@paypal/react-paypal-js`
 - **ESLint 9** (flat config, typescript-eslint, react-hooks 7) and **Prettier**
 

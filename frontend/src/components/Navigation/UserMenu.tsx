@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { ArrowLeftOnRectangleIcon, QueueListIcon, UserCircleIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import UserMenuList from './UserMenuList';
 
 const UserMenu = () => {
@@ -47,17 +47,17 @@ const UserMenu = () => {
         <UserMenuList onToggle={onToggle}>
           <UserMenuItem
             label='Profile'
-            icon={<UserCircleIcon className='h-5 w-5 flex-shrink-0 ' />}
+            icon={<UserCircleIcon className='h-5 w-5 shrink-0 ' />}
             onClick={() => onNavigate('profile')}
           />
           <UserMenuItem
             label='Orders'
-            icon={<QueueListIcon className='h-5 w-5 flex-shrink-0 ' />}
+            icon={<QueueListIcon className='h-5 w-5 shrink-0 ' />}
             onClick={() => onNavigate('orders')}
           />
           <UserMenuItem
             label='Logout'
-            icon={<ArrowLeftOnRectangleIcon className='h-5 w-5 flex-shrink-0 ' />}
+            icon={<ArrowLeftOnRectangleIcon className='h-5 w-5 shrink-0 ' />}
             onClick={signOut}
           />
         </UserMenuList>

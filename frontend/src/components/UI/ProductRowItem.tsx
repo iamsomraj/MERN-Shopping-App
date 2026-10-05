@@ -20,9 +20,9 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, shouldAd
         className={`flex justify-between w-full transition-all duration-300 bg-zinc-50 dark:bg-zinc-700 items-center gap-6 px-12 py-6 border ${shouldAddRoundedBorders ? 'rounded-lg' : ''} dark:border-zinc-500/50`}>
         {/* BEGIN - IMAGE, NAME, PRICE */}
         <div className='flex flex-col md:flex-row justify-start md:items-center gap-6'>
-          <div className='bg-zinc-100 w-fit dark:bg-zinc-300 p-3 rounded-lg drop-shadow'>
+          <div className='bg-zinc-100 w-fit dark:bg-zinc-300 p-3 rounded-lg drop-shadow-sm'>
             <img
-              className='h-24 w-24 rounded-lg mix-blend-multiply object-cover object-center overflow-hidden flex-shrink-0'
+              className='h-24 w-24 rounded-lg mix-blend-multiply object-cover object-center overflow-hidden shrink-0'
               src={product.image}
             />
           </div>
@@ -58,24 +58,24 @@ const ProductRowItem = ({ product, deleteSingleItem, redirectToProduct, shouldAd
           }}>
           <div className='flex gap-3 items-center'>
             {isProductActionOngoing ? (
-              <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
+              <ArrowPathIcon className='h-5 w-5 shrink-0 animate-spin' />
             ) : showProductStock ? (
               product.isAvailable ? (
                 <MinusCircleIcon
                   key={'delete'}
-                  className='h-5 w-5 flex-shrink-0'
+                  className='h-5 w-5 shrink-0'
                 />
               ) : (
                 <>
                   <span key={'undo'}>Undo</span>
                   <PlusCircleIcon
                     key={'undo-plus-icon'}
-                    className='h-5 w-5 flex-shrink-0'
+                    className='h-5 w-5 shrink-0'
                   />
                 </>
               )
             ) : (
-              <TrashIcon className='h-5 w-5 flex-shrink-0' />
+              <TrashIcon className='h-5 w-5 shrink-0' />
             )}
           </div>
         </Button>

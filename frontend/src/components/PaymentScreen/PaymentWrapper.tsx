@@ -6,7 +6,7 @@ import { getErrorMessage } from '@/config';
 import { ArrowPathIcon } from '@heroicons/react/20/solid';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 
 const PayementWrapper = () => {
@@ -99,7 +99,7 @@ const PayementWrapper = () => {
 
   const loadingContent = (
     <div className='my-12 mx-auto'>
-      <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
+      <ArrowPathIcon className='h-5 w-5 shrink-0 animate-spin' />
     </div>
   );
 

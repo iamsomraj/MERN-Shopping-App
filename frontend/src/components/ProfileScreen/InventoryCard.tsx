@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Button from '../UI/Button';
 import { InboxStackIcon } from '@heroicons/react/20/solid';
 
@@ -10,7 +10,7 @@ const InventoryCard = () => {
         <Button>
           <Link to={'/inventory'}>
             <div className='flex justify-center items-center gap-3'>
-              <InboxStackIcon className='h-5 w-5 flex-shrink-0' />
+              <InboxStackIcon className='h-5 w-5 shrink-0' />
               <span>Visit</span>
             </div>
           </Link>

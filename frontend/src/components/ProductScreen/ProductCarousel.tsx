@@ -2,7 +2,7 @@ import ProductCarouselItem from '@/components/ProductScreen/ProductCarouselItem'
 import { IProduct } from '@/types';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 type ProductCarouselProps = {
   products: IProduct[];

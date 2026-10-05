@@ -11,7 +11,7 @@ const QuantityChips = (props: QuantityChipsProps) => {
     chips.push(
       <button
         key={'1-qty'}
-        className={`h-10 w-10 flex-shrink-0 rounded-full flex justify-center items-center bg-zinc-50 dark:bg-zinc-800 border-2 transition-colors duration-300 ${props.product.qty === 1 ? 'outline outline-offset-4 outline-zinc-500' : ''}`}
+        className={`h-10 w-10 shrink-0 rounded-full flex justify-center items-center bg-zinc-50 dark:bg-zinc-800 border-2 transition-colors duration-300 ${props.product.qty === 1 ? 'outline-solid outline-offset-4 outline-zinc-500' : ''}`}
         onClick={() => {
           props.onQuantityChange({
             ...props.product,
@@ -26,7 +26,7 @@ const QuantityChips = (props: QuantityChipsProps) => {
     chips.push(
       <button
         key={'5-qty'}
-        className={`h-10 w-10 flex-shrink-0 rounded-full flex justify-center items-center bg-zinc-50 dark:bg-zinc-800 border-2 transition-colors duration-300 ${props.product.qty === 5 ? 'outline outline-offset-4 outline-zinc-500' : ''}`}
+        className={`h-10 w-10 shrink-0 rounded-full flex justify-center items-center bg-zinc-50 dark:bg-zinc-800 border-2 transition-colors duration-300 ${props.product.qty === 5 ? 'outline-solid outline-offset-4 outline-zinc-500' : ''}`}
         onClick={() => {
           props.onQuantityChange({
             ...props.product,
@@ -41,7 +41,7 @@ const QuantityChips = (props: QuantityChipsProps) => {
     chips.push(
       <button
         key={'10-qty'}
-        className={`h-10 w-10 flex-shrink-0 rounded-full flex justify-center items-center bg-zinc-50 dark:bg-zinc-800 border-2 transition-colors duration-300 ${props.product.qty === 10 ? 'outline outline-offset-4 outline-zinc-500' : ''}`}
+        className={`h-10 w-10 shrink-0 rounded-full flex justify-center items-center bg-zinc-50 dark:bg-zinc-800 border-2 transition-colors duration-300 ${props.product.qty === 10 ? 'outline-solid outline-offset-4 outline-zinc-500' : ''}`}
         onClick={() => {
           props.onQuantityChange({
             ...props.product,

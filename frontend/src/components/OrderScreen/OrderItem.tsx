@@ -13,11 +13,11 @@ const OrderItem = ({ order, goToPayment }: IOrderItemProps) => {
       {/* BEGIN - ORDER ITEM CARD */}
       <article
         key={order._id}
-        className='rounded-xl bg-zinc-50 dark:bg-zinc-800 overflow-hidden border drop-shadow'>
+        className='rounded-xl bg-zinc-50 dark:bg-zinc-800 overflow-hidden border drop-shadow-sm'>
         {/* BEGIN - ORDER HEADER */}
         <div className={`p-6  ${order.isPaymentDone ? 'bg-green-100 dark:bg-zinc-700 text-green-700 dark:text-green-300' : 'bg-zinc-200 dark:bg-zinc-700'} text-3xl font-medium flex justify-start items-center gap-6`}>
           <span>Order Overview</span>
-          {order.isPaymentDone && <CheckBadgeIcon className='h-5 w-5 flex-shrink-0' />}
+          {order.isPaymentDone && <CheckBadgeIcon className='h-5 w-5 shrink-0' />}
         </div>
         {/* END - ORDER HEADER */}
 

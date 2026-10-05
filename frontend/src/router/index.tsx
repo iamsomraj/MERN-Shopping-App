@@ -9,7 +9,7 @@ import PaymentScreen from '@/screens/PaymentScreen';
 import ProfileScreen from '@/screens/ProfileScreen';
 import RegisterScreen from '@/screens/RegisterScreen';
 import SingleProductScreen from '@/screens/SingleProductScreen';
-import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

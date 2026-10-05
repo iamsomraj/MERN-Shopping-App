@@ -4,7 +4,7 @@ import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
 import { selectUser } from '@/features/auth/authSlice';
 import { openDrawer, selectCart } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import CartButton from './CartButton';
 
 const Header = () => {
@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <>
       {/* BEGIN - HEADER */}
-      <header className='fixed z-10 w-full transition-all duration-300 shadow dark:shadow-zinc-50/10 dark:shadow-lg bg-zinc-50 dark:bg-zinc-900'>
+      <header className='fixed z-10 w-full transition-all duration-300 shadow-sm dark:shadow-zinc-50/10 dark:shadow-lg bg-zinc-50 dark:bg-zinc-900'>
         {/* BEGIN - NAVIGATION BAR CONTAINER */}
         <nav className='container flex items-center justify-between py-3'>
           {/* BEGIN - NAV BAR BRAND NAME */}
