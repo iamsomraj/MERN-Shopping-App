@@ -1,6 +1,6 @@
 {
   "name": "one-stop-eshop",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "One Stop EShop - MERN e-commerce app (frontend + backend). This root package only holds the app version and release tooling.",
   "repository": {
