@@ -1,0 +1,18 @@
+{
+  "name": "one-stop-eshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One Stop EShop - MERN e-commerce app (frontend + backend). This root package only holds the app version and release tooling.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsomraj/MERN-Shopping-App.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "release": "changelogen --release --push",
+    "changelog": "changelogen --no-output"
+  },
+  "devDependencies": {
+    "changelogen": "^0.6.2"
+  }
+}

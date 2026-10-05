@@ -1,0 +1,7 @@
+{
+  "repo": "iamsomraj/MERN-Shopping-App",
+  "scopeMap": {
+    "fe": "frontend",
+    "be": "backend"
+  }
+}
