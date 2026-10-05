@@ -116,8 +116,8 @@ GITHUB_TOKEN=$(gh auth token) npx changelogen gh release  # publish the GitHub R
 - TypeScript
 - TanStack Query (React Query) v5
 - Redux Toolkit
-- React Router DOM 6
-- Tailwind CSS 3
+- React Router 7
+- Tailwind CSS 4
 - React Paypal SDK
 
 **Backend:**
