@@ -10,7 +10,7 @@ const GuestNavActions = () => {
         <Button>
           <Link to={'/login'}>
             <div className='flex justify-center items-center gap-3'>
-              <UserIcon className='h-5 w-5 flex-shrink-0' />
+              <UserIcon className='h-5 w-5 shrink-0' />
               <span className='hidden md:block'>Login</span>
             </div>
           </Link>
@@ -23,7 +23,7 @@ const GuestNavActions = () => {
         <Button variant='transparent'>
           <Link to={'/register'}>
             <div className='flex justify-center items-center gap-3'>
-              <UserPlusIcon className='h-5 w-5 flex-shrink-0' />
+              <UserPlusIcon className='h-5 w-5 shrink-0' />
               <span className='hidden md:block'>Register</span>
             </div>
           </Link>

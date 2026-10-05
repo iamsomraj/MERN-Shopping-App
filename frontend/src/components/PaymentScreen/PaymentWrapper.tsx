@@ -99,7 +99,7 @@ const PayementWrapper = () => {
 
   const loadingContent = (
     <div className='my-12 mx-auto'>
-      <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' />
+      <ArrowPathIcon className='h-5 w-5 shrink-0 animate-spin' />
     </div>
   );
 

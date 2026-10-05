@@ -38,7 +38,7 @@ const Product = ({ product }: Props) => {
       {/* BEGIN - PRODUCT */}
       <div className='flex flex-col md:flex-row gap-12'>
         {/* BEGIN - PRODUCT IMAGE */}
-        <div className='p-12 bg-zinc-100 dark:bg-zinc-300 transition-all duration-300 rounded-lg drop-shadow'>
+        <div className='p-12 bg-zinc-100 dark:bg-zinc-300 transition-all duration-300 rounded-lg drop-shadow-sm'>
           <img
             className='h-60 w-60 rounded-xl mix-blend-multiply object-cover object-center transition-all duration-300'
             src={product.image}
@@ -52,12 +52,12 @@ const Product = ({ product }: Props) => {
           <div className='text-xl font-extralight flex justify-start items-center gap-6 flex-wrap'>
             {product.isAvailable ? (
               <span className='flex justify-start items-center gap-3 text-green-400'>
-                <ArrowTrendingUpIcon className='h-5 w-5 flex-shrink-0' />
+                <ArrowTrendingUpIcon className='h-5 w-5 shrink-0' />
                 Trending
               </span>
             ) : (
               <span className='flex justify-start items-center gap-3 text-red-400'>
-                <ExclamationTriangleIcon className='h-5 w-5 flex-shrink-0' />
+                <ExclamationTriangleIcon className='h-5 w-5 shrink-0' />
                 Sold Out
               </span>
             )}
@@ -76,12 +76,12 @@ const Product = ({ product }: Props) => {
             <div className='flex justify-center items-center gap-3'>
               {isAddedToCart ? (
                 <>
-                  <CheckBadgeIcon className='h-5 w-5 flex-shrink-0 text-green-400 dark:text-green-600' />
+                  <CheckBadgeIcon className='h-5 w-5 shrink-0 text-green-400 dark:text-green-600' />
                   <span className='text-green-400 dark:text-green-600'>Added</span>
                 </>
               ) : (
                 <>
-                  <ShoppingCartIcon className='h-5 w-5 flex-shrink-0' />
+                  <ShoppingCartIcon className='h-5 w-5 shrink-0' />
                   <span>Add To Cart</span>
                 </>
               )}

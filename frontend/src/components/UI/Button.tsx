@@ -8,7 +8,7 @@ type Props = {
 
 const PrimaryButton = (props: Props) => {
   const { children, ...rest } = props;
-  const content = rest.loading ? <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' /> : children;
+  const content = rest.loading ? <ArrowPathIcon className='h-5 w-5 shrink-0 animate-spin' /> : children;
   return (
     <button
       className='px-3 py-3 font-bold rounded-lg flex justify-center items-center bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900 hover:bg-zinc-800 duration-300 transition-all disabled:cursor-not-allowed disabled:opacity-50'
@@ -20,7 +20,7 @@ const PrimaryButton = (props: Props) => {
 
 const TransparentButton = (props: Props) => {
   const { children, ...rest } = props;
-  const content = rest.loading ? <ArrowPathIcon className='h-5 w-5 flex-shrink-0 animate-spin' /> : children;
+  const content = rest.loading ? <ArrowPathIcon className='h-5 w-5 shrink-0 animate-spin' /> : children;
   return (
     <button
       className='px-3 py-3 rounded-lg flex justify-center items-center dark:text-zinc-50 duration-300 transition-all disabled:cursor-not-allowed disabled:opacity-50'
