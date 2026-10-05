@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import request from 'supertest';
 import app from '../src/app.js';
 import { connectToDatabase } from '../src/config/database.js';
@@ -19,7 +20,13 @@ export const seed = async () => {
   await Product.insertMany(products.map((product) => ({ ...product, user: admin!._id })));
 };
 
-export const login = async (email: string, password = '123456'): Promise<string> => {
+// The public demo password every seeded user has (see src/data/users.ts and the README).
+export const SEED_PASSWORD = '123456';
+
+/** Fresh throwaway password, so tests carry no hardcoded credentials. */
+export const randomPassword = (): string => randomUUID();
+
+export const login = async (email: string, password = SEED_PASSWORD): Promise<string> => {
   const res = await api().post('/api/users/login').send({ email, password });
   return res.body.token as string;
 };

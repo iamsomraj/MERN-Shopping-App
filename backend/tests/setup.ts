@@ -1,9 +1,10 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import { randomUUID } from 'node:crypto';
 import { afterAll } from 'vitest';
 
 // Runs before any app module is imported, so env() validates against these values, never the real .env.
 process.env.NODE_ENV = 'test';
-process.env.SECRET = 'test-secret';
+process.env.SECRET = randomUUID();
 process.env.PAYPAL_CLIENT_ID = 'test-paypal-client';
 
 const mongo = await MongoMemoryServer.create();

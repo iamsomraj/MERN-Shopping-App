@@ -1,17 +1,20 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ADMIN, CUSTOMER, api, login, seed } from './helpers.js';
+import { ADMIN, CUSTOMER, SEED_PASSWORD, api, login, randomPassword, seed } from './helpers.js';
+
+const loginStatus = async (email: string, password: string) =>
+  (await api().post('/api/users/login').send({ email, password })).status;
 
 describe('auth', () => {
   beforeEach(seed);
 
   it('logs in with valid credentials', async () => {
-    const res = await api().post('/api/users/login').send({ email: ADMIN, password: '123456' }).expect(200);
+    const res = await api().post('/api/users/login').send({ email: ADMIN, password: SEED_PASSWORD }).expect(200);
     expect(res.body).toMatchObject({ email: ADMIN, isAdmin: true });
     expect(res.body.token).toEqual(expect.any(String));
   });
 
   it('rejects a wrong password', async () => {
-    const res = await api().post('/api/users/login').send({ email: ADMIN, password: 'nope' }).expect(401);
+    const res = await api().post('/api/users/login').send({ email: ADMIN, password: randomPassword() }).expect(401);
     expect(res.body.message).toBe('Invalid Email Address or Password');
   });
 
@@ -31,12 +34,13 @@ describe('auth', () => {
   });
 
   it('registers a user without letting them self-assign admin', async () => {
+    const newUser = { name: 'New', email: 'new@example.com', password: randomPassword() };
     const res = await api()
       .post('/api/users')
-      .send({ name: 'New', email: 'new@example.com', password: 'secret1', isAdmin: true })
+      .send({ ...newUser, isAdmin: true })
       .expect(201);
     expect(res.body.isAdmin).toBe(false);
-    await api().post('/api/users').send({ name: 'New', email: 'new@example.com', password: 'x' }).expect(400);
+    await api().post('/api/users').send(newUser).expect(400);
   });
 });
 
@@ -53,18 +57,19 @@ describe('profile', () => {
     expect(res.body).toMatchObject({ name: 'John Updated', email: CUSTOMER });
 
     // Saving again must not re-hash the stored hash, so the old password still works.
-    await api().post('/api/users/login').send({ email: CUSTOMER, password: '123456' }).expect(200);
+    expect(await loginStatus(CUSTOMER, SEED_PASSWORD)).toBe(200);
   });
 
   it('changes the password', async () => {
     const token = await login(CUSTOMER);
+    const newPassword = randomPassword();
     await api()
       .put('/api/users/profile')
       .set('Authorization', `Bearer ${token}`)
-      .send({ password: 'new-pass' })
+      .send({ password: newPassword })
       .expect(201);
-    await api().post('/api/users/login').send({ email: CUSTOMER, password: 'new-pass' }).expect(200);
-    await api().post('/api/users/login').send({ email: CUSTOMER, password: '123456' }).expect(401);
+    expect(await loginStatus(CUSTOMER, newPassword)).toBe(200);
+    expect(await loginStatus(CUSTOMER, SEED_PASSWORD)).toBe(401);
   });
 });
 
