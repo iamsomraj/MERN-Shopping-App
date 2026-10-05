@@ -3,11 +3,7 @@ import colors from "colors";
 
 const connectToDatabase = async () => {
 	try {
-		const conn = await mongoose.connect(process.env.MONGODB_URI, {
-			useUnifiedTopology: true,
-			useNewUrlParser: true,
-			useCreateIndex: true,
-		});
+		await mongoose.connect(process.env.MONGODB_URI);
 		console.log(`Database is connected`.yellow.underline.bold);
 	} catch (error) {
 		console.error(`Error: ${error.message}`.red.underline.bold);
