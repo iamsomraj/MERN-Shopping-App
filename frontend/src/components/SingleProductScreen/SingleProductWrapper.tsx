@@ -5,7 +5,7 @@ import { selectCurrentProduct, setCurrenProduct } from '@/features/product/produ
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { useEffect } from 'react';
 
 const SingleProductWrapper = () => {

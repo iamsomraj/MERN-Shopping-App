@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Button from '../UI/Button';
 import { InboxStackIcon } from '@heroicons/react/20/solid';
 

@@ -1,6 +1,6 @@
 import Button from '@/components/UI/Button';
 import { UserIcon, UserPlusIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const GuestNavActions = () => {
   return (

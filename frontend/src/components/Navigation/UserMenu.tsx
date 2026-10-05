@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { ArrowLeftOnRectangleIcon, QueueListIcon, UserCircleIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import UserMenuList from './UserMenuList';
 
 const UserMenu = () => {

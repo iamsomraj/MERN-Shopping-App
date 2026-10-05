@@ -10,7 +10,7 @@ import { ForwardIcon, LockClosedIcon, TrashIcon, XMarkIcon } from '@heroicons/re
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const CartDrawer = () => {
   const queryClient = useQueryClient();

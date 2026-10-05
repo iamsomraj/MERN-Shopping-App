@@ -4,7 +4,7 @@ import ThemeToggleButton from '@/components/UI/ThemeToggleButton';
 import { selectUser } from '@/features/auth/authSlice';
 import { openDrawer, selectCart } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import CartButton from './CartButton';
 
 const Header = () => {

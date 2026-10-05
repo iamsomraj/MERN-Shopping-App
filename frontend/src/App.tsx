@@ -1,7 +1,7 @@
 import CartDrawer from '@/components/Cart/CartDrawer';
 import Header from '@/components/Navigation/Header';
 import { Toaster } from 'react-hot-toast';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 
 const App = () => {
   return (

@@ -1,6 +1,6 @@
 import { selectUser } from '@/features/auth/authSlice';
 import { useAppSelector } from '@/hooks';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router';
 
 const PrivateAdminRoute = () => {
   const user = useAppSelector(selectUser);

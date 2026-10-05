@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router';
 
 type TLoginForm = {
   email: string;
