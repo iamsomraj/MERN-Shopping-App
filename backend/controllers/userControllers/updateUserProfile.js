@@ -11,7 +11,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     const { name, email, password } = req.body;
     user.name = name || user.name;
-    user.email = email || user.password;
+    user.email = email || user.email;
     if (password) user.password = password;
 
 
