@@ -44,7 +44,7 @@ export const placeOrder = async (req: Request, res: Response): Promise<void> => 
   const products = lines.map((item) => {
     const product = byId.get(item.product);
     if (!product) {
-      throw new HttpError(400, 'Ordered products unavailable');
+      throw new HttpError(400, 'Some items in your cart are no longer available. Review your cart and try again.');
     }
     if (item.qty > product.qtyInStock) {
       throw new HttpError(400, `Only ${product.qtyInStock} of ${product.name} left in stock`);

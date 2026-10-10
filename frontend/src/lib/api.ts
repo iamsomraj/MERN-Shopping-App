@@ -50,7 +50,7 @@ const request = async <T>(method: string, path: string, body?: unknown, params?:
     // An expired or revoked token: sign out so protected routes redirect to login.
     if (res.status === 401 && message === 'Unauthorized User Access' && useAuthStore.getState().user) {
       useAuthStore.getState().logout();
-      toast.error('Your session has expired. Please sign in again.');
+      toast.error('Your session has ended. Please sign in again.');
     }
     throw new ApiError(res.status, message);
   }

@@ -5,6 +5,7 @@ import { AddressBlock } from '@/components/order/AddressBlock';
 import { OrderSummary } from '@/components/order/OrderSummary';
 import { ProductImage } from '@/components/product/ProductImage';
 import { Button } from '@/components/ui/button';
+import { useCartValidation } from '@/hooks/use-cart-validation';
 import { usePageMeta } from '@/hooks/use-page-meta';
 import { getErrorMessage } from '@/lib/api';
 import { priceCart } from '@/lib/pricing';
@@ -19,6 +20,7 @@ import { toast } from 'sonner';
 
 export default function CheckoutPage() {
   usePageMeta('Checkout', { noindex: true });
+  const { isValidating } = useCartValidation();
   const navigate = useNavigate();
   const user = useAuthStore((state) => state.user);
   const { items, clear } = useCartStore();
@@ -131,7 +133,7 @@ export default function CheckoutPage() {
           <Button
             size='lg'
             className='w-full'
-            disabled={step !== 1 || isPending}
+            disabled={step !== 1 || isPending || isValidating}
             onClick={placeOrder}>
             {isPending ? <Loader2 className='animate-spin' /> : <Lock />}
             Place order
