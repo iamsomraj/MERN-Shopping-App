@@ -13,6 +13,9 @@ export const updateUserProfile = async (req: Request, res: Response): Promise<vo
   }
 
   const { name, email, password } = req.body as { name?: string; email?: string; password?: string };
+  if (email && email !== user.email && (await User.exists({ email }))) {
+    throw new HttpError(400, 'Email is already in use');
+  }
   user.name = name || user.name;
   user.email = email || user.email;
   if (password) user.password = password;

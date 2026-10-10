@@ -5,7 +5,7 @@ const loginStatus = async (email: string, password: string) =>
   (await api().post('/api/users/login').send({ email, password })).status;
 
 describe('auth', () => {
-  beforeEach(seed);
+  beforeEach(() => seed());
 
   it('logs in with valid credentials', async () => {
     const res = await api().post('/api/users/login').send({ email: ADMIN, password: SEED_PASSWORD }).expect(200);
@@ -45,7 +45,7 @@ describe('auth', () => {
 });
 
 describe('profile', () => {
-  beforeEach(seed);
+  beforeEach(() => seed());
 
   it('updates the name without corrupting email or password', async () => {
     const token = await login(CUSTOMER);
@@ -58,6 +58,16 @@ describe('profile', () => {
 
     // Saving again must not re-hash the stored hash, so the old password still works.
     expect(await loginStatus(CUSTOMER, SEED_PASSWORD)).toBe(200);
+  });
+
+  it('rejects an email that belongs to another account', async () => {
+    const token = await login(CUSTOMER);
+    const res = await api()
+      .put('/api/users/profile')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ email: ADMIN })
+      .expect(400);
+    expect(res.body.message).toBe('Email is already in use');
   });
 
   it('changes the password', async () => {
@@ -74,7 +84,7 @@ describe('profile', () => {
 });
 
 describe('admin users', () => {
-  beforeEach(seed);
+  beforeEach(() => seed());
 
   it('lists, updates and deletes users', async () => {
     const token = await login(ADMIN);
@@ -88,5 +98,18 @@ describe('admin users', () => {
 
     await api().delete(`/api/users/${target._id}`).set(auth).expect(200);
     await api().get(`/api/users/${target._id}`).set(auth).expect(404);
+  });
+
+  it('promotes users but never lets admins demote or delete themselves', async () => {
+    const token = await login(ADMIN);
+    const auth = { Authorization: `Bearer ${token}` };
+    const list = await api().get('/api/users').set(auth).expect(200);
+    const target = list.body.find((u: { email: string }) => u.email === CUSTOMER);
+    const promoted = await api().put(`/api/users/${target._id}`).set(auth).send({ isAdmin: true }).expect(200);
+    expect(promoted.body.isAdmin).toBe(true);
+
+    const me = (await api().get('/api/users/profile').set(auth).expect(200)).body;
+    await api().put(`/api/users/${me._id}`).set(auth).send({ isAdmin: false }).expect(400);
+    await api().delete(`/api/users/${me._id}`).set(auth).expect(400);
   });
 });

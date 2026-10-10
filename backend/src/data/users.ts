@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import type { IUser } from '../models/User.js';
 
 // Passwords are pre-hashed because insertMany skips the save hook.
-export const users: Array<Omit<IUser, 'isAdmin'> & { isAdmin?: boolean }> = [
+export const users: Array<Omit<IUser, 'isAdmin' | 'wishlist'> & { isAdmin?: boolean }> = [
   {
     name: 'Admin User',
     email: 'admin@example.com',

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://one-stop-eshop.vercel.app/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/shop</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/shop?category=Electronics</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/shop?category=Women</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/shop?category=Jewelry</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/shop?category=Men</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/shop?category=Bags</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/fjallraven-laptop-backpack</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/mens-slim-fit-t-shirt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/mens-cotton-jacket</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/mens-casual-shirt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/dragon-station-chain-bracelet</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/gold-petite-micropave-ring</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/gold-plated-princess-necklace</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/rose-gold-double-earrings</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/portable-external-hard-drive-2tb</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/internal-ssd-sata-iii-1tb</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/256gb-ssd-3d-nand-sata-iii</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/gaming-drive-for-playstation-4</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/21-5-full-hd-ips-monitor</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/49-144hz-curved-gaming-monitor</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/womens-3-in-1-snowboard-jacket</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/womens-hooded-moto-jacket</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/striped-climbing-raincoat</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/short-sleeve-boat-neck-top</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/moisture-wicking-athletic-shirt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://one-stop-eshop.vercel.app/products/womens-cotton-graphic-t-shirt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+</urlset>

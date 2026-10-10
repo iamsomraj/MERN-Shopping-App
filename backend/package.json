@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "check": "npm run lint && npm run format:check && npm run typecheck && npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,14 +30,12 @@
   "homepage": "https://github.com/iamsomraj/MERN-Shopping-App#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "colors": "^1.4.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.5",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.11.0",
     "morgan": "^1.12.1",
-    "multer": "^2.4.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -45,7 +44,6 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
-    "@types/multer": "^2.3.0",
     "@types/node": "^22.20.5",
     "@types/supertest": "^7.2.1",
     "eslint": "^9.39.5",

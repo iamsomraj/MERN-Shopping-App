@@ -6,9 +6,25 @@ import { HttpError } from '../utils/httpError.js';
 
 const UNAUTHORIZED_USER = 'Unauthorized User Access';
 
-export const userAuth = async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
+const bearerToken = (req: Request): string | undefined => {
   const header = req.headers.authorization;
-  const token = header?.startsWith('Bearer ') ? header.slice('Bearer '.length).trim() : undefined;
+  return header?.startsWith('Bearer ') ? header.slice('Bearer '.length).trim() : undefined;
+};
+
+/** The signed-in user's id on public routes, or undefined for guests and invalid tokens. */
+export const optionalUserId = (req: Request): string | undefined => {
+  const token = bearerToken(req);
+  if (!token) return undefined;
+  try {
+    const id = (jwt.verify(token, env().SECRET) as jwt.JwtPayload).id;
+    return typeof id === 'string' ? id : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+export const userAuth = async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
+  const token = bearerToken(req);
   if (!token) {
     throw new HttpError(401, UNAUTHORIZED_USER);
   }

@@ -4,21 +4,83 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="One Stop EShop - Your destination for online shopping 🛍️" />
+      content="Shop hand-picked electronics, fashion and jewelry from brands you trust. Free shipping over $100 and secure PayPal checkout." />
     <meta
-      name="keywords"
-      content="One Stop EShop, online shopping, e-commerce, shop online, buy products" />
+      name="robots"
+      content="index, follow" />
     <meta
       name="author"
       content="Somraj Mukherjee" />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)" />
+    <meta
+      name="theme-color"
+      content="#18181b"
+      media="(prefers-color-scheme: dark)" />
+    <link
+      rel="canonical"
+      href="https://one-stop-eshop.vercel.app/" />
     <link
       rel="icon"
-      type="image/png"
+      type="image/svg+xml"
+      href="/favicon.svg" />
+    <link
+      rel="alternate icon"
       href="/favicon.ico" />
-    <title>One Stop EShop 🛍️</title>
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png" />
+    <!-- Social cards. usePageMeta() updates these per page for crawlers that run JavaScript. -->
+    <meta
+      property="og:type"
+      content="website" />
+    <meta
+      property="og:site_name"
+      content="One Stop EShop" />
+    <meta
+      property="og:title"
+      content="One Stop EShop — Everything you love, in one place" />
+    <meta
+      property="og:description"
+      content="Shop hand-picked electronics, fashion and jewelry from brands you trust. Free shipping over $100 and secure PayPal checkout." />
+    <meta
+      property="og:url"
+      content="https://one-stop-eshop.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://one-stop-eshop.vercel.app/og-image.jpg" />
+    <meta
+      property="og:image:width"
+      content="1200" />
+    <meta
+      property="og:image:height"
+      content="630" />
+    <meta
+      name="twitter:card"
+      content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="One Stop EShop — Everything you love, in one place" />
+    <meta
+      name="twitter:description"
+      content="Shop hand-picked electronics, fashion and jewelry from brands you trust. Free shipping over $100 and secure PayPal checkout." />
+    <meta
+      name="twitter:image"
+      content="https://one-stop-eshop.vercel.app/og-image.jpg" />
+    <title>One Stop EShop — Everything you love, in one place</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a light/dark flash.
+      try {
+        const theme = JSON.parse(localStorage.getItem('eshop:theme') || '{}').state?.theme ?? 'system';
+        const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+      } catch {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

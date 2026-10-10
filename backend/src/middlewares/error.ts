@@ -12,6 +12,7 @@ const statusFor = (err: unknown): number => {
   // Malformed ObjectIds in :id params should read as "not found", not a server error.
   if (err instanceof mongoose.Error.CastError) return 404;
   if (err instanceof mongoose.Error.ValidationError) return 400;
+  if (err instanceof mongoose.mongo.MongoServerError && err.code === 11000) return 409;
   return 500;
 };
 

@@ -10,7 +10,8 @@
   "license": "MIT",
   "scripts": {
     "release": "changelogen --release --push",
-    "changelog": "changelogen --no-output"
+    "changelog": "changelogen --no-output",
+    "check": "npm --prefix backend run check && npm --prefix frontend run check"
   },
   "devDependencies": {
     "changelogen": "^0.6.2"

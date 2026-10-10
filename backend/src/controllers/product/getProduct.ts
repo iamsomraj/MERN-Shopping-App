@@ -1,14 +1,9 @@
 import type { Request, Response } from 'express';
-import { Product } from '../../models/Product.js';
-import { HttpError } from '../../utils/httpError.js';
+import { findProduct } from './findProduct.js';
 
-// @desc:   get one product by id
+// @desc:   get one product by id or slug
 // @access: public
 // @route:  GET api/products/:id
 export const getProduct = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
-  const product = await Product.findById(req.params.id);
-  if (!product) {
-    throw new HttpError(404, 'Product is unavailable');
-  }
-  res.status(200).json(product);
+  res.status(200).json(await findProduct(req.params.id));
 };

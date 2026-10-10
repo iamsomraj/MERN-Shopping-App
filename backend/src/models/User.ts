@@ -1,11 +1,12 @@
 import bcrypt from 'bcryptjs';
-import { type HydratedDocument, type Model, Schema, model } from 'mongoose';
+import { type HydratedDocument, type Model, Schema, type Types, model } from 'mongoose';
 
 export interface IUser {
   name: string;
   email: string;
   password: string;
   isAdmin: boolean;
+  wishlist: Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -24,6 +25,7 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, required: true, default: false },
+    wishlist: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
   },
   { timestamps: true }
 );
