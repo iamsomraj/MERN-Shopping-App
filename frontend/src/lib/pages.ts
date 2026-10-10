@@ -1,0 +1,21 @@
+// Route modules, shared by the router (lazy routes) and link hover preloading.
+export const pages = {
+  home: () => import('@/pages/HomePage'),
+  shop: () => import('@/pages/ShopPage'),
+  product: () => import('@/pages/ProductPage'),
+  cart: () => import('@/pages/CartPage'),
+  checkout: () => import('@/pages/CheckoutPage'),
+  orders: () => import('@/pages/OrdersPage'),
+  order: () => import('@/pages/OrderPage'),
+  account: () => import('@/pages/AccountPage'),
+  login: () => import('@/pages/LoginPage'),
+  register: () => import('@/pages/RegisterPage'),
+  notFound: () => import('@/pages/NotFoundPage'),
+  adminLayout: () => import('@/layouts/AdminLayout'),
+  adminDashboard: () => import('@/pages/admin/DashboardPage'),
+  adminProducts: () => import('@/pages/admin/ProductsPage'),
+  adminProductForm: () => import('@/pages/admin/ProductFormPage'),
+  adminOrders: () => import('@/pages/admin/OrdersPage'),
+  adminOrder: () => import('@/pages/admin/OrderPage'),
+  adminUsers: () => import('@/pages/admin/UsersPage'),
+};

@@ -1,105 +1,152 @@
-# One Stop EShop (MERN-Shopping-App)
+# One Stop EShop
 
-One Stop EShop - A Modern Fullstack E-commerce Website Built with React, Redux Toolkit, TanStack Query, Express, TypeScript, Tailwind CSS, Heroicons, MongoDB and PayPal.
+**Everything you love, in one place.** A modern, full-stack e-commerce store built with the MERN stack: React 19, shadcn/ui and Tailwind CSS 4 on the front, Express 5, Mongoose 9 and MongoDB on the back, with PayPal checkout.
+
+**Live demo:** [one-stop-eshop.vercel.app](https://one-stop-eshop.vercel.app/)
+
+![One Stop EShop home page](docs/screenshots/home.webp)
 
 ## Features
 
-- User Authentication and Registration using Tokens
-- Home Page for Product Listing
-- Product Listing with Pagination
-- Option to Add Item To Cart
-- Option to edit User Profile Details
-- Ability to pay for orders
-- Modern Payment Gateway using Paypal Client SDK
-- Admin inventory and order management
-- Dark mode
-- much more
+**Shopping**
 
-## Preview Link
+- Home page with a hero, category tiles, featured picks, deals and top-rated products
+- Shop page with category, brand, price-range, in-stock and on-sale filters, plus sorting and pagination. Filters live in the URL, so results are shareable.
+- ⌘K / Ctrl+K search across products, brands and categories, with recent searches
+- Product pages with an image gallery, real sale prices, stock status, related products and a recently viewed list
+- Star ratings and reviews (one per customer) with a rating breakdown and **Verified purchase** badges
+- Wishlist that syncs to your account
+- Cart drawer and cart page with a free-shipping progress bar
 
-✅ [Live] [https://one-stop-eshop.vercel.app/] 😊
+**Checkout and orders**
 
-## Walkthrough of Payment
+- Multi-step checkout: shipping address → review → place order → pay with PayPal
+- Prices, shipping (free over $100) and stock are always calculated on the server
+- Order pages with a status timeline (placed → paid → shipped → delivered) and cancellation of unpaid orders
+- With a PayPal client secret configured, the server captures each payment itself. It first re-checks the order, its stock and the amount. A PayPal payment can never pay for two orders.
 
-✅ [Overview] [https://youtu.be/QjBAAmpt8oM]
+**Admin dashboard**
 
-## Run This Application
+- Revenue, order, customer and product stats, a 30-day revenue chart, orders by status, recent orders and low-stock alerts
+- Product management: search, create, edit, show/hide, featured flag, and images from the bundled library or a URL, with a live preview
+- Order management: filter by status, mark shipped or delivered, cancel
+- Customer management: grant or remove admin access, delete accounts
+
+**Experience**
+
+- Light, dark and system themes
+- Responsive layout down to small phones
+- Accessible components built on Radix primitives
+- Skeleton loading states and empty states throughout
+- No zoom-on-focus for form fields on iOS, while pinch-zoom still works
+- SEO: per-page titles and descriptions, canonical URLs, Open Graph and Twitter cards, Product and WebSite structured data, robots.txt and a sitemap
+
+**Performance**
+
+- Every page is loaded on demand, and the PayPal SDK only loads on an unpaid order page
+- About 175 kB of gzipped JavaScript on first load, enforced by a bundle budget check
+- Page data is requested while the page's code is still downloading, and hovering a product preloads its page
+- Self-hosted Geist variable font
+- Product images are WebP and lazy-loaded
+
+## Screenshots
+
+|                                                                   |                                                         |
+| ----------------------------------------------------------------- | ------------------------------------------------------- |
+| ![Shop with filters](docs/screenshots/shop.webp)                  | ![Product page](docs/screenshots/product.webp)          |
+| ![Search](docs/screenshots/search.webp)                           | ![Cart drawer](docs/screenshots/cart-sheet.webp)        |
+| ![Checkout review](docs/screenshots/checkout.webp)                | ![Order status timeline](docs/screenshots/order.webp)   |
+| ![Wishlist](docs/screenshots/wishlist.webp)                       | ![Dark mode](docs/screenshots/home-dark.webp)           |
+| ![Admin dashboard](docs/screenshots/admin-dashboard.webp)         | ![Admin products](docs/screenshots/admin-products.webp) |
+| ![Admin product editor](docs/screenshots/admin-product-form.webp) | ![Admin orders](docs/screenshots/admin-orders.webp)     |
+
+<p align="center">
+  <img src="docs/screenshots/mobile-home.webp" alt="Mobile home page" width="240" />
+  <img src="docs/screenshots/mobile-product.webp" alt="Mobile product page" width="240" />
+  <img src="docs/screenshots/mobile-filters.webp" alt="Mobile filters" width="240" />
+</p>
+
+## Run it locally
 
 Requirements: **Node.js 22** and a **MongoDB** database (MongoDB Atlas, or a local `mongod` / Docker container).
-
-- Clone One Stop EShop Repository
 
 ```bash
 git clone https://github.com/iamsomraj/MERN-Shopping-App.git
 cd MERN-Shopping-App
 ```
 
-- Setup Environment Variables
-
-Copy `.env.example` to `.env` in both `backend/` and `frontend/` and fill in the values.
-
-**Backend** (validated at startup, so the server won't start with missing values):
-
-- `MONGODB_URI`: Your MongoDB URI (required)
-- `SECRET`: Secret used to sign login tokens (required)
-- `NODE_ENV`: `development`, `production` or `test`
-- `PORT`: Port for the backend server (default `4500`)
-- `PAYPAL_CLIENT_ID`: PayPal client ID
-- `PRODUCTION_CLIENT_ORIGIN`: Frontend URL allowed by CORS in production
-- `DEVELOPMENT_CLIENT_ORIGIN`: Frontend URL allowed by CORS in development (default `http://localhost:5173`)
-
-**Frontend**:
-
-- `VITE_NODE_ENV`: Vite Node environment (e.g., "development")
-- `VITE_PRODUCTION_BASE_URL`: Production base URL for the frontend
-- `VITE_DEVELOPMENT_BASE_URL`: Development base URL for the frontend
-- `VITE_PRODUCTION_API`: Production API URL for the frontend
-- `VITE_DEVELOPMENT_API`: Development API URL for the frontend (e.g. `http://localhost:4500`)
-
-- Install, seed sample data and start One Stop EShop
+Copy `.env.example` to `.env` in both `backend/` and `frontend/` and fill in the values. Every variable is documented in [backend/README.md](backend/README.md#environment-variables) and [frontend/README.md](frontend/README.md#environment-variables). At minimum the API needs `MONGODB_URI` and `SECRET`, and the frontend needs `VITE_DEVELOPMENT_API=http://localhost:4500`.
 
 ```bash
 cd backend
 npm install
-npm run up      # seeds sample users + products (deletes existing data!)
+npm run up      # seeds users, 20 products, reviews and demo orders (deletes existing data!)
 npm run dev     # API on http://localhost:4500
 
 # in a second terminal
 cd frontend
 npm install
-npm run dev     # app on http://localhost:5173
+npm run dev     # store on http://localhost:5173
 ```
 
-Sample logins (password `123456`): `admin@example.com` (admin), `john@example.com`, `jane@example.com`.
+Sample logins (password `123456`):
 
-More detail, including all scripts, the API reference, tests and project structure:
+- `admin@example.com` (admin)
+- `john@example.com`
+- `jane@example.com`
 
-- [backend/README.md](backend/README.md)
-- [frontend/README.md](frontend/README.md)
+The login page also has one-click demo buttons.
 
-## Checks
+> **Deploying this version?** The data model changed, so reseed the database with `npm run up` (from `backend/`, with `MONGODB_URI` pointing at it). This wipes all existing users, products and orders and loads fresh demo data.
+
+## Quality checks
+
+Run every check for both apps from the repo root before opening a pull request:
 
 ```bash
-cd backend  && npm run typecheck && npm run lint && npm test
-cd frontend && npm run lint && npm run build
+npm run check   # backend: lint, format, typecheck, tests, build · frontend: lint, format, typecheck, build, bundle budget
 ```
 
-Backend tests run against an in-memory MongoDB and never touch the database in your `.env`.
+Each app also has its own `npm run check`.
+
+- **ESLint 9:** typescript-eslint, plus react-hooks and jsx-a11y on the frontend
+- **Prettier:** formatting, with the Tailwind class-sorting plugin on the frontend
+- **TypeScript:** strict mode in both apps
+- **Backend tests:** about 60 Vitest + Supertest tests against an in-memory MongoDB. They never touch the database in your `.env`.
+- **Bundle budget:** fails the frontend build if the JavaScript loaded on first visit grows past the limit
 
 ## Deployment
 
 Both apps are deployed on Vercel as separate projects, built automatically from `main`:
 
-| Project              | Root directory | URL                                       |
-| -------------------- | -------------- | ----------------------------------------- |
-| `one-stop-eshop`     | `frontend`     | https://one-stop-eshop.vercel.app         |
-| `one-stop-eshop-api` | `backend`      | https://somraj-mern-shop-api.vercel.app   |
+| Project              | Root directory | URL                                     |
+| -------------------- | -------------- | --------------------------------------- |
+| `one-stop-eshop`     | `frontend`     | https://one-stop-eshop.vercel.app       |
+| `one-stop-eshop-api` | `backend`      | https://somraj-mern-shop-api.vercel.app |
 
-Set the environment variables above in each Vercel project. The API needs `NODE_ENV=production` and `PRODUCTION_CLIENT_ORIGIN=https://one-stop-eshop.vercel.app`, and MongoDB Atlas must allow connections from anywhere (`0.0.0.0/0`). Product images are self-hosted in `frontend/public/images/products`.
+Set the environment variables in each Vercel project. The API also needs:
+
+- `NODE_ENV=production`
+- `PRODUCTION_CLIENT_ORIGIN=https://one-stop-eshop.vercel.app`
+- MongoDB Atlas network access from anywhere (`0.0.0.0/0`)
+
+Set `PAYPAL_CLIENT_SECRET` (and `PAYPAL_API_BASE` for live payments) to have the server capture PayPal payments.
+
+When a release changes the data model, reseed the production database with `npm run up` as part of the deploy. It replaces all data with the demo catalog.
+
+**Images:** product images are self-hosted in `frontend/public/images/products`. Vercel functions have a read-only filesystem, so admins pick images from that library or paste an image URL instead of uploading files.
+
+## Tech stack
+
+**Frontend:** React 19, Vite 8, TypeScript, React Router 7, TanStack Query 5, Zustand, Tailwind CSS 4, shadcn/ui (Radix UI), lucide-react, React Hook Form + Zod, Recharts, sonner, PayPal JS SDK, Geist font
+
+**Backend:** Node 22, Express 5, TypeScript, Mongoose 9, MongoDB, Zod, JSON Web Tokens, Vitest + Supertest + mongodb-memory-server
+
+**Tooling:** ESLint 9, Prettier, changelogen, Vercel
 
 ## Releases
 
-Versions and the [CHANGELOG](CHANGELOG.md) are generated with [changelogen](https://github.com/unjs/changelogen) from [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat(backend): ✨ …`, `fix(frontend): 🐛 …`). To cut a release from an up-to-date `main`:
+Versions and the [CHANGELOG](CHANGELOG.md) are generated with [changelogen](https://github.com/unjs/changelogen) from [Conventional Commits](https://www.conventionalcommits.org/), for example `feat(backend): ✨ …` or `fix(frontend): 🐛 …`. To cut a release from an up-to-date `main`:
 
 ```bash
 npm install                                               # once, in the repo root
@@ -107,50 +154,21 @@ npm run release                                           # bump version, update
 GITHUB_TOKEN=$(gh auth token) npx changelogen gh release  # publish the GitHub Release
 ```
 
-## Tech Stack
-
-**Frontend:**
-
-- React 19
-- Vite 8
-- TypeScript
-- TanStack Query (React Query) v5
-- Redux Toolkit
-- React Router 7
-- Tailwind CSS 4
-- React Paypal SDK
-
-**Backend:**
-
-- Node 22
-- Express 5
-- TypeScript
-- Mongoose 9
-- MongoDB
-- Zod (env validation)
-- Vitest + Supertest (tests)
-
-**Language Used:**
-
-- TypeScript
-
 ## Developer
 
-LinkedIn : [iamsomraj](https://www.linkedin.com/in/iamsomraj/) 😊
+LinkedIn: [iamsomraj](https://www.linkedin.com/in/iamsomraj/) 😊
 
 Portfolio: [Somraj Mukherjee](https://iamsomraj.github.io/) 😊
 
-## Show Your Support
+## Show your support
 
-Give me a star ⭐
-
-if this project helped you 👦 👧
+Give the repo a star ⭐ if this project helped you.
 
 ## Contributing
 
-Pull requests are welcome. 🤝 For major changes, please open an issue first to discuss what you would like to change. 🙏
+Pull requests are welcome. 🤝 For major changes, please open an issue first to discuss what you would like to change.
 
-Please use Conventional Commits and make sure `npm test` (backend) and `npm run lint` / `npm run build` (both apps) pass. ✌
+Please use Conventional Commits and make sure `npm run check` passes.
 
 ## License
 

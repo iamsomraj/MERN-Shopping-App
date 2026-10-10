@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /account
+Disallow: /checkout
+Disallow: /orders
+Disallow: /cart
+
+Sitemap: https://one-stop-eshop.vercel.app/sitemap.xml

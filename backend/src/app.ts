@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import { connectToDatabase } from './config/database.js';
 import { env } from './config/env.js';
 import { errorHandler, pageNotFound } from './middlewares/error.js';
+import adminRoutes from './routes/admin.routes.js';
 import orderRoutes from './routes/order.routes.js';
 import productRoutes from './routes/product.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -38,8 +39,13 @@ export const createApp = (): Express => {
   app.use('/api/users', userRoutes);
   app.use('/api/products', productRoutes);
   app.use('/api/orders', orderRoutes);
+  app.use('/api/admin', adminRoutes);
   app.get('/api/config/paypal', (_req, res) => {
     res.send(config.PAYPAL_CLIENT_ID);
+  });
+  // Tells the client whether to capture PayPal payments itself or leave it to the server.
+  app.get('/api/config/payments', (_req, res) => {
+    res.json({ paypalClientId: config.PAYPAL_CLIENT_ID, serverCapture: Boolean(config.PAYPAL_CLIENT_SECRET) });
   });
 
   app.use(pageNotFound);

@@ -12,6 +12,9 @@ const envSchema = z.object({
   MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
   SECRET: z.string().min(1, 'SECRET is required'),
   PAYPAL_CLIENT_ID: z.string().default(''),
+  // When set, PayPal captures are verified server-side before an order is marked paid.
+  PAYPAL_CLIENT_SECRET: z.string().optional(),
+  PAYPAL_API_BASE: z.url().default('https://api-m.sandbox.paypal.com'),
   PRODUCTION_CLIENT_ORIGIN: z.url().optional(),
   DEVELOPMENT_CLIENT_ORIGIN: z.url().default('http://localhost:5173'),
 });
@@ -34,4 +37,9 @@ let cached: Env | undefined;
 export const env = (): Env => {
   cached ??= parseEnv(process.env);
   return cached;
+};
+
+/** Re-reads process.env on the next env() call; for tests that change configuration. */
+export const resetEnvCache = (): void => {
+  cached = undefined;
 };
