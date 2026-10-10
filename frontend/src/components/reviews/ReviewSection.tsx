@@ -1,4 +1,4 @@
-import { useCreateReview, useProductReviews } from '@/api/products';
+import { productKeys, useCreateReview, useProductReviews } from '@/api/products';
 import { PaginationNav } from '@/components/common/PaginationNav';
 import { RatingInput, RatingStars } from '@/components/product/RatingStars';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -9,12 +9,13 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
-import { getErrorMessage } from '@/lib/api';
+import { ApiError, getErrorMessage } from '@/lib/api';
 import { formatDate, initials } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth';
 import type { IProduct } from '@/types';
-import { BadgeCheck, MessageSquareText } from 'lucide-react';
-import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { BadgeCheck, MessageSquareText, TriangleAlert } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { toast } from 'sonner';
 
@@ -23,6 +24,7 @@ function ReviewForm({ productId, onDone }: { productId: string; onDone: () => vo
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
   const { mutate, isPending } = useCreateReview(productId);
+  const queryClient = useQueryClient();
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -37,7 +39,15 @@ function ReviewForm({ productId, onDone }: { productId: string; onDone: () => vo
           toast.success('Thanks for your review!');
           onDone();
         },
-        onError: (error) => toast.error(getErrorMessage(error)),
+        onError: (error) => {
+          if (error instanceof ApiError && error.status === 404) {
+            // Stale product data: reload it; the form keeps what was typed so it can be resubmitted.
+            void queryClient.invalidateQueries({ queryKey: productKeys.all });
+            toast.error('This product was just updated. Please submit your review again.');
+            return;
+          }
+          toast.error(getErrorMessage(error));
+        },
       }
     );
   };
@@ -98,8 +108,16 @@ export function ReviewSection({ product }: { product: IProduct }) {
   const [writing, setWriting] = useState(false);
   const user = useAuthStore((state) => state.user);
   const location = useLocation();
-  const { data, isPending } = useProductReviews(product._id, page);
+  const queryClient = useQueryClient();
+  const { data, isPending, error } = useProductReviews(product._id, page);
   const alreadyReviewed = Boolean(user && data?.viewerHasReviewed);
+  const refreshProduct = useCallback(() => queryClient.invalidateQueries({ queryKey: productKeys.all }), [queryClient]);
+
+  // A 404 means the cached product is stale (e.g. the catalog was replaced): reload it by slug,
+  // which also refetches reviews under its current id.
+  useEffect(() => {
+    if (error instanceof ApiError && error.status === 404) void refreshProduct();
+  }, [error, refreshProduct]);
 
   return (
     <section
@@ -170,7 +188,18 @@ export function ReviewSection({ product }: { product: IProduct }) {
               onDone={() => setWriting(false)}
             />
           )}
-          {isPending ? (
+          {error ? (
+            <div className='flex flex-col items-center gap-3 rounded-xl border border-dashed py-12 text-center text-sm text-muted-foreground'>
+              <TriangleAlert className='size-6' />
+              Reviews couldn&apos;t be loaded.
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={refreshProduct}>
+                Try again
+              </Button>
+            </div>
+          ) : isPending ? (
             Array.from({ length: 3 }, (_, index) => (
               <div
                 key={index}

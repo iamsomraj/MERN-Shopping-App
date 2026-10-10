@@ -5,6 +5,7 @@ import { FreeShippingProgress } from '@/components/layout/FreeShippingProgress';
 import { OrderSummary } from '@/components/order/OrderSummary';
 import { RecentlyViewed } from '@/components/product/RecentlyViewed';
 import { Button } from '@/components/ui/button';
+import { useCartValidation } from '@/hooks/use-cart-validation';
 import { usePageMeta } from '@/hooks/use-page-meta';
 import { priceCart } from '@/lib/pricing';
 import { useCartCount, useCartStore } from '@/stores/cart';
@@ -13,6 +14,7 @@ import { Link } from 'react-router';
 
 export default function CartPage() {
   usePageMeta('Cart', { noindex: true });
+  useCartValidation();
   const { items, clear } = useCartStore();
   const count = useCartCount();
   const totals = priceCart(items);

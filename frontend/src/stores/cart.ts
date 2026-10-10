@@ -11,6 +11,8 @@ interface CartState {
   setQty: (id: string, qty: number) => void;
   remove: (id: string) => void;
   clear: () => void;
+  /** Applies fresh product data: `null` drops the item; otherwise details refresh and qty is clamped to stock. */
+  sync: (fresh: Map<string, IProductSummary | null>) => void;
   setOpen: (isOpen: boolean) => void;
 }
 
@@ -64,6 +66,15 @@ export const useCartStore = create<CartState>()(
         })),
       remove: (id) => set((state) => ({ items: state.items.filter((item) => item._id !== id) })),
       clear: () => set({ items: [] }),
+      sync: (fresh) =>
+        set((state) => ({
+          items: state.items.flatMap((item) => {
+            if (!fresh.has(item._id)) return [item];
+            const product = fresh.get(item._id);
+            if (!product || product.qtyInStock <= 0) return [];
+            return [{ ...toProductSummary(product), qty: clampQty(item.qty, product.qtyInStock) }];
+          }),
+        })),
       setOpen: (isOpen) => set({ isOpen }),
     }),
     { name: 'eshop:cart', partialize: ({ items }) => ({ items }) }
